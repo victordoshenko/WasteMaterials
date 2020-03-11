@@ -38,12 +38,8 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
       }
     }
   }
-/*
-  func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
-    return FAuthPickerViewController(nibName: "FAuthPickerViewController", bundle: Bundle.main, authUI: authUI)
-  }
-*/
-  func signed(in user: User) {
+
+    func signed(in user: User) {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
     dismiss(animated: true, completion: nil)
