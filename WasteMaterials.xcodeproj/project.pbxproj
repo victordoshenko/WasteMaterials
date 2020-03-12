@@ -14,6 +14,10 @@
 		8397046E223BDEBD00E935DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8397046C223BDEBD00E935DD /* LaunchScreen.storyboard */; };
 		83970476223BE36600E935DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83970475223BE36600E935DD /* GoogleService-Info.plist */; };
 		925EE2282411169B003DA076 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925EE2272411169B003DA076 /* SignInViewController.swift */; };
+		929723C2241A2023000B9FD9 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C1241A2023000B9FD9 /* Offer.swift */; };
+		929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */; };
+		929723C7241A4648000B9FD9 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C6241A4648000B9FD9 /* NavigationController.swift */; };
+		929723C9241A4BBA000B9FD9 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C8241A4BBA000B9FD9 /* AppController.swift */; };
 		F0FDC6313617E2CB6F70446D /* Pods_WasteMaterials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D79420562E8E7230AAA1C2 /* Pods_WasteMaterials.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +34,10 @@
 		8397046F223BDEBD00E935DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83970475223BE36600E935DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		925EE2272411169B003DA076 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		929723C1241A2023000B9FD9 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
+		929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
+		929723C6241A4648000B9FD9 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		929723C8241A4BBA000B9FD9 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,16 +90,36 @@
 		83970462223BDEBD00E935DD /* WasteMaterials */ = {
 			isa = PBXGroup;
 			children = (
+				929723CA241A7150000B9FD9 /* Controllers */,
+				929723C5241A211C000B9FD9 /* Model */,
 				83970463223BDEBD00E935DD /* AppDelegate.swift */,
-				83970465223BDEBD00E935DD /* MainViewController.swift */,
 				83970467223BDEBD00E935DD /* Main.storyboard */,
-				925EE2272411169B003DA076 /* SignInViewController.swift */,
 				8397046A223BDEBD00E935DD /* Assets.xcassets */,
 				8397046C223BDEBD00E935DD /* LaunchScreen.storyboard */,
 				8397046F223BDEBD00E935DD /* Info.plist */,
 				83970475223BE36600E935DD /* GoogleService-Info.plist */,
 			);
 			path = WasteMaterials;
+			sourceTree = "<group>";
+		};
+		929723C5241A211C000B9FD9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				929723C1241A2023000B9FD9 /* Offer.swift */,
+				929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		929723CA241A7150000B9FD9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				83970465223BDEBD00E935DD /* MainViewController.swift */,
+				925EE2272411169B003DA076 /* SignInViewController.swift */,
+				929723C6241A4648000B9FD9 /* NavigationController.swift */,
+				929723C8241A4BBA000B9FD9 /* AppController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,9 +256,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				929723C2241A2023000B9FD9 /* Offer.swift in Sources */,
+				929723C7241A4648000B9FD9 /* NavigationController.swift in Sources */,
 				83970466223BDEBD00E935DD /* MainViewController.swift in Sources */,
 				83970464223BDEBD00E935DD /* AppDelegate.swift in Sources */,
+				929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */,
 				925EE2282411169B003DA076 /* SignInViewController.swift in Sources */,
+				929723C9241A4BBA000B9FD9 /* AppController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

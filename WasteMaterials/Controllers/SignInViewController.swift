@@ -8,8 +8,6 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if Auth.auth().currentUser != nil {
-            let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
             dismiss(animated: true, completion: nil)
             return
         }
@@ -39,8 +37,6 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
     }
 
     func signed(in user: User) {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
         dismiss(animated: true, completion: nil)
     }
 }
