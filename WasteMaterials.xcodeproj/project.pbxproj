@@ -18,6 +18,8 @@
 		929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */; };
 		929723C7241A4648000B9FD9 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C6241A4648000B9FD9 /* NavigationController.swift */; };
 		929723C9241A4BBA000B9FD9 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C8241A4BBA000B9FD9 /* AppController.swift */; };
+		92D01BB02428E3EF00C112B5 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */; };
+		92D01BB22428F17600C112B5 /* FlickrPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BB12428F17600C112B5 /* FlickrPhotoCell.swift */; };
 		F0FDC6313617E2CB6F70446D /* Pods_WasteMaterials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D79420562E8E7230AAA1C2 /* Pods_WasteMaterials.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,8 @@
 		929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
 		929723C6241A4648000B9FD9 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		929723C8241A4BBA000B9FD9 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
+		92D01BB12428F17600C112B5 /* FlickrPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrPhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 		929723CA241A7150000B9FD9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				92D01BB12428F17600C112B5 /* FlickrPhotoCell.swift */,
+				92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */,
 				83970465223BDEBD00E935DD /* MainViewController.swift */,
 				925EE2272411169B003DA076 /* SignInViewController.swift */,
 				929723C6241A4648000B9FD9 /* NavigationController.swift */,
@@ -256,7 +262,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D01BB02428E3EF00C112B5 /* MyCollectionViewController.swift in Sources */,
 				929723C2241A2023000B9FD9 /* Offer.swift in Sources */,
+				92D01BB22428F17600C112B5 /* FlickrPhotoCell.swift in Sources */,
 				929723C7241A4648000B9FD9 /* NavigationController.swift in Sources */,
 				83970466223BDEBD00E935DD /* MainViewController.swift in Sources */,
 				83970464223BDEBD00E935DD /* AppDelegate.swift in Sources */,
@@ -398,6 +406,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;

@@ -48,14 +48,15 @@ final class AppController {
     window.makeKeyAndVisible()
   }
   
-  private func handleAppState() {
-    if let user = Auth.auth().currentUser {
-      let vc = MainViewController(currentUser: user)
-      rootViewController = NavigationController(vc)
-    } else {
-      rootViewController = SignInViewController()
+    private func handleAppState() {
+        if let user = Auth.auth().currentUser {
+            //let vc = MainViewController(currentUser: user)
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyCollectionViewController") as! MyCollectionViewController
+            rootViewController = NavigationController(vc)
+        } else {
+            rootViewController = SignInViewController()
+        }
     }
-  }
   
   @objc internal func userStateDidChange() {
     DispatchQueue.main.async {
