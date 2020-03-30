@@ -20,6 +20,7 @@
 		929723C9241A4BBA000B9FD9 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C8241A4BBA000B9FD9 /* AppController.swift */; };
 		92D01BB02428E3EF00C112B5 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */; };
 		92D01BB22428F17600C112B5 /* FlickrPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BB12428F17600C112B5 /* FlickrPhotoCell.swift */; };
+		92DB8B562431EA3E00CDF69E /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */; };
 		F0FDC6313617E2CB6F70446D /* Pods_WasteMaterials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D79420562E8E7230AAA1C2 /* Pods_WasteMaterials.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		929723C8241A4BBA000B9FD9 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
 		92D01BB12428F17600C112B5 /* FlickrPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrPhotoCell.swift; sourceTree = "<group>"; };
+		92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		929723CA241A7150000B9FD9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */,
 				92D01BB12428F17600C112B5 /* FlickrPhotoCell.swift */,
 				92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */,
 				83970465223BDEBD00E935DD /* MainViewController.swift */,
@@ -271,6 +274,7 @@
 				929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */,
 				925EE2282411169B003DA076 /* SignInViewController.swift in Sources */,
 				929723C9241A4BBA000B9FD9 /* AppController.swift in Sources */,
+				92DB8B562431EA3E00CDF69E /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

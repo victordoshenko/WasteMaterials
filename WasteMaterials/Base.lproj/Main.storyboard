@@ -83,6 +83,7 @@
                                 <connections>
                                     <outlet property="goodsNameLabel" destination="Wej-2Y-zVV" id="nAH-6n-PC4"/>
                                     <outlet property="imageView" destination="kKs-Yu-xdv" id="l87-aX-Ngi"/>
+                                    <segue destination="veK-VW-4Rg" kind="show" identifier="showDetail" id="yqK-fT-4Gt"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -106,7 +107,53 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ykv-b4-oCN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1289" y="27"/>
+            <point key="canvasLocation" x="2017" y="27"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="P4K-Sc-DLM">
+            <objects>
+                <viewController id="veK-VW-4Rg" customClass="DetailsViewController" customModule="WasteMaterials" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rYO-Zh-kZn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEY-Mz-sbg">
+                                <rect key="frame" x="16" y="44" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="G4k-GX-T8Z"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="spM-cq-ADB"/>
+                    <connections>
+                        <outlet property="labelName" destination="OEY-Mz-sbg" id="mSK-B0-Ch4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="byk-Ak-q2t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2745" y="27"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gag-Cg-HeI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C4Z-Bf-qjb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4EG-Se-hzi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sBZ-AU-gKg" kind="relationship" relationship="rootViewController" id="hee-jp-hbr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cwH-kz-nl2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1288.8" y="26.53673163418291"/>
         </scene>
     </scenes>
 </document>

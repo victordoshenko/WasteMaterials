@@ -62,46 +62,23 @@ final class MyCollectionViewController: UICollectionViewController {
     deinit {
         offerListener?.remove()
     }
-
-//    static func myCollectionViewController(currentUser: User) -> MyCollectionViewController {
-//        let newViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyCollectionViewController") as! MyCollectionViewController
-//        newViewController.currentUser = currentUser
-//        return newViewController
-//    }
     
-//    init(collectionView: UICollectionView, frame: CGRect, currentUser: User) {
-
-/*
-    init(currentUser: User) {
-        let layout = UICollectionViewLayout()
-        
-        self.currentUser = currentUser
-        self.db = Firestore.firestore()
-        super.init(collectionViewLayout: layout)
-        self.collectionView = collectionView
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail" {
+            let controller = segue.destination as! DetailsViewController
+            let cell = sender as! UICollectionViewCell
+            if let indexPath = self.collectionView!.indexPath(for: cell) {
+                controller.name = offers[indexPath.row].name
+            }
+        }
     }
-*/
-    
-//    init(collectionView: UICollectionView, frame: CGRect, currentUser: User) {
-//        self.currentUser = currentUser
-//        self.db = Firestore.firestore()
-//        self.collectionView = collectionView
-//        let layout = UICollectionViewLayout()
-//        super.init(nibName: frame, bundle: layout)
-//        title = "Offers"
-//    }
-    
-//    required init?(coder aDecoder: NSCoder) {
-//        //fatalError("init(coder:) has not been implemented")
-//        self.currentUser = Auth.auth().currentUser!
-//        super.init(coder: aDecoder)
-//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //self.navigationController?.navigationBar.prefersLargeTitles = false
+        
         clearsSelectionOnViewWillAppear = true
-        //collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         toolbarItems = [
             UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
@@ -241,50 +218,6 @@ final class MyCollectionViewController: UICollectionViewController {
         }
     }
 
-/*
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
-    }
-*/
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-/*
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
-        return cell
-    }
-*/
     // MARK: UICollectionViewDelegate
 
     /*

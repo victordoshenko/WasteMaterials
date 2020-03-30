@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "GLOBAL">
+         <PersistentStrings>
+            <PersistentString
+               value = "offers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MainViewController.addOfferToTable(_:):MainViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -11,10 +19,19 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GLOBAL">
+         contextName = "MyCollectionViewController.prepare(for:sender:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "offers">
+               value = "controller.labelName">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "offers[1]">
+            </PersistentString>
+            <PersistentString
+               value = "self.collectionView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
