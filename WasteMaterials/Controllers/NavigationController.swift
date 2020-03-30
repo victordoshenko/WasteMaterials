@@ -22,20 +22,20 @@ class NavigationController: UINavigationController {
     super.viewDidLoad()
     
     navigationBar.tintColor = UIColor.black
-    navigationBar.prefersLargeTitles = true
-    navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
-    navigationBar.largeTitleTextAttributes = navigationBar.titleTextAttributes
+    //navigationBar.prefersLargeTitles = true
+    //navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
+    //navigationBar.largeTitleTextAttributes = navigationBar.titleTextAttributes
     
     toolbar.tintColor = UIColor.black
   }
   
   override var shouldAutorotate: Bool {
-    return false
+    return true //false
   }
   
-  override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-    return .portrait
-  }
+//  override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+//    return .portrait
+//  }
   
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return topViewController?.preferredStatusBarStyle ?? .default

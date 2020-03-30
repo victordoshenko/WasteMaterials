@@ -33,9 +33,9 @@ import Firebase
 final class MyCollectionViewController: UICollectionViewController {
     
     private let reuseIdentifier = "FlickrCell"
-    private let sectionInsets = UIEdgeInsets(top: 50.0,
+    private let sectionInsets = UIEdgeInsets(top: 20.0,
                                              left: 20.0,
-                                             bottom: 50.0,
+                                             bottom: 20.0,
                                              right: 20.0)
     //private var searches: [FlickrSearchResults] = []
     private var currentOfferAlertController: UIAlertController?
@@ -53,7 +53,7 @@ final class MyCollectionViewController: UICollectionViewController {
     private let db = Firestore.firestore()
     
     //private let flickr = Flickr()
-    private let itemsPerRow: CGFloat = 2
+    private var itemsPerRow: CGFloat = 2
     
     private var offerReference: CollectionReference {
         return db.collection("offers")
@@ -62,7 +62,17 @@ final class MyCollectionViewController: UICollectionViewController {
     deinit {
         offerListener?.remove()
     }
-    
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+            itemsPerRow = 3
+        } else {
+            print("Portrait")
+            itemsPerRow = 2
+        }
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             let controller = segue.destination as! DetailsViewController
@@ -77,6 +87,9 @@ final class MyCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         //self.navigationController?.navigationBar.prefersLargeTitles = false
+        //self.navigationController?.navigationItem.titleView?.isHidden = true
+        //self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        //self.navigationController?.navigationBar.isHidden = true
         
         clearsSelectionOnViewWillAppear = true
         toolbarItems = [
