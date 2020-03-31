@@ -8,10 +8,48 @@
             <PersistentString
                value = "offers">
             </PersistentString>
+            <PersistentString
+               value = "rootViewController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MyCollectionViewController.viewWillAppear(_:):MyCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UIDevice.current.orientation.isLandscape">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "MainViewController.addOfferToTable(_:):MainViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainViewController.tableView(_:cellForRowAt:):MainViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppController.handleAppState():AppController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "user">
+            </PersistentString>
+            <PersistentString
+               value = "rootViewController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainViewController.viewDidLoad():MainViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "offers">
@@ -32,22 +70,6 @@
             </PersistentString>
             <PersistentString
                value = "self.collectionView">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MainViewController.tableView(_:cellForRowAt:):MainViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "offers">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MainViewController.viewDidLoad():MainViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "offers">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

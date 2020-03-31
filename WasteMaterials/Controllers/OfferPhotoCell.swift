@@ -28,7 +28,7 @@
 
 import UIKit
 
-class FlickrPhotoCell: UICollectionViewCell {
+class OfferPhotoCell: UICollectionViewCell {
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var goodsNameLabel: UILabel!
 }

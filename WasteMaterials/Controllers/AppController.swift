@@ -49,7 +49,8 @@ final class AppController {
   }
   
     private func handleAppState() {
-        if let user = Auth.auth().currentUser {
+        guard rootViewController == nil else { return }
+        if let _ = Auth.auth().currentUser {
             //let vc = MainViewController(currentUser: user)
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyCollectionViewController") as! MyCollectionViewController
             rootViewController = NavigationController(vc)
