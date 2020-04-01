@@ -3,35 +3,15 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "GLOBAL">
-         <PersistentStrings>
-            <PersistentString
-               value = "offersQuery">
-            </PersistentString>
-            <PersistentString
-               value = "rootViewController">
-            </PersistentString>
-            <PersistentString
-               value = "IndexPath(row: 0, section: 0)">
-            </PersistentString>
-            <PersistentString
-               value = "searchTextField.text">
-            </PersistentString>
-            <PersistentString
-               value = "offers">
-            </PersistentString>
-            <PersistentString
-               value = "collectionView">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "MyCollectionViewController.viewWillAppear(_:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "UIDevice.current.orientation.isLandscape">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in DetailsViewController.deleteAction(_:):DetailsViewController.swift">
       </ContextState>
       <ContextState
          contextName = "MainViewController.addOfferToTable(_:):MainViewController.swift">
@@ -46,6 +26,14 @@
          <PersistentStrings>
             <PersistentString
                value = "offers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DetailsViewController.viewDidLoad():DetailsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -75,16 +63,18 @@
          contextName = "MyCollectionViewController.prepare(for:sender:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "controller.labelName">
+               value = "offersQuery">
             </PersistentString>
             <PersistentString
                value = "indexPath.row">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MyCollectionViewController.textFieldShouldReturn(_:):MyCollectionViewController.swift">
+         <PersistentStrings>
             <PersistentString
-               value = "offers[1]">
-            </PersistentString>
-            <PersistentString
-               value = "self.collectionView">
+               value = "offersQuery">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

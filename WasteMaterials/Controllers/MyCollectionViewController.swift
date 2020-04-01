@@ -2,6 +2,60 @@ import UIKit
 import FirebaseUI
 import Firebase
 
+protocol DocumentsEdit {
+    func addOfferToTable(_ offer: Offer)
+    func updateOfferInTable(_ offer: Offer)
+    func removeOfferFromTable(_ offer: Offer)
+}
+
+extension MyCollectionViewController: DocumentsEdit {
+    
+    func addOfferToTable(_ offer: Offer) {
+        guard !offers.contains(offer) else {
+            return
+        }
+
+        offers.append(offer)
+        offers.sort()
+
+        offersQuery.append(offer)
+        offersQuery.sort()
+        
+        guard let index = offersQuery.index(of: offer) else {
+            return
+        }
+
+        if offer.name.contains(searchTextField.text ?? "") || searchTextField.text == "" {
+            collectionView.insertItems(at: [IndexPath(row: index, section: 0)])
+        }
+    }
+    
+    func updateOfferInTable(_ offer: Offer) {
+        guard let index = offers.index(of: offer) else {
+            return
+        }
+        
+        offers[index] = offer
+        collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+    }
+    
+    func removeOfferFromTable(_ offer: Offer) {
+        guard let index = offers.index(of: offer) else {
+            return
+        }
+        offers.remove(at: index)
+        deleteOffer(offer)
+
+        guard let indexQuery = offersQuery.index(of: offer) else {
+            return
+        }
+        offersQuery.remove(at: indexQuery)
+
+        collectionView.deleteItems(at: [IndexPath(row: indexQuery, section: 0)])
+    }
+
+}
+
 final class MyCollectionViewController: UICollectionViewController {
     
     @IBOutlet weak var searchTextField: UITextField!
@@ -10,13 +64,12 @@ final class MyCollectionViewController: UICollectionViewController {
                                              left: 20.0,
                                              bottom: 20.0,
                                              right: 20.0)
-    //private var searches: [FlickrSearchResults] = []
     private var currentOfferAlertController: UIAlertController?
     private var offers = [Offer]()
     private var offersQuery = [Offer]()
     private var offerListener: ListenerRegistration?
     
-    private var currentUser = Auth.auth().currentUser //: User
+    private var currentUser = Auth.auth().currentUser
     private let toolbarLabel: UILabel = {
       let label = UILabel()
       label.textAlignment = .center
@@ -25,16 +78,10 @@ final class MyCollectionViewController: UICollectionViewController {
     }()
 
     private let db = Firestore.firestore()
-
     private var offerReference: CollectionReference {
-        return db.collection("offers") //.whereField("name", isGreaterThanOrEqualTo: searchTextField.text ?? "" ) as! CollectionReference  //("name", isEqualTo: "CA")
+        return db.collection("offers")
     }
 
-    private var offerReferenceQuery: Query {
-        return db.collection("offers") //.whereField("name", isGreaterThanOrEqualTo: searchTextField.text ?? "" )  //("name", isEqualTo: "CA")
-    }
-
-    //private let flickr = Flickr()
     private var itemsPerRow: CGFloat = 2
         
     deinit {
@@ -56,7 +103,8 @@ final class MyCollectionViewController: UICollectionViewController {
             let controller = segue.destination as! DetailsViewController
             let cell = sender as! UICollectionViewCell
             if let indexPath = self.collectionView!.indexPath(for: cell) {
-                controller.name = offers[indexPath.row].name
+                controller.offer = offersQuery[indexPath.row]
+                controller.delegate = self
             }
         }
     }
@@ -83,7 +131,7 @@ final class MyCollectionViewController: UICollectionViewController {
         toolbarLabel.text = "Offers"
         self.navigationController?.isToolbarHidden = false
 
-        offerListener = offerReferenceQuery.addSnapshotListener { querySnapshot, error in
+        offerListener = offerReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
                 return
@@ -159,46 +207,9 @@ final class MyCollectionViewController: UICollectionViewController {
             }
         }
     }
-
-    private func addOfferToTable(_ offer: Offer) {
-        guard !offers.contains(offer) else {
-            return
-        }
-
-        offers.append(offer)
-        offers.sort()
-
-        offersQuery.append(offer)
-        offersQuery.sort()
-        
-        guard let index = offers.index(of: offer) else {
-            return
-        }
-
-        if offer.name.contains(searchTextField.text ?? "") || searchTextField.text == "" {
-            collectionView.insertItems(at: [IndexPath(row: index, section: 0)])
-        }
-        //tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-    }
     
-    private func updateOfferInTable(_ offer: Offer) {
-        guard let index = offers.index(of: offer) else {
-            return
-        }
-        
-        offers[index] = offer
-        collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
-        //tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-    }
-    
-    private func removeOfferFromTable(_ offer: Offer) {
-        guard let index = offers.index(of: offer) else {
-            return
-        }
-        
-        offers.remove(at: index)
-        collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
-        //tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    private func deleteOffer(_ offer: Offer) {
+        offerReference.document(offer.id ?? "").delete()
     }
 
     private func handleDocumentChange(_ change: DocumentChange) {
@@ -262,15 +273,15 @@ private extension MyCollectionViewController {
 
 // MARK: - Text Field Delegate
 extension MyCollectionViewController : UITextFieldDelegate {
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    // 1
-    //let activityIndicator = UIActivityIndicatorView(style: .gray)
-    //textField.addSubview(activityIndicator)
-    //activityIndicator.frame = textField.bounds
-    //activityIndicator.startAnimating()
-    //offerReferenceQuery.
-        offerReferenceQuery.getDocuments(completion: { (snapshot, error) in
+        // 1
+        let activityIndicator = UIActivityIndicatorView(style: .gray)
+        textField.addSubview(activityIndicator)
+        activityIndicator.frame = textField.bounds
+        activityIndicator.startAnimating()
+        
+        offerReference.getDocuments(completion: { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
@@ -279,38 +290,21 @@ extension MyCollectionViewController : UITextFieldDelegate {
                     for document in snapshot.documents {
                         let data = document.data()
                         if let name = data["name"] as? String,
+                            let id = document.documentID as? String,
                             name.contains(textField.text ?? "") || textField.text == "" {
-                            let newOffer = Offer(name:name)
+                            let newOffer = Offer(name:name, id:id)
                             self.offersQuery.append(newOffer)
                         }
                     }
-                    //self.tableView.reloadData()
                     self.collectionView?.reloadData()
+                    activityIndicator.removeFromSuperview()
                 }
             }
         })
-    
-/*
-    flickr.searchFlickr(for: textField.text!) { searchResults in
-      activityIndicator.removeFromSuperview()
-      
-      switch searchResults {
-      case .error(let error) :
-        // 2
-        print("Error Searching: \(error)")
-      case .results(let results):
-        // 3
-        print("Found \(results.searchResults.count) matching \(results.searchTerm)")
-        self.searches.insert(results, at: 0)
-        // 4
-        self.collectionView?.reloadData()
-      }
+        //textField.text = nil
+        textField.resignFirstResponder()
+        return true
     }
- */
-    //textField.text = nil
-    textField.resignFirstResponder()
-    return true
-  }
 }
 
 // MARK: - UICollectionViewDataSource

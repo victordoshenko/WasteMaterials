@@ -12,10 +12,14 @@ struct Offer {
     let id: String?
     let name: String
     
-    init(name: String) {
-        id = nil
+    init(name: String, id: String? = nil) {
+        self.id = id
         self.name = name
     }
+    
+//    init(name: String) {
+//        self.init(name: name, id: nil)
+//    }
     
     init?(document: QueryDocumentSnapshot) {
         let data = document.data()

@@ -126,17 +126,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiS-Q1-Hda">
+                                <rect key="frame" x="16" y="73" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="OEY-Mz-sbg" firstAttribute="top" secondItem="G4k-GX-T8Z" secondAttribute="top" id="Fan-go-jRT"/>
                             <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="OEY-Mz-sbg" secondAttribute="trailing" constant="16" id="Jpz-hO-qHe"/>
+                            <constraint firstItem="jiS-Q1-Hda" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="16" id="TDJ-TQ-1pK"/>
+                            <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="jiS-Q1-Hda" secondAttribute="trailing" constant="16" id="VfW-4r-JFl"/>
+                            <constraint firstItem="jiS-Q1-Hda" firstAttribute="top" secondItem="OEY-Mz-sbg" secondAttribute="bottom" constant="8" id="iSd-ce-vHI"/>
                             <constraint firstItem="OEY-Mz-sbg" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="16" id="q6X-5J-8xf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="G4k-GX-T8Z"/>
                     </view>
-                    <navigationItem key="navigationItem" id="spM-cq-ADB"/>
+                    <navigationItem key="navigationItem" id="spM-cq-ADB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="dwX-Ci-hXI">
+                            <connections>
+                                <action selector="deleteAction:" destination="veK-VW-4Rg" id="Ns3-hP-fZV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="labelID" destination="jiS-Q1-Hda" id="of5-Cf-hua"/>
                         <outlet property="labelName" destination="OEY-Mz-sbg" id="mSK-B0-Ch4"/>
                     </connections>
                 </viewController>
