@@ -4,6 +4,7 @@ import Firebase
 
 final class MyCollectionViewController: UICollectionViewController {
     
+    @IBOutlet weak var searchTextField: UITextField!
     private let reuseIdentifier = "OfferCell"
     private let sectionInsets = UIEdgeInsets(top: 20.0,
                                              left: 20.0,
@@ -12,6 +13,7 @@ final class MyCollectionViewController: UICollectionViewController {
     //private var searches: [FlickrSearchResults] = []
     private var currentOfferAlertController: UIAlertController?
     private var offers = [Offer]()
+    private var offersQuery = [Offer]()
     private var offerListener: ListenerRegistration?
     
     private var currentUser = Auth.auth().currentUser //: User
@@ -23,14 +25,18 @@ final class MyCollectionViewController: UICollectionViewController {
     }()
 
     private let db = Firestore.firestore()
-    
+
+    private var offerReference: CollectionReference {
+        return db.collection("offers") //.whereField("name", isGreaterThanOrEqualTo: searchTextField.text ?? "" ) as! CollectionReference  //("name", isEqualTo: "CA")
+    }
+
+    private var offerReferenceQuery: Query {
+        return db.collection("offers") //.whereField("name", isGreaterThanOrEqualTo: searchTextField.text ?? "" )  //("name", isEqualTo: "CA")
+    }
+
     //private let flickr = Flickr()
     private var itemsPerRow: CGFloat = 2
-    
-    private var offerReference: CollectionReference {
-        return db.collection("offers")
-    }
-    
+        
     deinit {
         offerListener?.remove()
     }
@@ -77,7 +83,7 @@ final class MyCollectionViewController: UICollectionViewController {
         toolbarLabel.text = "Offers"
         self.navigationController?.isToolbarHidden = false
 
-        offerListener = offerReference.addSnapshotListener { querySnapshot, error in
+        offerListener = offerReferenceQuery.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
                 return
@@ -158,14 +164,20 @@ final class MyCollectionViewController: UICollectionViewController {
         guard !offers.contains(offer) else {
             return
         }
-        
+
         offers.append(offer)
         offers.sort()
+
+        offersQuery.append(offer)
+        offersQuery.sort()
         
         guard let index = offers.index(of: offer) else {
             return
         }
-        collectionView.insertItems(at: [IndexPath(row: index, section: 0)])
+
+        if offer.name.contains(searchTextField.text ?? "") || searchTextField.text == "" {
+            collectionView.insertItems(at: [IndexPath(row: index, section: 0)])
+        }
         //tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
@@ -250,12 +262,34 @@ private extension MyCollectionViewController {
 
 // MARK: - Text Field Delegate
 extension MyCollectionViewController : UITextFieldDelegate {
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     // 1
-    let activityIndicator = UIActivityIndicatorView(style: .gray)
-    textField.addSubview(activityIndicator)
-    activityIndicator.frame = textField.bounds
-    activityIndicator.startAnimating()
+    //let activityIndicator = UIActivityIndicatorView(style: .gray)
+    //textField.addSubview(activityIndicator)
+    //activityIndicator.frame = textField.bounds
+    //activityIndicator.startAnimating()
+    //offerReferenceQuery.
+        offerReferenceQuery.getDocuments(completion: { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                if let snapshot = snapshot {
+                    self.offersQuery.removeAll()
+                    for document in snapshot.documents {
+                        let data = document.data()
+                        if let name = data["name"] as? String,
+                            name.contains(textField.text ?? "") || textField.text == "" {
+                            let newOffer = Offer(name:name)
+                            self.offersQuery.append(newOffer)
+                        }
+                    }
+                    //self.tableView.reloadData()
+                    self.collectionView?.reloadData()
+                }
+            }
+        })
+    
 /*
     flickr.searchFlickr(for: textField.text!) { searchResults in
       activityIndicator.removeFromSuperview()
@@ -273,7 +307,7 @@ extension MyCollectionViewController : UITextFieldDelegate {
       }
     }
  */
-    textField.text = nil
+    //textField.text = nil
     textField.resignFirstResponder()
     return true
   }
@@ -289,7 +323,7 @@ extension MyCollectionViewController {
   //2
   override func collectionView(_ collectionView: UICollectionView,
                                numberOfItemsInSection section: Int) -> Int {
-    return offers.count //searches[section].searchResults.count
+    return offersQuery.count //offersQuery.count //offerReferenceQuery  //searches[section].searchResults.count
   }
   
   //3
@@ -315,7 +349,7 @@ extension MyCollectionViewController {
     cell.layer.shadowOpacity = 1.0
     cell.layer.masksToBounds = false
     
-    cell.goodsNameLabel.text = offers[indexPath.row].name
+    cell.goodsNameLabel.text = offersQuery[indexPath.row].name
 
     return cell
   }

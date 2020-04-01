@@ -6,10 +6,22 @@
          contextName = "GLOBAL">
          <PersistentStrings>
             <PersistentString
-               value = "offers">
+               value = "offersQuery">
             </PersistentString>
             <PersistentString
                value = "rootViewController">
+            </PersistentString>
+            <PersistentString
+               value = "IndexPath(row: 0, section: 0)">
+            </PersistentString>
+            <PersistentString
+               value = "searchTextField.text">
+            </PersistentString>
+            <PersistentString
+               value = "offers">
+            </PersistentString>
+            <PersistentString
+               value = "collectionView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -36,6 +48,9 @@
                value = "offers">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MyCollectionViewController.addOfferToTable(_:):MyCollectionViewController.swift">
       </ContextState>
       <ContextState
          contextName = "AppController.handleAppState():AppController.swift">

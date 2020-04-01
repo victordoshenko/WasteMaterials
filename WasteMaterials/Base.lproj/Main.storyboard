@@ -104,6 +104,9 @@
                             </connections>
                         </textField>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchTextField" destination="jcb-Lo-Ptn" id="VxJ-gT-5BR"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ykv-b4-oCN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
