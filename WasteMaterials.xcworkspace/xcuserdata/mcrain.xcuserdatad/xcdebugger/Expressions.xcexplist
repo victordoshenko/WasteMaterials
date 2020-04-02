@@ -3,15 +3,26 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "MyCollectionViewController.viewWillAppear(_:):MyCollectionViewController.swift">
+         contextName = "MyCollectionViewController.prepare(for:sender:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "UIDevice.current.orientation.isLandscape">
+               value = "offersQuery">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in DetailsViewController.deleteAction(_:):DetailsViewController.swift">
+         contextName = "AppController.handleAppState():AppController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "user">
+            </PersistentString>
+            <PersistentString
+               value = "rootViewController">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "MainViewController.addOfferToTable(_:):MainViewController.swift">
@@ -22,10 +33,27 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MainViewController.tableView(_:cellForRowAt:):MainViewController.swift">
+         contextName = "Offer.init(document:):Offer.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MyCollectionViewController.handleDocumentChange(_:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "offers">
+               value = "change.document">
+            </PersistentString>
+            <PersistentString
+               value = "change.data()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in DetailsViewController.deleteAction(_:):DetailsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MyCollectionViewController.viewWillAppear(_:):MyCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UIDevice.current.orientation.isLandscape">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -41,17 +69,6 @@
          contextName = "MyCollectionViewController.addOfferToTable(_:):MyCollectionViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "AppController.handleAppState():AppController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "user">
-            </PersistentString>
-            <PersistentString
-               value = "rootViewController">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "MainViewController.viewDidLoad():MainViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -60,21 +77,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MyCollectionViewController.prepare(for:sender:):MyCollectionViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "offersQuery">
-            </PersistentString>
-            <PersistentString
-               value = "indexPath.row">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in MyCollectionViewController.textFieldShouldReturn(_:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "offersQuery">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainViewController.tableView(_:cellForRowAt:):MainViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Offer.init(name:id:):Offer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.date">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

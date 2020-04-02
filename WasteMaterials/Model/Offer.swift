@@ -11,10 +11,12 @@ struct Offer {
     
     let id: String?
     let name: String
+    let date: String?
     
-    init(name: String, id: String? = nil) {
+    init(name: String, id: String? = nil, date: String? = nil) {
         self.id = id
         self.name = name
+        self.date = date
     }
     
 //    init(name: String) {
@@ -30,8 +32,10 @@ struct Offer {
         
         id = document.documentID
         self.name = name
+
+        self.date = data["date"] as? String
     }
-    
+
 }
 
 extension Offer: DatabaseRepresentation {
@@ -42,7 +46,11 @@ extension Offer: DatabaseRepresentation {
         if let id = id {
             rep["id"] = id
         }
-        
+
+        if let date = date {
+            rep["date"] = date
+        }
+
         return rep
     }
     

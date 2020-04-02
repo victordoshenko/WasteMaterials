@@ -1,3 +1,10 @@
+//
+//  MyCollectionViewController.swift
+//  WasteMaterials
+//
+//  Created by Victor Doshchenko on 20.03.2020.
+//
+
 import UIKit
 import FirebaseUI
 import Firebase
@@ -11,13 +18,10 @@ protocol DocumentsEdit {
 extension MyCollectionViewController: DocumentsEdit {
     
     func addOfferToTable(_ offer: Offer) {
-        guard !offers.contains(offer) else {
+        guard !offersQuery.contains(offer) else {
             return
         }
-
-        offers.append(offer)
-        offers.sort()
-
+        
         offersQuery.append(offer)
         offersQuery.sort()
         
@@ -31,27 +35,22 @@ extension MyCollectionViewController: DocumentsEdit {
     }
     
     func updateOfferInTable(_ offer: Offer) {
-        guard let index = offers.index(of: offer) else {
+        guard let index = offersQuery.index(of: offer) else {
             return
         }
         
-        offers[index] = offer
+        offersQuery[index] = offer
         collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
     }
     
     func removeOfferFromTable(_ offer: Offer) {
-        guard let index = offers.index(of: offer) else {
+        guard let index = offersQuery.index(of: offer) else {
             return
         }
-        offers.remove(at: index)
+        offersQuery.remove(at: index)
         deleteOffer(offer)
 
-        guard let indexQuery = offersQuery.index(of: offer) else {
-            return
-        }
-        offersQuery.remove(at: indexQuery)
-
-        collectionView.deleteItems(at: [IndexPath(row: indexQuery, section: 0)])
+        collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
     }
 
 }
@@ -65,7 +64,6 @@ final class MyCollectionViewController: UICollectionViewController {
                                              bottom: 20.0,
                                              right: 20.0)
     private var currentOfferAlertController: UIAlertController?
-    private var offers = [Offer]()
     private var offersQuery = [Offer]()
     private var offerListener: ListenerRegistration?
     
@@ -200,7 +198,7 @@ final class MyCollectionViewController: UICollectionViewController {
             return
         }
         
-        let offer = Offer(name: offerName)
+        let offer = Offer(name: offerName, date: String(Int(Date().timeIntervalSince1970 * 1000)))
         offerReference.addDocument(data: offer.representation) { error in
             if let e = error {
                 print("Error saving channel: \(e.localizedDescription)")
@@ -291,8 +289,9 @@ extension MyCollectionViewController : UITextFieldDelegate {
                         let data = document.data()
                         if let name = data["name"] as? String,
                             let id = document.documentID as? String,
+                            let date = data["date"] as? String,
                             name.contains(textField.text ?? "") || textField.text == "" {
-                            let newOffer = Offer(name:name, id:id)
+                            let newOffer = Offer(name:name, id:id, date:date)
                             self.offersQuery.append(newOffer)
                         }
                     }
@@ -311,13 +310,13 @@ extension MyCollectionViewController : UITextFieldDelegate {
 extension MyCollectionViewController {
   //1
   override func numberOfSections(in collectionView: UICollectionView) -> Int {
-    return 1 //searches.count
+    return 1
   }
   
   //2
   override func collectionView(_ collectionView: UICollectionView,
                                numberOfItemsInSection section: Int) -> Int {
-    return offersQuery.count //offersQuery.count //offerReferenceQuery  //searches[section].searchResults.count
+    return offersQuery.count
   }
   
   //3

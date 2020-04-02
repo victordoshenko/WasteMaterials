@@ -12,11 +12,19 @@ class DetailsViewController: UIViewController {
     public var offer: Offer?
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelID: UILabel!
+    @IBOutlet weak var labelDate: UILabel!
     var delegate: DocumentsEdit?
     override func viewDidLoad() {
         super.viewDidLoad()
         labelName.text = offer?.name
         labelID.text = offer?.id
+        if let date = offer?.date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy hh:mm:ss.SSS"
+            labelDate.text = dateFormatter.string(from: Date(timeIntervalSince1970: Double(Int(date)!) / 1000 ))
+        } else {
+            labelDate.text = ""
+        }
         // Do any additional setup after loading the view.
     }
 

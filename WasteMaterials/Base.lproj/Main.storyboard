@@ -132,14 +132,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pP5-X5-3AB">
+                                <rect key="frame" x="16" y="102" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="OEY-Mz-sbg" firstAttribute="top" secondItem="G4k-GX-T8Z" secondAttribute="top" id="Fan-go-jRT"/>
                             <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="OEY-Mz-sbg" secondAttribute="trailing" constant="16" id="Jpz-hO-qHe"/>
+                            <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="pP5-X5-3AB" secondAttribute="trailing" constant="16" id="MfY-IG-sBW"/>
                             <constraint firstItem="jiS-Q1-Hda" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="16" id="TDJ-TQ-1pK"/>
                             <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="jiS-Q1-Hda" secondAttribute="trailing" constant="16" id="VfW-4r-JFl"/>
+                            <constraint firstItem="pP5-X5-3AB" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="16" id="cDp-HS-Q51"/>
                             <constraint firstItem="jiS-Q1-Hda" firstAttribute="top" secondItem="OEY-Mz-sbg" secondAttribute="bottom" constant="8" id="iSd-ce-vHI"/>
+                            <constraint firstItem="pP5-X5-3AB" firstAttribute="top" secondItem="jiS-Q1-Hda" secondAttribute="bottom" constant="8" id="oT3-od-cZF"/>
                             <constraint firstItem="OEY-Mz-sbg" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="16" id="q6X-5J-8xf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="G4k-GX-T8Z"/>
@@ -152,6 +161,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="labelDate" destination="pP5-X5-3AB" id="THf-YW-1fx"/>
                         <outlet property="labelID" destination="jiS-Q1-Hda" id="of5-Cf-hua"/>
                         <outlet property="labelName" destination="OEY-Mz-sbg" id="mSK-B0-Ch4"/>
                     </connections>
