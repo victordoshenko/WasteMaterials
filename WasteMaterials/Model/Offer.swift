@@ -10,7 +10,7 @@ import FirebaseFirestore
 struct Offer {
     
     let id: String?
-    let name: String
+    var name: String
     let date: String?
     
     init(name: String, id: String? = nil, date: String? = nil) {
@@ -63,7 +63,8 @@ extension Offer: Comparable {
     }
     
     static func < (lhs: Offer, rhs: Offer) -> Bool {
-        return lhs.name < rhs.name
+        //return Int(lhs.date!)! > Int(rhs.date!)!
+        return lhs.date! > rhs.date!
     }
     
 }

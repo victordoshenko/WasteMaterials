@@ -9,14 +9,15 @@ import UIKit
 import FirebaseUI
 import Firebase
 
-protocol DocumentsEdit {
+protocol DocumentsEditDelegate {
     func addOfferToTable(_ offer: Offer)
     func updateOfferInTable(_ offer: Offer)
     func removeOfferFromTable(_ offer: Offer)
+    func updateOffer(_ offer: Offer)
 }
 
-extension MyCollectionViewController: DocumentsEdit {
-    
+extension MyCollectionViewController: DocumentsEditDelegate {
+
     func addOfferToTable(_ offer: Offer) {
         guard !offersQuery.contains(offer) else {
             return
@@ -51,6 +52,14 @@ extension MyCollectionViewController: DocumentsEdit {
         deleteOffer(offer)
 
         collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
+    }
+
+    func updateOffer(_ offer: Offer) {
+        offerReference.document(offer.id ?? "").setData(offer.representation)
+    }
+
+    func deleteOffer(_ offer: Offer) {
+        offerReference.document(offer.id ?? "").delete()
     }
 
 }
@@ -97,7 +106,7 @@ final class MyCollectionViewController: UICollectionViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == "showDetails" {
             let controller = segue.destination as! DetailsViewController
             let cell = sender as! UICollectionViewCell
             if let indexPath = self.collectionView!.indexPath(for: cell) {
@@ -204,10 +213,6 @@ final class MyCollectionViewController: UICollectionViewController {
                 print("Error saving channel: \(e.localizedDescription)")
             }
         }
-    }
-    
-    private func deleteOffer(_ offer: Offer) {
-        offerReference.document(offer.id ?? "").delete()
     }
 
     private func handleDocumentChange(_ change: DocumentChange) {

@@ -83,7 +83,7 @@
                                 <connections>
                                     <outlet property="goodsNameLabel" destination="Wej-2Y-zVV" id="nAH-6n-PC4"/>
                                     <outlet property="imageView" destination="kKs-Yu-xdv" id="l87-aX-Ngi"/>
-                                    <segue destination="veK-VW-4Rg" kind="show" identifier="showDetail" id="yqK-fT-4Gt"/>
+                                    <segue destination="veK-VW-4Rg" kind="show" identifier="showDetails" id="yqK-fT-4Gt"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -154,11 +154,18 @@
                         <viewLayoutGuide key="safeArea" id="G4k-GX-T8Z"/>
                     </view>
                     <navigationItem key="navigationItem" id="spM-cq-ADB">
-                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="dwX-Ci-hXI">
-                            <connections>
-                                <action selector="deleteAction:" destination="veK-VW-4Rg" id="Ns3-hP-fZV"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="trash" id="dwX-Ci-hXI">
+                                <connections>
+                                    <action selector="deleteAction:" destination="veK-VW-4Rg" id="Ns3-hP-fZV"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="square.and.pencil" catalog="system" id="g2B-3q-sDx">
+                                <connections>
+                                    <segue destination="tkT-3Y-9Ja" kind="show" identifier="showDetailsEdit" id="AL0-MK-BAz"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="labelDate" destination="pP5-X5-3AB" id="THf-YW-1fx"/>
@@ -169,6 +176,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byk-Ak-q2t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2744.8000000000002" y="26.53673163418291"/>
+        </scene>
+        <!--Edit-->
+        <scene sceneID="0vW-pO-LDl">
+            <objects>
+                <viewController id="tkT-3Y-9Ja" customClass="DetailsEditViewController" customModule="WasteMaterials" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4uP-qN-7oA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zA3-ad-YTA">
+                                <rect key="frame" x="8" y="52" width="359" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="nameEditAction:" destination="tkT-3Y-9Ja" eventType="editingChanged" id="lep-HQ-S0G"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zA3-ad-YTA" firstAttribute="top" secondItem="yQF-C4-Xgz" secondAttribute="top" constant="8" id="3c7-5i-dDu"/>
+                            <constraint firstItem="zA3-ad-YTA" firstAttribute="leading" secondItem="yQF-C4-Xgz" secondAttribute="leading" constant="8" id="Wyd-C9-T7F"/>
+                            <constraint firstItem="yQF-C4-Xgz" firstAttribute="trailing" secondItem="zA3-ad-YTA" secondAttribute="trailing" constant="8" id="hdr-yj-ZLv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yQF-C4-Xgz"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit" id="bH3-GN-AWK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Nbh-nM-0TD">
+                            <connections>
+                                <action selector="saveAction:" destination="tkT-3Y-9Ja" id="yi1-aD-RTx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="zA3-ad-YTA" id="pX9-Pi-Q8N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mh6-6s-x1C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3458" y="27"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gag-Cg-HeI">
@@ -189,4 +236,7 @@
             <point key="canvasLocation" x="1288.8" y="26.53673163418291"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="square.and.pencil" catalog="system" width="128" height="118"/>
+    </resources>
 </document>
