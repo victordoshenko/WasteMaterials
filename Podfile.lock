@@ -353,7 +353,9 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Core
+  - Firebase/Storage
   - FirebaseUI
+  - SDWebImage
 
 SPEC REPOS:
   trunk:
@@ -420,6 +422,6 @@ SPEC CHECKSUMS:
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
 
-PODFILE CHECKSUM: 366a83c95ffdd06a84ac46af424ec3b93f93bda2
+PODFILE CHECKSUM: f541932745c425024df38d173c864a3cea74dc3e
 
 COCOAPODS: 1.8.4

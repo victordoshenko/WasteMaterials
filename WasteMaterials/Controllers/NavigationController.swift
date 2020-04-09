@@ -21,12 +21,12 @@ class NavigationController: UINavigationController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationBar.tintColor = UIColor.black
+    //navigationBar.tintColor = UIColor.black
     //navigationBar.prefersLargeTitles = true
     //navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
     //navigationBar.largeTitleTextAttributes = navigationBar.titleTextAttributes
     
-    toolbar.tintColor = UIColor.black
+    //toolbar.tintColor = UIColor.black
   }
   
   override var shouldAutorotate: Bool {
@@ -37,8 +37,8 @@ class NavigationController: UINavigationController {
 //    return .portrait
 //  }
   
-  override var preferredStatusBarStyle: UIStatusBarStyle {
-    return topViewController?.preferredStatusBarStyle ?? .default
-  }
+//  override var preferredStatusBarStyle: UIStatusBarStyle {
+//    return topViewController?.preferredStatusBarStyle ?? .default
+//  }
   
 }

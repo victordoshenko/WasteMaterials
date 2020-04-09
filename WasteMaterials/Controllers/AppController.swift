@@ -40,7 +40,7 @@ final class AppController {
     }
 
     self.window = window
-    window.tintColor = UIColor.black
+    //window.tintColor = UIColor.black
     window.backgroundColor = .white
     
     handleAppState()

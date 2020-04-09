@@ -14,6 +14,7 @@ protocol DetailsUpdateDelegate {
 extension DetailsViewController: DetailsUpdateDelegate {
     func setName(_ name: String) {
         labelName.text = name
+        offer?.name = name
     }
 }
 

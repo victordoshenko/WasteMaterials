@@ -38,7 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="468" y="27"/>
+            <point key="canvasLocation" x="513" y="27"/>
         </scene>
         <!--My Collection View Controller-->
         <scene sceneID="0hz-7G-7SQ">
@@ -193,29 +193,46 @@
                                     <action selector="nameEditAction:" destination="tkT-3Y-9Ja" eventType="editingChanged" id="lep-HQ-S0G"/>
                                 </connections>
                             </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P2U-5I-Lhw">
+                                <rect key="frame" x="8" y="94" width="359" height="359"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="P2U-5I-Lhw" secondAttribute="height" multiplier="1:1" id="UfQ-im-B85"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zA3-ad-YTA" firstAttribute="top" secondItem="yQF-C4-Xgz" secondAttribute="top" constant="8" id="3c7-5i-dDu"/>
+                            <constraint firstItem="yQF-C4-Xgz" firstAttribute="trailing" secondItem="P2U-5I-Lhw" secondAttribute="trailing" constant="8" id="4i9-Dd-Wt5"/>
                             <constraint firstItem="zA3-ad-YTA" firstAttribute="leading" secondItem="yQF-C4-Xgz" secondAttribute="leading" constant="8" id="Wyd-C9-T7F"/>
+                            <constraint firstItem="P2U-5I-Lhw" firstAttribute="leading" secondItem="yQF-C4-Xgz" secondAttribute="leading" constant="8" id="bix-WR-vnu"/>
                             <constraint firstItem="yQF-C4-Xgz" firstAttribute="trailing" secondItem="zA3-ad-YTA" secondAttribute="trailing" constant="8" id="hdr-yj-ZLv"/>
+                            <constraint firstItem="P2U-5I-Lhw" firstAttribute="top" secondItem="zA3-ad-YTA" secondAttribute="bottom" constant="8" symbolic="YES" id="nxf-w4-nMF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yQF-C4-Xgz"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit" id="bH3-GN-AWK">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Nbh-nM-0TD">
-                            <connections>
-                                <action selector="saveAction:" destination="tkT-3Y-9Ja" id="yi1-aD-RTx"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="save" id="Nbh-nM-0TD">
+                                <connections>
+                                    <action selector="saveAction:" destination="tkT-3Y-9Ja" id="yi1-aD-RTx"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="camera" id="ipF-pR-tko">
+                                <connections>
+                                    <action selector="photoAction:" destination="tkT-3Y-9Ja" id="teh-g3-j4U"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="nameTextField" destination="zA3-ad-YTA" id="pX9-Pi-Q8N"/>
+                        <outlet property="picImageView" destination="P2U-5I-Lhw" id="vNU-hs-xtS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mh6-6s-x1C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3458" y="27"/>
+            <point key="canvasLocation" x="3456.8000000000002" y="26.53673163418291"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gag-Cg-HeI">
