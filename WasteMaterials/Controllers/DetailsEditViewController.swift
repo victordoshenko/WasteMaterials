@@ -9,8 +9,7 @@ import UIKit
 
 class DetailsEditViewController: UIViewController, UINavigationControllerDelegate {
     public var offer: Offer?
-    var delegate: DocumentsEditDelegate?
-    var delegateDetails: DetailsUpdateDelegate?
+    var delegate: DetailsUpdateDelegate?
     var imagePicker: UIImagePickerController!
 
     @IBOutlet weak var nameTextField: UITextField!
@@ -27,7 +26,6 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
 
     @IBAction func saveAction(_ sender: Any) {
         self.delegate?.updateOffer(offer!)
-        self.delegateDetails?.setName(offer!.name)
         _ = self.navigationController?.popViewController(animated: true)
     }
 
@@ -45,7 +43,10 @@ extension DetailsEditViewController:  UIImagePickerControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
-        picImageView.image = info[.originalImage] as? UIImage
+        if let image = info[.originalImage] as? UIImage {
+            picImageView.image = image
+            offer?.image = image
+        }
     }
     
 }

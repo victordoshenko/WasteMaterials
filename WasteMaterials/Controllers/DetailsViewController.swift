@@ -8,13 +8,15 @@
 import UIKit
 
 protocol DetailsUpdateDelegate {
-    func setName(_ name: String)
+    func updateOffer(_ offer: Offer)
 }
 
 extension DetailsViewController: DetailsUpdateDelegate {
-    func setName(_ name: String) {
-        labelName.text = name
-        offer?.name = name
+    func updateOffer(_ offer: Offer) {
+        labelName.text = offer.name
+        picImageView.image = offer.image
+        self.offer = offer
+        self.delegate?.updateOffer(offer)
     }
 }
 
@@ -24,6 +26,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelID: UILabel!
     @IBOutlet weak var labelDate: UILabel!
+    @IBOutlet weak var picImageView: UIImageView!
+    
     var delegate: DocumentsEditDelegate?
 
     override func viewDidLoad() {
@@ -43,8 +47,8 @@ class DetailsViewController: UIViewController {
         if segue.identifier == "showDetailsEdit" {
             let controller = segue.destination as! DetailsEditViewController
             controller.offer = self.offer
-            controller.delegate = self.delegate
-            controller.delegateDetails = self
+            //controller.delegate = self.delegate
+            controller.delegate = self
         }
     }
 

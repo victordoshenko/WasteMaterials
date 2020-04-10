@@ -12,16 +12,16 @@ struct Offer {
     let id: String?
     var name: String
     let date: String?
+    var imageurl: String?
+    var image: UIImage?
     
-    init(name: String, id: String? = nil, date: String? = nil) {
+    init(name: String, id: String? = nil, date: String? = nil, imageurl: String? = nil, image: UIImage? = nil) {
         self.id = id
         self.name = name
         self.date = date
+        self.imageurl = imageurl
+        self.image = image
     }
-    
-//    init(name: String) {
-//        self.init(name: name, id: nil)
-//    }
     
     init?(document: QueryDocumentSnapshot) {
         let data = document.data()
@@ -34,6 +34,11 @@ struct Offer {
         self.name = name
 
         self.date = data["date"] as? String
+        self.imageurl = data["imageurl"] as? String
+    }
+    
+    mutating func setImageURL(_ url: String?) {
+        self.imageurl = url
     }
 
 }
@@ -49,6 +54,10 @@ extension Offer: DatabaseRepresentation {
 
         if let date = date {
             rep["date"] = date
+        }
+
+        if let imageurl = imageurl {
+            rep["imageurl"] = imageurl
         }
 
         return rep

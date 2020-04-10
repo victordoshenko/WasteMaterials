@@ -3,33 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "DetailsEditViewController.nameEditAction(_:):DetailsEditViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "offer">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "DetailsEditViewController.viewDidLoad():DetailsEditViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "offer">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MyCollectionViewController.prepare(for:sender:):MyCollectionViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "offersQuery">
-            </PersistentString>
-            <PersistentString
-               value = "indexPath.row">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "MyCollectionViewController.handleDocumentChange(_:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -37,14 +10,6 @@
             </PersistentString>
             <PersistentString
                value = "change.data()">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MainViewController.addOfferToTable(_:):MainViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "offers">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -60,13 +25,56 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Offer.init(document:):Offer.swift">
+         contextName = "closure #1 in MyCollectionViewController.textFieldShouldReturn(_:):MyCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offersQuery">
+            </PersistentString>
+            <PersistentString
+               value = "imageurl">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DetailsViewController.prepare(for:sender:):DetailsViewController.swift">
+         contextName = "DetailsEditViewController.nameEditAction(_:):DetailsEditViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MyCollectionViewController.collectionView(_:cellForItemAt:):MyCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offersQuery[indexPath.row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MyCollectionViewController.updateOffer(_:):MyCollectionViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MyCollectionViewController.addOfferToTable(_:):MyCollectionViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Offer.init(name:id:):Offer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.date">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in DetailsViewController.deleteAction(_:):DetailsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DetailsEditViewController.saveAction(_:):DetailsEditViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offer">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "MyCollectionViewController.viewWillAppear(_:):MyCollectionViewController.swift">
@@ -77,7 +85,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DetailsViewController.viewDidLoad():DetailsViewController.swift">
+         contextName = "MyCollectionViewController.prepare(for:sender:):MyCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offersQuery">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Offer.init(document:):Offer.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DetailsEditViewController.viewDidLoad():DetailsEditViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "offer">
@@ -85,21 +107,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MyCollectionViewController.addOfferToTable(_:):MyCollectionViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "MainViewController.viewDidLoad():MainViewController.swift">
+         contextName = "MainViewController.addOfferToTable(_:):MainViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "offers">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in MyCollectionViewController.textFieldShouldReturn(_:):MyCollectionViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "offersQuery">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -112,7 +123,23 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DetailsEditViewController.saveAction(_:):DetailsEditViewController.swift">
+         contextName = "closure #1 in closure #1 in MyCollectionViewController.updateOffer(_:):MyCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "downloadURL.absoluteString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainViewController.viewDidLoad():MainViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DetailsViewController.viewDidLoad():DetailsViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "offer">
@@ -120,15 +147,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MyCollectionViewController.updateOffer(_:):MyCollectionViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "Offer.init(name:id:):Offer.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.date">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "DetailsViewController.prepare(for:sender:):DetailsViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

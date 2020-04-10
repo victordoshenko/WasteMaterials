@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseUI
 import Firebase
+import SDWebImage
 
 protocol DocumentsEditDelegate {
     func addOfferToTable(_ offer: Offer)
@@ -55,7 +56,24 @@ extension MyCollectionViewController: DocumentsEditDelegate {
     }
 
     func updateOffer(_ offer: Offer) {
-        offerReference.document(offer.id ?? "").setData(offer.representation)
+        //var iURL: String?
+        if let image = offer.image,
+            let imageData = image.jpegData(compressionQuality: 1) {
+            let uploadImageRef = imageReference.child(offer.id! + ".JPG")
+            let uploadTask = uploadImageRef.putData(imageData, metadata: nil) { (metadata, error) in
+                uploadImageRef.downloadURL { (url, error) in
+                  guard let downloadURL = url else { return }
+                  var offer2 = offer
+                  offer2.imageurl = downloadURL.absoluteString
+                  self.offerReference.document(offer.id ?? "").setData(offer2.representation)
+                  //iURL = downloadURL.absoluteString
+                }
+            }
+            uploadTask.resume()
+            //offer.setImageURL(iURL)
+        } else {
+          offerReference.document(offer.id ?? "").setData(offer.representation)
+        }
     }
 
     func deleteOffer(_ offer: Offer) {
@@ -89,6 +107,10 @@ final class MyCollectionViewController: UICollectionViewController {
         return db.collection("offers")
     }
 
+    var imageReference: StorageReference {
+        return Storage.storage().reference().child("images")
+    }
+    
     private var itemsPerRow: CGFloat = 2
         
     deinit {
@@ -295,8 +317,9 @@ extension MyCollectionViewController : UITextFieldDelegate {
                         if let name = data["name"] as? String,
                             let id = document.documentID as? String,
                             let date = data["date"] as? String,
+                            let imageurl = data["imageurl"] as? String,
                             name.contains(textField.text ?? "") || textField.text == "" {
-                            let newOffer = Offer(name:name, id:id, date:date)
+                            let newOffer = Offer(name:name, id:id, date:date, imageurl: imageurl)
                             self.offersQuery.append(newOffer)
                         }
                     }
@@ -348,6 +371,7 @@ extension MyCollectionViewController {
     cell.layer.masksToBounds = false
     
     cell.goodsNameLabel.text = offersQuery[indexPath.row].name
+    cell.imageView.sd_setImage(with: imageReference.child(offersQuery[indexPath.row].id! + ".JPG")) //image = //offersQuery[indexPath.row].image
 
     return cell
   }
