@@ -79,6 +79,12 @@ extension MyCollectionViewController: DocumentsEditDelegate {
     }
 
     func deleteOffer(_ offer: Offer) {
+        imageReference.child(offer.id! + ".JPG").delete() { error in
+            if let error = error {
+                print("There's an error: \(error.localizedDescription)")
+            }
+        }
+        
         offerReference.document(offer.id ?? "").delete()
     }
 
