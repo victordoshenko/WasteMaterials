@@ -18,6 +18,7 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.text = offer?.name
+        picImageView.image = offer?.image
     }
 
     @IBAction func nameEditAction(_ sender: Any) {

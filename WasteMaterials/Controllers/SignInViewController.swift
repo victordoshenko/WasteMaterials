@@ -1,3 +1,10 @@
+//
+//  NavigationController.swift
+//  WasteMaterials
+//
+//  Created by Victor Doshchenko on 12.03.2020.
+//
+
 import Firebase
 import FirebaseUI
 

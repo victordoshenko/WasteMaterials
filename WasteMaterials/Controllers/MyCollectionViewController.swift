@@ -15,17 +15,22 @@ protocol DocumentsEditDelegate {
     func updateOfferInTable(_ offer: Offer)
     func removeOfferFromTable(_ offer: Offer)
     func updateOffer(_ offer: Offer)
+    var imageReference: StorageReference { get }
 }
 
 extension MyCollectionViewController: DocumentsEditDelegate {
+
+    var imageReference: StorageReference {
+        return Storage.storage().reference().child("images")
+    }
 
     func addOfferToTable(_ offer: Offer) {
         guard !offersQuery.contains(offer) else {
             return
         }
-        
+            
         offersQuery.append(offer)
-        offersQuery.sort()
+        //offersQuery.sort()
         
         guard let index = offersQuery.index(of: offer) else {
             return
@@ -56,9 +61,8 @@ extension MyCollectionViewController: DocumentsEditDelegate {
     }
 
     func updateOffer(_ offer: Offer) {
-        //var iURL: String?
         if let image = offer.image,
-            let imageData = image.jpegData(compressionQuality: 1) {
+            let imageData = image.jpegData(compressionQuality: 0.5) {
             let uploadImageRef = imageReference.child(offer.id! + ".JPG")
             let uploadTask = uploadImageRef.putData(imageData, metadata: nil) { (metadata, error) in
                 uploadImageRef.downloadURL { (url, error) in
@@ -66,11 +70,9 @@ extension MyCollectionViewController: DocumentsEditDelegate {
                   var offer2 = offer
                   offer2.imageurl = downloadURL.absoluteString
                   self.offerReference.document(offer.id ?? "").setData(offer2.representation)
-                  //iURL = downloadURL.absoluteString
                 }
             }
             uploadTask.resume()
-            //offer.setImageURL(iURL)
         } else {
           offerReference.document(offer.id ?? "").setData(offer.representation)
         }
@@ -105,10 +107,6 @@ final class MyCollectionViewController: UICollectionViewController {
     private let db = Firestore.firestore()
     private var offerReference: CollectionReference {
         return db.collection("offers")
-    }
-
-    var imageReference: StorageReference {
-        return Storage.storage().reference().child("images")
     }
     
     private var itemsPerRow: CGFloat = 2
@@ -347,34 +345,43 @@ extension MyCollectionViewController {
     return offersQuery.count
   }
   
-  //3
-  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-    //1
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
-                                                  for: indexPath) as! OfferPhotoCell
-    //2
-    //let flickrPhoto = photo(for: indexPath)
-    cell.backgroundColor = .white
     //3
-    //cell.imageView.image = flickrPhoto.thumbnail
-
-    cell.layer.cornerRadius = 2
-    cell.layer.borderWidth = 1.0
-    cell.layer.borderColor = UIColor.lightGray.cgColor
-
-    cell.layer.backgroundColor = UIColor.white.cgColor
-    cell.layer.shadowColor = UIColor.gray.cgColor
-    cell.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
-    cell.layer.shadowRadius = 2.0
-    cell.layer.shadowOpacity = 1.0
-    cell.layer.masksToBounds = false
-    
-    cell.goodsNameLabel.text = offersQuery[indexPath.row].name
-    cell.imageView.sd_setImage(with: imageReference.child(offersQuery[indexPath.row].id! + ".JPG")) //image = //offersQuery[indexPath.row].image
-
-    return cell
-  }
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        //1
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
+                                                      for: indexPath) as! OfferPhotoCell
+        //2
+        //let flickrPhoto = photo(for: indexPath)
+        cell.backgroundColor = .white
+        //3
+        //cell.imageView.image = flickrPhoto.thumbnail
+        
+        cell.layer.cornerRadius = 2
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = UIColor.lightGray.cgColor
+        
+        cell.layer.backgroundColor = UIColor.white.cgColor
+        cell.layer.shadowColor = UIColor.gray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
+        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false
+        
+        cell.goodsNameLabel.text = offersQuery[indexPath.row].name
+        cell.imageView.image = nil
+        if let url = offersQuery[indexPath.row].imageurl {
+            cell.imageView.sd_setImage(with: URL(string: url)) { (img, err, c, u) in
+                if let err = err {
+                    print("There's an error:\(err)")
+                } else {
+                    cell.imageView.image = img
+                    self.offersQuery[indexPath.row].image = img
+                }
+            }
+        }
+        return cell
+    }
 }
 
 // MARK: - Collection View Flow Layout Delegate

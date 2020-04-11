@@ -34,6 +34,8 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         labelName.text = offer?.name
         labelID.text = offer?.id
+        picImageView.image = offer?.image
+        
         if let date = offer?.date {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd.MM.yyyy HH:mm:ss.SSS"
@@ -47,7 +49,6 @@ class DetailsViewController: UIViewController {
         if segue.identifier == "showDetailsEdit" {
             let controller = segue.destination as! DetailsEditViewController
             controller.offer = self.offer
-            //controller.delegate = self.delegate
             controller.delegate = self
         }
     }

@@ -49,6 +49,9 @@
             <PersistentString
                value = "offersQuery[indexPath.row]">
             </PersistentString>
+            <PersistentString
+               value = "cell.imageView.image">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -56,6 +59,11 @@
       </ContextState>
       <ContextState
          contextName = "MyCollectionViewController.addOfferToTable(_:):MyCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offersQuery">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Offer.init(name:id:):Offer.swift">
@@ -127,6 +135,28 @@
          <PersistentStrings>
             <PersistentString
                value = "downloadURL.absoluteString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in MyCollectionViewController.collectionView(_:cellForItemAt:):MyCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.offersQuery[indexPath.row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MyCollectionViewController.collectionView(_:cellForItemAt:):MyCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offersQuery">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "offersQuery[indexPath.row]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
