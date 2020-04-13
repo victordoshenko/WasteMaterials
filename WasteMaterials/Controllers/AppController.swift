@@ -53,7 +53,7 @@ final class AppController {
         if let _ = Auth.auth().currentUser {
             //let vc = MainViewController(currentUser: user)
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyCollectionViewController") as! MyCollectionViewController
-            rootViewController = NavigationController(vc)
+            rootViewController = UINavigationController(rootViewController: vc)
         } else {
             rootViewController = SignInViewController()
         }

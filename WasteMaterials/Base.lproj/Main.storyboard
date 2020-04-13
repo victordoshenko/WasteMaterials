@@ -45,7 +45,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="MyCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sBZ-AU-gKg" customClass="MyCollectionViewController" customModule="WasteMaterials" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="din-IQ-hlq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="87Q-g0-Zm2">
@@ -96,52 +96,57 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="Cks-wA-XPr">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" id="jcb-Lo-Ptn">
-                            <rect key="frame" x="104" y="5" width="167" height="34"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <barButtonItem key="leftBarButtonItem" title="Menu" image="text.justify" catalog="system" id="AJD-NH-fDR"/>
+                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="justified" minimumFontSize="17" id="jcb-Lo-Ptn">
+                            <rect key="frame" x="58.5" y="5" width="258" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            <viewLayoutGuide key="safeArea" id="aXI-7v-rVk"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             <connections>
                                 <outlet property="delegate" destination="sBZ-AU-gKg" id="Lf6-iQ-mB6"/>
                             </connections>
                         </textField>
+                        <barButtonItem key="rightBarButtonItem" title="Filter" image="slider.horizontal.3" catalog="system" id="Kgw-Co-rgB"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="filterButton" destination="Kgw-Co-rgB" id="rlJ-eN-7f4"/>
+                        <outlet property="menuButton" destination="AJD-NH-fDR" id="Uzl-6a-HE7"/>
                         <outlet property="searchTextField" destination="jcb-Lo-Ptn" id="VxJ-gT-5BR"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ykv-b4-oCN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2017" y="27"/>
+            <point key="canvasLocation" x="2016.3418290854574" y="26.399999999999999"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="P4K-Sc-DLM">
             <objects>
                 <viewController id="veK-VW-4Rg" customClass="DetailsViewController" customModule="WasteMaterials" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rYO-Zh-kZn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEY-Mz-sbg">
-                                <rect key="frame" x="16" y="44" width="343" height="21"/>
+                                <rect key="frame" x="16" y="0.0" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiS-Q1-Hda">
-                                <rect key="frame" x="16" y="73" width="343" height="21"/>
+                                <rect key="frame" x="16" y="29" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pP5-X5-3AB">
-                                <rect key="frame" x="16" y="102" width="343" height="21"/>
+                                <rect key="frame" x="16" y="58" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WR5-68-PXo">
-                                <rect key="frame" x="16" y="131" width="343" height="343"/>
+                                <rect key="frame" x="16" y="87" width="343" height="343"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -192,11 +197,11 @@
             <objects>
                 <viewController id="tkT-3Y-9Ja" customClass="DetailsEditViewController" customModule="WasteMaterials" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4uP-qN-7oA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zA3-ad-YTA">
-                                <rect key="frame" x="8" y="52" width="359" height="34"/>
+                                <rect key="frame" x="8" y="8" width="359" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -204,7 +209,7 @@
                                 </connections>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P2U-5I-Lhw">
-                                <rect key="frame" x="8" y="94" width="359" height="359"/>
+                                <rect key="frame" x="8" y="50" width="359" height="359"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="P2U-5I-Lhw" secondAttribute="height" multiplier="1:1" id="UfQ-im-B85"/>
                                 </constraints>
@@ -249,7 +254,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="C4Z-Bf-qjb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4EG-Se-hzi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="4EG-Se-hzi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -264,6 +269,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <image name="square.and.pencil" catalog="system" width="128" height="118"/>
+        <image name="text.justify" catalog="system" width="128" height="100"/>
     </resources>
 </document>

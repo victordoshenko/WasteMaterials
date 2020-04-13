@@ -28,21 +28,22 @@ extension MyCollectionViewController: DocumentsEditDelegate {
         guard !offersQuery.contains(offer) else {
             return
         }
-            
-        offersQuery.append(offer)
+        
+        offersQuery.insert(offer, at: 0)
         //offersQuery.sort()
         
-        guard let index = offersQuery.index(of: offer) else {
+        guard let index = offersQuery.firstIndex(of: offer) else {
             return
         }
 
-        if offer.name.contains(searchTextField.text ?? "") || searchTextField.text == "" {
+        if offer.name >= (searchTextField.text ?? "") || searchTextField.text == "" {
             collectionView.insertItems(at: [IndexPath(row: index, section: 0)])
+            collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
     }
     
     func updateOfferInTable(_ offer: Offer) {
-        guard let index = offersQuery.index(of: offer) else {
+        guard let index = offersQuery.firstIndex(of: offer) else {
             return
         }
         
@@ -51,7 +52,7 @@ extension MyCollectionViewController: DocumentsEditDelegate {
     }
     
     func removeOfferFromTable(_ offer: Offer) {
-        guard let index = offersQuery.index(of: offer) else {
+        guard let index = offersQuery.firstIndex(of: offer) else {
             return
         }
         offersQuery.remove(at: index)
@@ -92,6 +93,8 @@ extension MyCollectionViewController: DocumentsEditDelegate {
 
 final class MyCollectionViewController: UICollectionViewController {
     
+    @IBOutlet weak var filterButton: UIBarButtonItem!    
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var searchTextField: UITextField!
     private let reuseIdentifier = "OfferCell"
     private let sectionInsets = UIEdgeInsets(top: 20.0,
@@ -114,7 +117,10 @@ final class MyCollectionViewController: UICollectionViewController {
     private var offerReference: CollectionReference {
         return db.collection("offers")
     }
-    
+    private var offerReferenceQuery: Query {
+        return db.collection("offers").whereField("name", isGreaterThanOrEqualTo: searchTextField.text!)
+    }
+
     private var itemsPerRow: CGFloat = 2
         
     deinit {
@@ -154,6 +160,7 @@ final class MyCollectionViewController: UICollectionViewController {
         }
 
         clearsSelectionOnViewWillAppear = true
+
         toolbarItems = [
             UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
@@ -164,6 +171,11 @@ final class MyCollectionViewController: UICollectionViewController {
         toolbarLabel.text = "Offers"
         self.navigationController?.isToolbarHidden = false
 
+        //self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        //self.navigationController!.navigationBar.shadowImage = UIImage()
+        
+        self.navigationController!.navigationBar.isTranslucent = false
+        
         offerListener = offerReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
@@ -310,7 +322,7 @@ extension MyCollectionViewController : UITextFieldDelegate {
         activityIndicator.frame = textField.bounds
         activityIndicator.startAnimating()
         
-        offerReference.getDocuments(completion: { (snapshot, error) in
+        offerReferenceQuery.getDocuments(completion: { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
@@ -320,8 +332,8 @@ extension MyCollectionViewController : UITextFieldDelegate {
                         let data = document.data()
                         if let name = data["name"] as? String,
                             let id = document.documentID as? String,
-                            let date = data["date"] as? String,
-                            name.contains(textField.text ?? "") || textField.text == "" {
+                            let date = data["date"] as? String {
+                            //name.contains(textField.text ?? "") || textField.text == "" {
                             let imageurl = data["imageurl"] as? String
                             let newOffer = Offer(name:name, id:id, date:date, imageurl: imageurl)
                             self.offersQuery.append(newOffer)
@@ -402,6 +414,8 @@ extension MyCollectionViewController : UICollectionViewDelegateFlowLayout {
     let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
     let availableWidth = view.frame.width - paddingSpace
     let widthPerItem = availableWidth / itemsPerRow
+    
+    searchTextField.frame =  CGRect(x: searchTextField.frame.origin.x , y: searchTextField.frame.origin.y, width: availableWidth - filterButton.width - menuButton.width, height: searchTextField.frame.height)
     
     return CGSize(width: widthPerItem, height: widthPerItem)
   }

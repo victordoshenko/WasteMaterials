@@ -17,7 +17,6 @@
 		925EE2282411169B003DA076 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925EE2272411169B003DA076 /* SignInViewController.swift */; };
 		929723C2241A2023000B9FD9 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C1241A2023000B9FD9 /* Offer.swift */; };
 		929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */; };
-		929723C7241A4648000B9FD9 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C6241A4648000B9FD9 /* NavigationController.swift */; };
 		929723C9241A4BBA000B9FD9 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C8241A4BBA000B9FD9 /* AppController.swift */; };
 		92D01BB02428E3EF00C112B5 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */; };
 		92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */; };
@@ -41,7 +40,6 @@
 		925EE2272411169B003DA076 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		929723C1241A2023000B9FD9 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
-		929723C6241A4648000B9FD9 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		929723C8241A4BBA000B9FD9 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
 		92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferPhotoCell.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */,
 				83970465223BDEBD00E935DD /* MainViewController.swift */,
 				925EE2272411169B003DA076 /* SignInViewController.swift */,
-				929723C6241A4648000B9FD9 /* NavigationController.swift */,
 				929723C8241A4BBA000B9FD9 /* AppController.swift */,
 			);
 			path = Controllers;
@@ -272,7 +269,6 @@
 				929723C2241A2023000B9FD9 /* Offer.swift in Sources */,
 				92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */,
 				922BAA57243647080068AA52 /* DetailsEditViewController.swift in Sources */,
-				929723C7241A4648000B9FD9 /* NavigationController.swift in Sources */,
 				83970466223BDEBD00E935DD /* MainViewController.swift in Sources */,
 				83970464223BDEBD00E935DD /* AppDelegate.swift in Sources */,
 				929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */,

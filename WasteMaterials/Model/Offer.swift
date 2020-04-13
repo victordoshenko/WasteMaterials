@@ -72,8 +72,7 @@ extension Offer: Comparable {
     }
     
     static func < (lhs: Offer, rhs: Offer) -> Bool {
-        //return Int(lhs.date!)! > Int(rhs.date!)!
-        return lhs.date! > rhs.date!
+        return lhs.date! < rhs.date!
     }
     
 }
