@@ -436,7 +436,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kusyandr.wastematerials;
 				PRODUCT_NAME = WasteMaterials;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -455,7 +455,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kusyandr.wastematerials;
 				PRODUCT_NAME = WasteMaterials;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

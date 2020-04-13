@@ -321,8 +321,8 @@ extension MyCollectionViewController : UITextFieldDelegate {
                         if let name = data["name"] as? String,
                             let id = document.documentID as? String,
                             let date = data["date"] as? String,
-                            let imageurl = data["imageurl"] as? String,
                             name.contains(textField.text ?? "") || textField.text == "" {
+                            let imageurl = data["imageurl"] as? String
                             let newOffer = Offer(name:name, id:id, date:date, imageurl: imageurl)
                             self.offersQuery.append(newOffer)
                         }
@@ -376,6 +376,7 @@ extension MyCollectionViewController {
         
         cell.goodsNameLabel.text = offersQuery[indexPath.row].name
         cell.imageView.image = nil
+        cell.goodsNameLabel.textColor = .systemBlue
         if let url = offersQuery[indexPath.row].imageurl {
             cell.imageView.sd_setImage(with: URL(string: url)) { (img, err, c, u) in
                 if let err = err {
@@ -383,6 +384,7 @@ extension MyCollectionViewController {
                 } else {
                     cell.imageView.image = img
                     self.offersQuery[indexPath.row].image = img
+                    cell.goodsNameLabel.textColor = .white
                 }
             }
         }

@@ -62,12 +62,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kKs-Yu-xdv">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kKs-Yu-xdv">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="goodsName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wej-2Y-zVV">
-                                            <rect key="frame" x="20" y="20" width="118" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="goodsName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wej-2Y-zVV">
+                                            <rect key="frame" x="8" y="121" width="134" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -75,10 +74,13 @@
                                     </subviews>
                                 </view>
                                 <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Wej-2Y-zVV" secondAttribute="trailing" id="FFf-vW-hYf"/>
                                     <constraint firstItem="kKs-Yu-xdv" firstAttribute="leading" secondItem="KuK-Yd-BkB" secondAttribute="leading" id="XZj-fh-Ape"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Wej-2Y-zVV" secondAttribute="bottom" id="Z6B-Mh-xgc"/>
                                     <constraint firstItem="kKs-Yu-xdv" firstAttribute="top" secondItem="KuK-Yd-BkB" secondAttribute="top" id="ej7-bD-rMZ"/>
                                     <constraint firstAttribute="trailing" secondItem="kKs-Yu-xdv" secondAttribute="trailing" id="ho1-U4-5Mf"/>
                                     <constraint firstAttribute="bottom" secondItem="kKs-Yu-xdv" secondAttribute="bottom" id="seZ-Zi-cUN"/>
+                                    <constraint firstItem="Wej-2Y-zVV" firstAttribute="leading" secondItem="KuK-Yd-BkB" secondAttribute="leadingMargin" id="ubX-5a-E9t"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="goodsNameLabel" destination="Wej-2Y-zVV" id="nAH-6n-PC4"/>
@@ -138,7 +140,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WR5-68-PXo">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WR5-68-PXo">
                                 <rect key="frame" x="16" y="131" width="343" height="343"/>
                             </imageView>
                         </subviews>
@@ -201,7 +203,7 @@
                                     <action selector="nameEditAction:" destination="tkT-3Y-9Ja" eventType="editingChanged" id="lep-HQ-S0G"/>
                                 </connections>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P2U-5I-Lhw">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P2U-5I-Lhw">
                                 <rect key="frame" x="8" y="94" width="359" height="359"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="P2U-5I-Lhw" secondAttribute="height" multiplier="1:1" id="UfQ-im-B85"/>
