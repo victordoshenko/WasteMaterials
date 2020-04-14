@@ -27,6 +27,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var labelID: UILabel!
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var picImageView: UIImageView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     var delegate: DocumentsEditDelegate?
 
@@ -35,6 +36,7 @@ class DetailsViewController: UIViewController {
         labelName.text = offer?.name
         labelID.text = offer?.id
         picImageView.image = offer?.image
+        editButton.image = UIImage(named: "square.and.pencil")
         
         if let date = offer?.date {
             let dateFormatter = DateFormatter()

@@ -140,14 +140,14 @@ class MainViewController: UITableViewController {
         offers.append(offer)
         offers.sort()
         
-        guard let index = offers.index(of: offer) else {
+        guard let index = offers.firstIndex(of: offer) else {
             return
         }
         tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
     
     private func updateOfferInTable(_ offer: Offer) {
-        guard let index = offers.index(of: offer) else {
+        guard let index = offers.firstIndex(of: offer) else {
             return
         }
         
@@ -156,7 +156,7 @@ class MainViewController: UITableViewController {
     }
     
     private func removeOfferFromTable(_ offer: Offer) {
-        guard let index = offers.index(of: offer) else {
+        guard let index = offers.firstIndex(of: offer) else {
             return
         }
         

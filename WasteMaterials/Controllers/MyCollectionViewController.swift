@@ -91,7 +91,7 @@ extension MyCollectionViewController: DocumentsEditDelegate {
 
 }
 
-final class MyCollectionViewController: UICollectionViewController {
+final class MyCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var filterButton: UIBarButtonItem!    
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -127,6 +127,23 @@ final class MyCollectionViewController: UICollectionViewController {
         offerListener?.remove()
     }
 
+    func updateUI(_ firstTime: Bool = false) {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + (firstTime ? 1 : -1))
+        let availableWidth = (firstTime ? view.frame.width : view.frame.height) - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        let cellSize = CGSize(width: widthPerItem , height: widthPerItem)
+        
+        searchTextField.frame =  CGRect(x: searchTextField.frame.origin.x , y: searchTextField.frame.origin.y, width: availableWidth - filterButton.width - menuButton.width, height: searchTextField.frame.height)
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = cellSize
+        layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+        layout.minimumLineSpacing = 1.0
+        layout.minimumInteritemSpacing = 1.0
+        collectionView.setCollectionViewLayout(layout, animated: true)
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         if UIDevice.current.orientation.isLandscape {
             print("***** viewWillTransition Landscape")
@@ -135,6 +152,7 @@ final class MyCollectionViewController: UICollectionViewController {
             print("***** viewWillTransition Portrait")
             itemsPerRow = 2
         }
+        updateUI()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -158,22 +176,22 @@ final class MyCollectionViewController: UICollectionViewController {
             print("***** viewDidLoad Portrait")
             itemsPerRow = 2
         }
-
+        updateUI(true)
+        
+        menuButton.image = UIImage(named: "text.justify")
+        filterButton.image = UIImage(named: "slider.horizontal.3")
+        
         clearsSelectionOnViewWillAppear = true
 
-        toolbarItems = [
-            UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut)),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(customView: toolbarLabel),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed)),
-        ]
-        toolbarLabel.text = "Offers"
-        self.navigationController?.isToolbarHidden = false
-
-        //self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        //self.navigationController!.navigationBar.shadowImage = UIImage()
-        
+//        toolbarItems = [
+//            UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut)),
+//            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+//            UIBarButtonItem(customView: toolbarLabel),
+//            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+//            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed)),
+//        ]
+//        toolbarLabel.text = "Offers"
+        self.navigationController?.isToolbarHidden = true
         self.navigationController!.navigationBar.isTranslucent = false
         
         offerListener = offerReference.addSnapshotListener { querySnapshot, error in
@@ -270,36 +288,17 @@ final class MyCollectionViewController: UICollectionViewController {
         }
     }
 
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+      return sectionInsets
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+      return sectionInsets.left
     }
-    */
 
 }
 
@@ -331,9 +330,8 @@ extension MyCollectionViewController : UITextFieldDelegate {
                     for document in snapshot.documents {
                         let data = document.data()
                         if let name = data["name"] as? String,
-                            let id = document.documentID as? String,
                             let date = data["date"] as? String {
-                            //name.contains(textField.text ?? "") || textField.text == "" {
+                            let id = document.documentID as String
                             let imageurl = data["imageurl"] as? String
                             let newOffer = Offer(name:name, id:id, date:date, imageurl: imageurl)
                             self.offersQuery.append(newOffer)
@@ -402,35 +400,4 @@ extension MyCollectionViewController {
         }
         return cell
     }
-}
-
-// MARK: - Collection View Flow Layout Delegate
-extension MyCollectionViewController : UICollectionViewDelegateFlowLayout {
-  //1
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //2
-    let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-    let availableWidth = view.frame.width - paddingSpace
-    let widthPerItem = availableWidth / itemsPerRow
-    
-    searchTextField.frame =  CGRect(x: searchTextField.frame.origin.x , y: searchTextField.frame.origin.y, width: availableWidth - filterButton.width - menuButton.width, height: searchTextField.frame.height)
-    
-    return CGSize(width: widthPerItem, height: widthPerItem)
-  }
-  
-  //3
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      insetForSectionAt section: Int) -> UIEdgeInsets {
-    return sectionInsets
-  }
-  
-  // 4
-  func collectionView(_ collectionView: UICollectionView,
-                      layout collectionViewLayout: UICollectionViewLayout,
-                      minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return sectionInsets.left
-  }
 }

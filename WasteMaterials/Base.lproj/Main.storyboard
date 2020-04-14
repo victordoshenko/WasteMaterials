@@ -11,21 +11,25 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="MainViewController" customModule="WasteMaterials" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="MainViewController" customModule="WasteMaterials" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Main" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyQ-0C-RA0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyQ-0C-RA0">
                                 <rect key="frame" x="16" y="20" width="37" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="37" id="M7a-1y-XdJ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eis-HY-AIZ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eis-HY-AIZ">
                                 <rect key="frame" x="304" y="20" width="55" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="55" id="TPz-4S-7VI"/>
+                                </constraints>
                                 <state key="normal" title="Log Out"/>
                                 <connections>
                                     <action selector="logoutButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W0s-bS-xnf"/>
@@ -33,6 +37,13 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="XyQ-0C-RA0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="DDp-Kl-Wbo"/>
+                            <constraint firstItem="Eis-HY-AIZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="K1S-vb-DzX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Eis-HY-AIZ" secondAttribute="trailing" id="KN3-pG-zAN"/>
+                            <constraint firstItem="Eis-HY-AIZ" firstAttribute="leading" secondItem="XyQ-0C-RA0" secondAttribute="trailing" constant="251" id="P5l-zN-MMD"/>
+                            <constraint firstItem="XyQ-0C-RA0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="fpD-0b-v3H"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -96,9 +107,9 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="Cks-wA-XPr">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" title="Menu" image="text.justify" catalog="system" id="AJD-NH-fDR"/>
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="AJD-NH-fDR"/>
                         <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="justified" minimumFontSize="17" id="jcb-Lo-Ptn">
-                            <rect key="frame" x="58.5" y="5" width="258" height="34"/>
+                            <rect key="frame" x="68" y="5" width="246.5" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                             <viewLayoutGuide key="safeArea" id="aXI-7v-rVk"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -107,7 +118,7 @@
                                 <outlet property="delegate" destination="sBZ-AU-gKg" id="Lf6-iQ-mB6"/>
                             </connections>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" title="Filter" image="slider.horizontal.3" catalog="system" id="Kgw-Co-rgB"/>
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="Kgw-Co-rgB"/>
                     </navigationItem>
                     <connections>
                         <outlet property="filterButton" destination="Kgw-Co-rgB" id="rlJ-eN-7f4"/>
@@ -174,7 +185,7 @@
                                     <action selector="deleteAction:" destination="veK-VW-4Rg" id="Ns3-hP-fZV"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="square.and.pencil" catalog="system" id="g2B-3q-sDx">
+                            <barButtonItem title="Edit" id="g2B-3q-sDx">
                                 <connections>
                                     <segue destination="tkT-3Y-9Ja" kind="show" identifier="showDetailsEdit" id="AL0-MK-BAz"/>
                                 </connections>
@@ -182,6 +193,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="g2B-3q-sDx" id="VlY-E7-7nT"/>
                         <outlet property="labelDate" destination="pP5-X5-3AB" id="THf-YW-1fx"/>
                         <outlet property="labelID" destination="jiS-Q1-Hda" id="of5-Cf-hua"/>
                         <outlet property="labelName" destination="OEY-Mz-sbg" id="mSK-B0-Ch4"/>
@@ -252,13 +264,16 @@
         <!--Navigation Controller-->
         <scene sceneID="gag-Cg-HeI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="C4Z-Bf-qjb" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="C4Z-Bf-qjb" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="4EG-Se-hzi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hdI-DZ-3YP">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="sBZ-AU-gKg" kind="relationship" relationship="rootViewController" id="hee-jp-hbr"/>
                     </connections>
@@ -268,9 +283,4 @@
             <point key="canvasLocation" x="1288.8" y="26.53673163418291"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
-        <image name="square.and.pencil" catalog="system" width="128" height="118"/>
-        <image name="text.justify" catalog="system" width="128" height="100"/>
-    </resources>
 </document>
