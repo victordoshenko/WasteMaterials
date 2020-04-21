@@ -21,6 +21,7 @@
 		92D01BB02428E3EF00C112B5 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */; };
 		92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */; };
 		92DB8B562431EA3E00CDF69E /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */; };
+		92E0A561244EE483000F7693 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E0A560244EE483000F7693 /* MenuViewController.swift */; };
 		F0FDC6313617E2CB6F70446D /* Pods_WasteMaterials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D79420562E8E7230AAA1C2 /* Pods_WasteMaterials.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +33,7 @@
 		83970463223BDEBD00E935DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83970465223BDEBD00E935DD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		83970468223BDEBD00E935DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8397046A223BDEBD00E935DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8397046A223BDEBD00E935DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = WasteMaterials/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		8397046D223BDEBD00E935DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8397046F223BDEBD00E935DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83970475223BE36600E935DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
 		92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferPhotoCell.swift; sourceTree = "<group>"; };
 		92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		92E0A560244EE483000F7693 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 		929723CA241A7150000B9FD9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				92E0A560244EE483000F7693 /* MenuViewController.swift */,
 				92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */,
 				922BAA56243647080068AA52 /* DetailsEditViewController.swift */,
 				92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */,
@@ -269,6 +272,7 @@
 				929723C2241A2023000B9FD9 /* Offer.swift in Sources */,
 				92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */,
 				922BAA57243647080068AA52 /* DetailsEditViewController.swift in Sources */,
+				92E0A561244EE483000F7693 /* MenuViewController.swift in Sources */,
 				83970466223BDEBD00E935DD /* MainViewController.swift in Sources */,
 				83970464223BDEBD00E935DD /* AppDelegate.swift in Sources */,
 				929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */,
@@ -351,7 +355,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -406,7 +410,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -422,8 +426,9 @@
 			baseConfigurationReference = 4FD8CCC6D7F7438C2038DEFC /* Pods-WasteMaterials.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YT36F46MQZ;
 				INFOPLIST_FILE = WasteMaterials/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

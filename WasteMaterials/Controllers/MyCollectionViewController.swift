@@ -18,84 +18,12 @@ protocol DocumentsEditDelegate {
     var imageReference: StorageReference { get }
 }
 
-extension MyCollectionViewController: DocumentsEditDelegate {
-
-    var imageReference: StorageReference {
-        return Storage.storage().reference().child("images")
-    }
-
-    func addOfferToTable(_ offer: Offer) {
-        guard !offersQuery.contains(offer) else {
-            return
-        }
-        
-        offersQuery.insert(offer, at: 0)
-        //offersQuery.sort()
-        
-        guard let index = offersQuery.firstIndex(of: offer) else {
-            return
-        }
-
-        if offer.name >= (searchTextField.text ?? "") || searchTextField.text == "" {
-            collectionView.insertItems(at: [IndexPath(row: index, section: 0)])
-            collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        }
-    }
-    
-    func updateOfferInTable(_ offer: Offer) {
-        guard let index = offersQuery.firstIndex(of: offer) else {
-            return
-        }
-        
-        offersQuery[index] = offer
-        collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
-    }
-    
-    func removeOfferFromTable(_ offer: Offer) {
-        guard let index = offersQuery.firstIndex(of: offer) else {
-            return
-        }
-        offersQuery.remove(at: index)
-        deleteOffer(offer)
-
-        collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
-    }
-
-    func updateOffer(_ offer: Offer) {
-        if let image = offer.image,
-            let imageData = image.jpegData(compressionQuality: 0.5) {
-            let uploadImageRef = imageReference.child(offer.id! + ".JPG")
-            let uploadTask = uploadImageRef.putData(imageData, metadata: nil) { (metadata, error) in
-                uploadImageRef.downloadURL { (url, error) in
-                  guard let downloadURL = url else { return }
-                  var offer2 = offer
-                  offer2.imageurl = downloadURL.absoluteString
-                  self.offerReference.document(offer.id ?? "").setData(offer2.representation)
-                }
-            }
-            uploadTask.resume()
-        } else {
-          offerReference.document(offer.id ?? "").setData(offer.representation)
-        }
-    }
-
-    func deleteOffer(_ offer: Offer) {
-        imageReference.child(offer.id! + ".JPG").delete() { error in
-            if let error = error {
-                print("There's an error: \(error.localizedDescription)")
-            }
-        }
-        
-        offerReference.document(offer.id ?? "").delete()
-    }
-
-}
-
 final class MyCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    @IBOutlet weak var filterButton: UIBarButtonItem!    
-    @IBOutlet weak var menuButton: UIBarButtonItem!
-    @IBOutlet weak var searchTextField: UITextField!
+//    @IBOutlet weak var filterButton: UIBarButtonItem!    
+//    @IBOutlet weak var menuButton: UIBarButtonItem!
+//    @IBOutlet weak var searchTextField: UITextField!
+    private var searchTextField = UITextField()
     private let reuseIdentifier = "OfferCell"
     private let sectionInsets = UIEdgeInsets(top: 20.0,
                                              left: 20.0,
@@ -128,12 +56,15 @@ final class MyCollectionViewController: UICollectionViewController, UICollection
     }
 
     func updateUI(_ firstTime: Bool = false) {
+        return
         let paddingSpace = sectionInsets.left * (itemsPerRow + (firstTime ? 1 : -1))
         let availableWidth = (firstTime ? view.frame.width : view.frame.height) - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         let cellSize = CGSize(width: widthPerItem , height: widthPerItem)
         
-        searchTextField.frame =  CGRect(x: searchTextField.frame.origin.x , y: searchTextField.frame.origin.y, width: availableWidth - filterButton.width - menuButton.width, height: searchTextField.frame.height)
+        searchTextField.frame =  CGRect(x: searchTextField.frame.origin.x , y: searchTextField.frame.origin.y, width: availableWidth
+            //- filterButton.width //- menuButton.width
+            , height: searchTextField.frame.height)
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -178,8 +109,19 @@ final class MyCollectionViewController: UICollectionViewController, UICollection
         }
         updateUI(true)
         
-        menuButton.image = UIImage(named: "text.justify")
-        filterButton.image = UIImage(named: "slider.horizontal.3")
+//        searchTextField.frame = CGRect(x: 0, y: 0, width: (self.navigationController?.navigationBar.frame.size.width)!, height: 21.0)
+        //searchTextField.placeholder = "Search"
+        //self.navigationController!.navigationBar.addSubview(searchTextField)
+        let vc = self.parent as! MenuViewController
+        vc.hideSearch(false)
+        self.searchTextField = vc.searchTextField
+        self.searchTextField.delegate = self
+
+        //var search = UISearchController(searchResultsController: nil)
+        //self.navigationItem.searchController = search //titleView = searchTextField
+        
+        //menuButton.image = UIImage(named: "text.justify")
+        //filterButton.image = UIImage(named: "slider.horizontal.3")
         
         clearsSelectionOnViewWillAppear = true
 
@@ -191,8 +133,9 @@ final class MyCollectionViewController: UICollectionViewController, UICollection
 //            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed)),
 //        ]
 //        toolbarLabel.text = "Offers"
-        self.navigationController?.isToolbarHidden = true
-        self.navigationController!.navigationBar.isTranslucent = false
+        
+//        self.navigationController?.isToolbarHidden = true
+//        self.navigationController!.navigationBar.isTranslucent = false
         
         offerListener = offerReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
@@ -400,4 +343,77 @@ extension MyCollectionViewController {
         }
         return cell
     }
+}
+
+extension MyCollectionViewController: DocumentsEditDelegate {
+
+    var imageReference: StorageReference {
+        return Storage.storage().reference().child("images")
+    }
+
+    func addOfferToTable(_ offer: Offer) {
+        guard !offersQuery.contains(offer) else {
+            return
+        }
+        
+        offersQuery.insert(offer, at: 0)
+        //offersQuery.sort()
+        
+        guard let index = offersQuery.firstIndex(of: offer) else {
+            return
+        }
+
+        if offer.name >= (searchTextField.text ?? "") || searchTextField.text == "" {
+            collectionView.insertItems(at: [IndexPath(row: index, section: 0)])
+            collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
+    }
+    
+    func updateOfferInTable(_ offer: Offer) {
+        guard let index = offersQuery.firstIndex(of: offer) else {
+            return
+        }
+        
+        offersQuery[index] = offer
+        collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+    }
+    
+    func removeOfferFromTable(_ offer: Offer) {
+        guard let index = offersQuery.firstIndex(of: offer) else {
+            return
+        }
+        offersQuery.remove(at: index)
+        deleteOffer(offer)
+
+        collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
+    }
+
+    func updateOffer(_ offer: Offer) {
+        if let image = offer.image,
+            let imageData = image.jpegData(compressionQuality: 0.5) {
+            let uploadImageRef = imageReference.child(offer.id! + ".JPG")
+            let uploadTask = uploadImageRef.putData(imageData, metadata: nil) { (metadata, error) in
+                uploadImageRef.downloadURL { (url, error) in
+                  guard let downloadURL = url else { return }
+                  var offer2 = offer
+                  offer2.imageurl = downloadURL.absoluteString
+                  self.offerReference.document(offer.id ?? "").setData(offer2.representation)
+                }
+            }
+            uploadTask.resume()
+        } else {
+          offerReference.document(offer.id ?? "").setData(offer.representation)
+        }
+    }
+
+    func deleteOffer(_ offer: Offer) {
+        imageReference.child(offer.id! + ".JPG").delete() { error in
+            if let error = error {
+                print("There's an error: \(error.localizedDescription)")
+            }
+        }
+        
+        offerReference.document(offer.id ?? "").delete()
+    }
+
 }

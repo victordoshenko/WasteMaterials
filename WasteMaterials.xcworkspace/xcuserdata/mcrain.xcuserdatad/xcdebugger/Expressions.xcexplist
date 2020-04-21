@@ -6,13 +6,7 @@
          contextName = "MyCollectionViewController.viewDidLoad():MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "collectionView.dataSource">
-            </PersistentString>
-            <PersistentString
-               value = "self.navigationController">
-            </PersistentString>
-            <PersistentString
-               value = "collectionView.delegate">
+               value = "self.navigationItem.titleView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -31,13 +25,13 @@
          contextName = "MyCollectionViewController.updateUI(_:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "view.frame.width">
-            </PersistentString>
-            <PersistentString
                value = "view.frame.height">
             </PersistentString>
             <PersistentString
                value = "itemsPerRow">
+            </PersistentString>
+            <PersistentString
+               value = "view.frame.width">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -146,14 +140,6 @@
          contextName = "Offer.init(document:):Offer.swift">
       </ContextState>
       <ContextState
-         contextName = "DetailsEditViewController.viewDidLoad():DetailsEditViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "offer">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "MainViewController.addOfferToTable(_:):MainViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -166,6 +152,14 @@
          <PersistentStrings>
             <PersistentString
                value = "offers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DetailsEditViewController.viewDidLoad():DetailsEditViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

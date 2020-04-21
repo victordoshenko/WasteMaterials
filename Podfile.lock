@@ -350,14 +350,18 @@ PODS:
   - SDWebImage (5.5.2):
     - SDWebImage/Core (= 5.5.2)
   - SDWebImage/Core (5.5.2)
+  - SideMenu (6.4.8)
 
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Storage
   - FirebaseUI
   - SDWebImage
+  - SideMenu (~> 6.0)
 
 SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - SideMenu
   trunk:
     - abseil
     - AppAuth
@@ -421,7 +425,8 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
+  SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
 
-PODFILE CHECKSUM: f541932745c425024df38d173c864a3cea74dc3e
+PODFILE CHECKSUM: 503650de1fb272c48cb6215fc97bf4efaea177e8
 
 COCOAPODS: 1.8.4
