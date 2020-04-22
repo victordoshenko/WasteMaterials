@@ -17,8 +17,14 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameTextField.text = offer?.name
-        picImageView.image = offer?.image
+        if offer != nil {
+            nameTextField.text = offer?.name
+            picImageView.image = offer?.image
+        } else {
+            offer = Offer(name: "", date: String(Int(Date().timeIntervalSince1970 * 1000)))
+            offer?.isNew = true
+        }
+        
     }
 
     @IBAction func nameEditAction(_ sender: Any) {

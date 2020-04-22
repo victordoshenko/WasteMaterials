@@ -13,6 +13,8 @@
 		8397046B223BDEBD00E935DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8397046A223BDEBD00E935DD /* Assets.xcassets */; };
 		8397046E223BDEBD00E935DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8397046C223BDEBD00E935DD /* LaunchScreen.storyboard */; };
 		83970476223BE36600E935DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83970475223BE36600E935DD /* GoogleService-Info.plist */; };
+		92038DF3245011E700C39B12 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92038DF2245011E700C39B12 /* SideViewController.swift */; };
+		92038DF524506F8E00C39B12 /* DatabaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92038DF424506F8E00C39B12 /* DatabaseOperation.swift */; };
 		922BAA57243647080068AA52 /* DetailsEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922BAA56243647080068AA52 /* DetailsEditViewController.swift */; };
 		925EE2282411169B003DA076 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925EE2272411169B003DA076 /* SignInViewController.swift */; };
 		929723C2241A2023000B9FD9 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C1241A2023000B9FD9 /* Offer.swift */; };
@@ -37,6 +39,8 @@
 		8397046D223BDEBD00E935DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8397046F223BDEBD00E935DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83970475223BE36600E935DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		92038DF2245011E700C39B12 /* SideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
+		92038DF424506F8E00C39B12 /* DatabaseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseOperation.swift; sourceTree = "<group>"; };
 		922BAA56243647080068AA52 /* DetailsEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsEditViewController.swift; sourceTree = "<group>"; };
 		925EE2272411169B003DA076 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		929723C1241A2023000B9FD9 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 			children = (
 				929723C1241A2023000B9FD9 /* Offer.swift */,
 				929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */,
+				92038DF424506F8E00C39B12 /* DatabaseOperation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 		929723CA241A7150000B9FD9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				92038DF2245011E700C39B12 /* SideViewController.swift */,
 				92E0A560244EE483000F7693 /* MenuViewController.swift */,
 				92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */,
 				922BAA56243647080068AA52 /* DetailsEditViewController.swift */,
@@ -268,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92038DF524506F8E00C39B12 /* DatabaseOperation.swift in Sources */,
 				92D01BB02428E3EF00C112B5 /* MyCollectionViewController.swift in Sources */,
 				929723C2241A2023000B9FD9 /* Offer.swift in Sources */,
 				92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */,
@@ -279,6 +286,7 @@
 				925EE2282411169B003DA076 /* SignInViewController.swift in Sources */,
 				929723C9241A4BBA000B9FD9 /* AppController.swift in Sources */,
 				92DB8B562431EA3E00CDF69E /* DetailsViewController.swift in Sources */,
+				92038DF3245011E700C39B12 /* SideViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

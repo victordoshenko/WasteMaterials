@@ -14,11 +14,27 @@
 import UIKit
 import SideMenu
 
+extension MenuViewController: DetailsUpdateDelegate {
+    func updateOffer(_ offer: Offer) {
+        databaseInstance.updateOffer(offer)
+        print("Update try !!!")
+        //self.delegate?.updateOffer(offer)
+        //MyCollectionViewController.updateOffer(offer)
+        //self.delegate?.
+    }
+}
+
 class MenuViewController: UITabBarController {
 
+    var databaseInstance = DatabaseInstance()
+
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        hideSearch()
 
         self.navigationController?.navigationBar.isTranslucent = false
         let Menu = storyboard?.instantiateViewController(withIdentifier: "SideMenuNavigation") as? SideMenuNavigationController
@@ -30,6 +46,11 @@ class MenuViewController: UITabBarController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailsNew" {
+            let controller = segue.destination as! DetailsEditViewController
+            controller.delegate = self
+        }
+
         guard let sideMenuNavigationController = segue.destination as? SideMenuNavigationController else { return }
         sideMenuNavigationController.leftSide = true
         sideMenuNavigationController.settings = makeSettings()
@@ -44,12 +65,24 @@ class MenuViewController: UITabBarController {
         return settings
     }
     
-    public func hideSearch(_ hide: Bool) {
-        searchTextField.isHidden = hide
+    public func hideSearch() {
+        searchTextField.isHidden = true
+        addButton.isEnabled = false
+        addButton.tintColor = .clear
     }
-    
+
+    public func showSearch() {
+        searchTextField.isHidden = false
+        addButton.isEnabled = true
+        addButton.tintColor = UIButton(type: .system).tintColor
+    }
+
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        searchTextField.isHidden = item != (self.tabBar.items!)[0]
+        if item == (self.tabBar.items!)[0] {
+            showSearch()
+        } else {
+            hideSearch()
+        }
     }
 
 }

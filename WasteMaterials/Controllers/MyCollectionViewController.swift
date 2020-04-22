@@ -10,19 +10,10 @@ import FirebaseUI
 import Firebase
 import SDWebImage
 
-protocol DocumentsEditDelegate {
-    func addOfferToTable(_ offer: Offer)
-    func updateOfferInTable(_ offer: Offer)
-    func removeOfferFromTable(_ offer: Offer)
-    func updateOffer(_ offer: Offer)
-    var imageReference: StorageReference { get }
-}
-
 final class MyCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-//    @IBOutlet weak var filterButton: UIBarButtonItem!    
-//    @IBOutlet weak var menuButton: UIBarButtonItem!
-//    @IBOutlet weak var searchTextField: UITextField!
+    private var databaseInstance: DatabaseInstance?
+
     private var searchTextField = UITextField()
     private let reuseIdentifier = "OfferCell"
     private let sectionInsets = UIEdgeInsets(top: 20.0,
@@ -30,7 +21,6 @@ final class MyCollectionViewController: UICollectionViewController, UICollection
                                              bottom: 20.0,
                                              right: 20.0)
     private var currentOfferAlertController: UIAlertController?
-    private var offersQuery = [Offer]()
     private var offerListener: ListenerRegistration?
     
     private var currentUser = Auth.auth().currentUser
@@ -41,12 +31,9 @@ final class MyCollectionViewController: UICollectionViewController, UICollection
       return label
     }()
 
-    private let db = Firestore.firestore()
-    private var offerReference: CollectionReference {
-        return db.collection("offers")
-    }
     private var offerReferenceQuery: Query {
-        return db.collection("offers").whereField("name", isGreaterThanOrEqualTo: searchTextField.text!)
+        return (databaseInstance?.offerReference.whereField("name", isGreaterThanOrEqualTo: searchTextField.text!))!
+        //return db.collection("offers").whereField("name", isGreaterThanOrEqualTo: searchTextField.text!)
     }
 
     private var itemsPerRow: CGFloat = 2
@@ -91,7 +78,7 @@ final class MyCollectionViewController: UICollectionViewController, UICollection
             let controller = segue.destination as! DetailsViewController
             let cell = sender as! UICollectionViewCell
             if let indexPath = self.collectionView!.indexPath(for: cell) {
-                controller.offer = offersQuery[indexPath.row]
+                controller.offer = databaseInstance?.offersQuery[indexPath.row]
                 controller.delegate = self
             }
         }
@@ -109,19 +96,14 @@ final class MyCollectionViewController: UICollectionViewController, UICollection
         }
         updateUI(true)
         
-//        searchTextField.frame = CGRect(x: 0, y: 0, width: (self.navigationController?.navigationBar.frame.size.width)!, height: 21.0)
-        //searchTextField.placeholder = "Search"
-        //self.navigationController!.navigationBar.addSubview(searchTextField)
         let vc = self.parent as! MenuViewController
-        vc.hideSearch(false)
+        vc.showSearch()
         self.searchTextField = vc.searchTextField
         self.searchTextField.delegate = self
+        self.databaseInstance = vc.databaseInstance
 
-        //var search = UISearchController(searchResultsController: nil)
-        //self.navigationItem.searchController = search //titleView = searchTextField
-        
-        //menuButton.image = UIImage(named: "text.justify")
-        //filterButton.image = UIImage(named: "slider.horizontal.3")
+//        vc.addButton.target = self
+//        vc.addButton.action = #selector(addButtonPressed)
         
         clearsSelectionOnViewWillAppear = true
 
@@ -137,7 +119,7 @@ final class MyCollectionViewController: UICollectionViewController, UICollection
 //        self.navigationController?.isToolbarHidden = true
 //        self.navigationController!.navigationBar.isTranslucent = false
         
-        offerListener = offerReference.addSnapshotListener { querySnapshot, error in
+        offerListener = databaseInstance?.offerReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
                 return
@@ -207,11 +189,12 @@ final class MyCollectionViewController: UICollectionViewController, UICollection
         }
         
         let offer = Offer(name: offerName, date: String(Int(Date().timeIntervalSince1970 * 1000)))
-        offerReference.addDocument(data: offer.representation) { error in
-            if let e = error {
-                print("Error saving channel: \(e.localizedDescription)")
-            }
-        }
+        databaseInstance?.addOferToDB(offer)
+//        offerReference.addDocument(data: offer.representation) { error in
+//            if let e = error {
+//                print("Error saving channel: \(e.localizedDescription)")
+//            }
+//        }
     }
 
     private func handleDocumentChange(_ change: DocumentChange) {
@@ -245,15 +228,6 @@ final class MyCollectionViewController: UICollectionViewController, UICollection
 
 }
 
-// MARK: - Private
-private extension MyCollectionViewController {
-  /*
-  func photo(for indexPath: IndexPath) -> FlickrPhoto {
-    return searches[indexPath.section].searchResults[indexPath.row]
-  }
- */
-}
-
 // MARK: - Text Field Delegate
 extension MyCollectionViewController : UITextFieldDelegate {
     
@@ -264,27 +238,11 @@ extension MyCollectionViewController : UITextFieldDelegate {
         activityIndicator.frame = textField.bounds
         activityIndicator.startAnimating()
         
-        offerReferenceQuery.getDocuments(completion: { (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                if let snapshot = snapshot {
-                    self.offersQuery.removeAll()
-                    for document in snapshot.documents {
-                        let data = document.data()
-                        if let name = data["name"] as? String,
-                            let date = data["date"] as? String {
-                            let id = document.documentID as String
-                            let imageurl = data["imageurl"] as? String
-                            let newOffer = Offer(name:name, id:id, date:date, imageurl: imageurl)
-                            self.offersQuery.append(newOffer)
-                        }
-                    }
-                    self.collectionView?.reloadData()
-                    activityIndicator.removeFromSuperview()
-                }
-            }
-        })
+        databaseInstance?.readAllFromDB(offerReferenceQuery) {
+            self.collectionView?.reloadData()
+            activityIndicator.removeFromSuperview()
+        }
+
         //textField.text = nil
         textField.resignFirstResponder()
         return true
@@ -301,7 +259,7 @@ extension MyCollectionViewController {
   //2
   override func collectionView(_ collectionView: UICollectionView,
                                numberOfItemsInSection section: Int) -> Int {
-    return offersQuery.count
+    return (databaseInstance?.offersQuery.count)!
   }
   
     //3
@@ -327,16 +285,16 @@ extension MyCollectionViewController {
         cell.layer.shadowOpacity = 1.0
         cell.layer.masksToBounds = false
         
-        cell.goodsNameLabel.text = offersQuery[indexPath.row].name
+        cell.goodsNameLabel.text = databaseInstance?.offersQuery[indexPath.row].name
         cell.imageView.image = nil
         cell.goodsNameLabel.textColor = .systemBlue
-        if let url = offersQuery[indexPath.row].imageurl {
+        if let url = databaseInstance?.offersQuery[indexPath.row].imageurl {
             cell.imageView.sd_setImage(with: URL(string: url)) { (img, err, c, u) in
                 if let err = err {
                     print("There's an error:\(err)")
                 } else {
                     cell.imageView.image = img
-                    self.offersQuery[indexPath.row].image = img
+                    self.databaseInstance?.offersQuery[indexPath.row].image = img
                     cell.goodsNameLabel.textColor = .white
                 }
             }
@@ -346,20 +304,23 @@ extension MyCollectionViewController {
 }
 
 extension MyCollectionViewController: DocumentsEditDelegate {
-
+    func updateOffer(_ offer: Offer) {
+        databaseInstance?.updateOffer(offer)
+    }
+    
     var imageReference: StorageReference {
-        return Storage.storage().reference().child("images")
+        return databaseInstance!.imageReference
     }
 
     func addOfferToTable(_ offer: Offer) {
-        guard !offersQuery.contains(offer) else {
+        guard !(databaseInstance?.offersQuery.contains(offer))! else {
             return
         }
         
-        offersQuery.insert(offer, at: 0)
+        databaseInstance?.offersQuery.insert(offer, at: 0)
         //offersQuery.sort()
         
-        guard let index = offersQuery.firstIndex(of: offer) else {
+        guard let index = databaseInstance?.offersQuery.firstIndex(of: offer) else {
             return
         }
 
@@ -370,50 +331,22 @@ extension MyCollectionViewController: DocumentsEditDelegate {
     }
     
     func updateOfferInTable(_ offer: Offer) {
-        guard let index = offersQuery.firstIndex(of: offer) else {
+        guard let index = databaseInstance?.offersQuery.firstIndex(of: offer) else {
             return
         }
         
-        offersQuery[index] = offer
+        databaseInstance?.offersQuery[index] = offer
         collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
     }
     
     func removeOfferFromTable(_ offer: Offer) {
-        guard let index = offersQuery.firstIndex(of: offer) else {
+        guard let index = databaseInstance?.offersQuery.firstIndex(of: offer) else {
             return
         }
-        offersQuery.remove(at: index)
-        deleteOffer(offer)
+        databaseInstance?.offersQuery.remove(at: index)
+        databaseInstance?.deleteOffer(offer)
 
         collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
-    }
-
-    func updateOffer(_ offer: Offer) {
-        if let image = offer.image,
-            let imageData = image.jpegData(compressionQuality: 0.5) {
-            let uploadImageRef = imageReference.child(offer.id! + ".JPG")
-            let uploadTask = uploadImageRef.putData(imageData, metadata: nil) { (metadata, error) in
-                uploadImageRef.downloadURL { (url, error) in
-                  guard let downloadURL = url else { return }
-                  var offer2 = offer
-                  offer2.imageurl = downloadURL.absoluteString
-                  self.offerReference.document(offer.id ?? "").setData(offer2.representation)
-                }
-            }
-            uploadTask.resume()
-        } else {
-          offerReference.document(offer.id ?? "").setData(offer.representation)
-        }
-    }
-
-    func deleteOffer(_ offer: Offer) {
-        imageReference.child(offer.id! + ".JPG").delete() { error in
-            if let error = error {
-                print("There's an error: \(error.localizedDescription)")
-            }
-        }
-        
-        offerReference.document(offer.id ?? "").delete()
     }
 
 }

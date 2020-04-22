@@ -9,11 +9,12 @@ import FirebaseFirestore
 
 struct Offer {
     
-    let id: String?
+    var id: String?
     var name: String
     let date: String?
     var imageurl: String?
     var image: UIImage?
+    var isNew: Bool = false
     
     init(name: String, id: String? = nil, date: String? = nil, imageurl: String? = nil, image: UIImage? = nil) {
         self.id = id

@@ -49,12 +49,13 @@ final class AppController {
   }
   
     private func handleAppState() {
-        guard rootViewController == nil else { return }
+        //print(rootViewController?.title)
+        //guard rootViewController == nil else { return }
         if let _ = Auth.auth().currentUser {
             //let vc = MainViewController(currentUser: user)
             //let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyCollectionViewController") as! MyCollectionViewController
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-            rootViewController = UINavigationController(rootViewController: vc)
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NavigationController") //as! MenuViewController
+            rootViewController = vc //UINavigationController(rootViewController: vc)
         } else {
             rootViewController = SignInViewController()
         }

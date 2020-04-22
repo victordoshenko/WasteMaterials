@@ -6,7 +6,7 @@
          contextName = "MyCollectionViewController.viewDidLoad():MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.navigationItem.titleView">
+               value = "self.addButton">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -28,10 +28,18 @@
                value = "view.frame.height">
             </PersistentString>
             <PersistentString
-               value = "itemsPerRow">
+               value = "view.frame.width">
             </PersistentString>
             <PersistentString
-               value = "view.frame.width">
+               value = "itemsPerRow">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MenuViewController.hideAddButton(_:):MenuViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "addButton.customView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -198,6 +206,14 @@
          <PersistentStrings>
             <PersistentString
                value = "offers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppController.show(in:):AppController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "FirebaseApp.app()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
