@@ -11,13 +11,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MyCollectionViewController.handleDocumentChange(_:):MyCollectionViewController.swift">
+         contextName = "MenuViewController.hideAddButton(_:):MenuViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "change.document">
-            </PersistentString>
-            <PersistentString
-               value = "change.data()">
+               value = "addButton.customView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -28,18 +25,21 @@
                value = "view.frame.height">
             </PersistentString>
             <PersistentString
-               value = "view.frame.width">
+               value = "itemsPerRow">
             </PersistentString>
             <PersistentString
-               value = "itemsPerRow">
+               value = "view.frame.width">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MenuViewController.hideAddButton(_:):MenuViewController.swift">
+         contextName = "MyCollectionViewController.handleDocumentChange(_:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "addButton.customView">
+               value = "change.document">
+            </PersistentString>
+            <PersistentString
+               value = "change.data()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -141,6 +141,9 @@
             </PersistentString>
             <PersistentString
                value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "controller.offer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

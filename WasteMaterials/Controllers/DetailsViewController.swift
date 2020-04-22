@@ -36,6 +36,20 @@ class DetailsViewController: UIViewController {
         labelName.text = offer?.name
         labelID.text = offer?.id
         picImageView.image = offer?.image
+        
+        if picImageView.image == nil {
+            if let url = offer?.imageurl {
+                picImageView.sd_setImage(with: URL(string: url)) { (img, err, c, u) in
+                    if let err = err {
+                        print("There's an error:\(err)")
+                    } else {
+                        self.picImageView.image = img
+                        self.offer?.image = img
+                    }
+                }
+            }
+        }
+        
         editButton.image = UIImage(named: "square.and.pencil")
         
         if let date = offer?.date {
