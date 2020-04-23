@@ -19,7 +19,8 @@
 		925EE2282411169B003DA076 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925EE2272411169B003DA076 /* SignInViewController.swift */; };
 		929723C2241A2023000B9FD9 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C1241A2023000B9FD9 /* Offer.swift */; };
 		929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */; };
-		929723C9241A4BBA000B9FD9 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C8241A4BBA000B9FD9 /* AppController.swift */; };
+		92ABCCBE2451A60F00329FCB /* FAuthPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */; };
+		92ABCCBF2451A60F00329FCB /* FAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92ABCCBD2451A60F00329FCB /* FAuthPickerViewController.xib */; };
 		92D01BB02428E3EF00C112B5 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */; };
 		92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */; };
 		92DB8B562431EA3E00CDF69E /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */; };
@@ -45,7 +46,8 @@
 		925EE2272411169B003DA076 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		929723C1241A2023000B9FD9 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
-		929723C8241A4BBA000B9FD9 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAuthPickerViewController.swift; sourceTree = "<group>"; };
+		92ABCCBD2451A60F00329FCB /* FAuthPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FAuthPickerViewController.xib; sourceTree = "<group>"; };
 		92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
 		92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferPhotoCell.swift; sourceTree = "<group>"; };
 		92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -104,12 +106,7 @@
 			children = (
 				929723CA241A7150000B9FD9 /* Controllers */,
 				929723C5241A211C000B9FD9 /* Model */,
-				83970463223BDEBD00E935DD /* AppDelegate.swift */,
-				83970467223BDEBD00E935DD /* Main.storyboard */,
-				8397046A223BDEBD00E935DD /* Assets.xcassets */,
-				8397046C223BDEBD00E935DD /* LaunchScreen.storyboard */,
-				8397046F223BDEBD00E935DD /* Info.plist */,
-				83970475223BE36600E935DD /* GoogleService-Info.plist */,
+				92ABCCC12451A72B00329FCB /* Supporting Files */,
 			);
 			path = WasteMaterials;
 			sourceTree = "<group>";
@@ -127,6 +124,9 @@
 		929723CA241A7150000B9FD9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				83970463223BDEBD00E935DD /* AppDelegate.swift */,
+				92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */,
+				92ABCCBD2451A60F00329FCB /* FAuthPickerViewController.xib */,
 				92038DF2245011E700C39B12 /* SideViewController.swift */,
 				92E0A560244EE483000F7693 /* MenuViewController.swift */,
 				92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */,
@@ -135,9 +135,20 @@
 				92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */,
 				83970465223BDEBD00E935DD /* MainViewController.swift */,
 				925EE2272411169B003DA076 /* SignInViewController.swift */,
-				929723C8241A4BBA000B9FD9 /* AppController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		92ABCCC12451A72B00329FCB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				83970467223BDEBD00E935DD /* Main.storyboard */,
+				8397046A223BDEBD00E935DD /* Assets.xcassets */,
+				8397046C223BDEBD00E935DD /* LaunchScreen.storyboard */,
+				8397046F223BDEBD00E935DD /* Info.plist */,
+				83970475223BE36600E935DD /* GoogleService-Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +215,7 @@
 				8397046E223BDEBD00E935DD /* LaunchScreen.storyboard in Resources */,
 				83970476223BE36600E935DD /* GoogleService-Info.plist in Resources */,
 				8397046B223BDEBD00E935DD /* Assets.xcassets in Resources */,
+				92ABCCBF2451A60F00329FCB /* FAuthPickerViewController.xib in Resources */,
 				83970469223BDEBD00E935DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,7 +296,7 @@
 				83970464223BDEBD00E935DD /* AppDelegate.swift in Sources */,
 				929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */,
 				925EE2282411169B003DA076 /* SignInViewController.swift in Sources */,
-				929723C9241A4BBA000B9FD9 /* AppController.swift in Sources */,
+				92ABCCBE2451A60F00329FCB /* FAuthPickerViewController.swift in Sources */,
 				92DB8B562431EA3E00CDF69E /* DetailsViewController.swift in Sources */,
 				92038DF3245011E700C39B12 /* SideViewController.swift in Sources */,
 			);

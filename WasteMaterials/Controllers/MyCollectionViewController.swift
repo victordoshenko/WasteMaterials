@@ -87,6 +87,7 @@ final class MyCollectionViewController: UICollectionViewController, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("\n**************************")
         if UIDevice.current.orientation.isLandscape {
             print("***** viewDidLoad Landscape")
             itemsPerRow = 3
@@ -94,6 +95,7 @@ final class MyCollectionViewController: UICollectionViewController, UICollection
             print("***** viewDidLoad Portrait")
             itemsPerRow = 2
         }
+        print("**************************\n")
         updateUI(true)
         
         let vc = self.parent as! MenuViewController

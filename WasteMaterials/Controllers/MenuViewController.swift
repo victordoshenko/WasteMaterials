@@ -16,23 +16,20 @@ import SideMenu
 
 extension MenuViewController: DetailsUpdateDelegate {
     func updateOffer(_ offer: Offer) {
-        databaseInstance.updateOffer(offer)
-        print("Update try !!!")
-        //self.delegate?.updateOffer(offer)
-        //MyCollectionViewController.updateOffer(offer)
-        //self.delegate?.
+        databaseInstance?.updateOffer(offer)
     }
 }
 
 class MenuViewController: UITabBarController {
 
-    var databaseInstance = DatabaseInstance()
+    var databaseInstance: DatabaseInstance?
 
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        databaseInstance = DatabaseInstance()
         
         hideSearch()
 
