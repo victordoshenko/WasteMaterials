@@ -62,6 +62,7 @@ class DatabaseInstance {
 
     func updateOffer2(_ offer: Offer) {
         if let image = offer.image,
+            Auth.auth().currentUser!.uid == offer.userId,
             let imageData = image.jpegData(compressionQuality: 0.3) {
             let uploadImageRef = imageReference.child(offer.id! + ".JPG")
             let uploadTask = uploadImageRef.putData(imageData, metadata: nil) { (metadata, error) in

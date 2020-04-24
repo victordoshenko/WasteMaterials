@@ -23,14 +23,6 @@ final class SearchViewController: UICollectionViewController, UICollectionViewDe
     private var currentOfferAlertController: UIAlertController?
     private var offerListener: ListenerRegistration?
     
-    private var currentUser = Auth.auth().currentUser
-    private let toolbarLabel: UILabel = {
-      let label = UILabel()
-      label.textAlignment = .center
-      label.font = UIFont.systemFont(ofSize: 15)
-      return label
-    }()
-
     private var offerReferenceQuery: Query {
         return (dbInstance?.offerReference.whereField("name", isGreaterThanOrEqualTo: searchTextField.text!))!
     }
