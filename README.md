@@ -3,7 +3,7 @@ This is my first serious project with Native iOS Swift, XCode, Firebase, UITable
 
 
 Firestore Database Rules:
-
+```bash
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -14,10 +14,10 @@ service cloud.firestore {
     }
   }
 }
-
+```
 
 Firebase Storage Rules:
-
+```bash
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
@@ -27,3 +27,4 @@ service firebase.storage {
     }
   }
 }
+```
