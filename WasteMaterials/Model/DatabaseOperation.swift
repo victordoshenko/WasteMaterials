@@ -63,7 +63,7 @@ class DatabaseInstance {
     func updateOffer2(_ offer: Offer) {
         if let image = offer.image,
             let imageData = image.jpegData(compressionQuality: 0.3) {
-            let uploadImageRef = imageReference.child(offer.id! + ".JPG") //(offer.id! + ".JPG")
+            let uploadImageRef = imageReference.child(offer.id! + ".JPG")
             let uploadTask = uploadImageRef.putData(imageData, metadata: nil) { (metadata, error) in
                 uploadImageRef.downloadURL { (url, error) in
                     guard let downloadURL = url else { return }
