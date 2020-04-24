@@ -11,24 +11,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MenuViewController.hideAddButton(_:):MenuViewController.swift">
+         contextName = "DatabaseInstance.addOrRemoveFavorites(_:_:):DatabaseOperation.swift">
          <PersistentStrings>
             <PersistentString
-               value = "addButton.customView">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MyCollectionViewController.updateUI(_:):MyCollectionViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "view.frame.height">
-            </PersistentString>
-            <PersistentString
-               value = "view.frame.width">
-            </PersistentString>
-            <PersistentString
-               value = "itemsPerRow">
+               value = "id!">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -40,6 +26,28 @@
             </PersistentString>
             <PersistentString
                value = "change.data()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MyCollectionViewController.updateUI(_:):MyCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.frame.height">
+            </PersistentString>
+            <PersistentString
+               value = "itemsPerRow">
+            </PersistentString>
+            <PersistentString
+               value = "view.frame.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MenuViewController.hideAddButton(_:):MenuViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "addButton.customView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

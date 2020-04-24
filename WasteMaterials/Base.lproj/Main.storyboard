@@ -67,18 +67,30 @@
                                             <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ts-kr-mGT">
+                                            <rect key="frame" x="120" y="0.0" width="30" height="33"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <state key="normal" title="♡"/>
+                                            <connections>
+                                                <action selector="favoriteButtonAction:" destination="KuK-Yd-BkB" eventType="touchUpInside" id="3ha-Bh-Jma"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                                 <constraints>
+                                    <constraint firstItem="1ts-kr-mGT" firstAttribute="leading" secondItem="KuK-Yd-BkB" secondAttribute="leading" constant="120" id="D2G-M2-g8X"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="Wej-2Y-zVV" secondAttribute="trailing" id="FFf-vW-hYf"/>
                                     <constraint firstItem="kKs-Yu-xdv" firstAttribute="leading" secondItem="KuK-Yd-BkB" secondAttribute="leading" id="XZj-fh-Ape"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="Wej-2Y-zVV" secondAttribute="bottom" id="Z6B-Mh-xgc"/>
+                                    <constraint firstAttribute="trailing" secondItem="1ts-kr-mGT" secondAttribute="trailing" id="bjk-h7-3WQ"/>
                                     <constraint firstItem="kKs-Yu-xdv" firstAttribute="top" secondItem="KuK-Yd-BkB" secondAttribute="top" id="ej7-bD-rMZ"/>
                                     <constraint firstAttribute="trailing" secondItem="kKs-Yu-xdv" secondAttribute="trailing" id="ho1-U4-5Mf"/>
+                                    <constraint firstItem="1ts-kr-mGT" firstAttribute="top" secondItem="KuK-Yd-BkB" secondAttribute="top" id="ifm-Xe-O2w"/>
                                     <constraint firstAttribute="bottom" secondItem="kKs-Yu-xdv" secondAttribute="bottom" id="seZ-Zi-cUN"/>
                                     <constraint firstItem="Wej-2Y-zVV" firstAttribute="leading" secondItem="KuK-Yd-BkB" secondAttribute="leadingMargin" id="ubX-5a-E9t"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="favoriteButton" destination="1ts-kr-mGT" id="tuT-j3-ZbZ"/>
                                     <outlet property="goodsNameLabel" destination="Wej-2Y-zVV" id="nAH-6n-PC4"/>
                                     <outlet property="imageView" destination="kKs-Yu-xdv" id="l87-aX-Ngi"/>
                                     <segue destination="veK-VW-4Rg" kind="show" identifier="showDetails" id="yqK-fT-4Gt"/>

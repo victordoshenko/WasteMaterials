@@ -238,6 +238,7 @@ extension SearchViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
                                                       for: indexPath) as! OfferPhotoCell
+        cell.delegate = self
         //let flickrPhoto = photo(for: indexPath)
         cell.backgroundColor = .white
         //cell.imageView.image = flickrPhoto.thumbnail
@@ -254,8 +255,21 @@ extension SearchViewController {
         cell.layer.masksToBounds = false
         
         cell.goodsNameLabel.text = dbInstance?.offersQuery[indexPath.row].name
+        cell.id = dbInstance?.offersQuery[indexPath.row].id
+        
+        dbInstance?.favoritesReference.document(cell.id!).getDocument { (document, error) in
+            if let document = document {
+                if document.exists {
+                    cell.favoriteButton.setTitle("♥︎", for: .normal)
+                } else {
+                    cell.favoriteButton.setTitle("♡", for: .normal)
+                }
+            }
+        }
+
         cell.imageView.image = nil
         cell.goodsNameLabel.textColor = .systemBlue
+        cell.favoriteButton.setTitleColor(.systemBlue, for: .normal)
         if let url = dbInstance?.offersQuery[indexPath.row].imageurl {
             cell.imageView.sd_setImage(with: URL(string: url)) { (img, err, c, u) in
                 if let err = err {
@@ -264,6 +278,7 @@ extension SearchViewController {
                     cell.imageView.image = img
                     //self.dbInstance?.offersQuery[indexPath.row].image = img
                     cell.goodsNameLabel.textColor = .white
+                    cell.favoriteButton.setTitleColor(.white, for: .normal)
                 }
             }
         }
@@ -271,9 +286,20 @@ extension SearchViewController {
     }
 }
 
+protocol FavoritesDelegate {
+    func updateFavorite(_ id: String?, _ isFavorite: Bool)
+}
+
+extension SearchViewController: FavoritesDelegate {
+    func updateFavorite(_ id: String?) -> Bool{
+//        print("Update favorite! id = \(id ?? "") isFavorite = \(isFavorite)")
+        return dbInstance?.addOrRemoveFavorites(id)
+    }
+}
+
 extension SearchViewController: DocumentsEditDelegate {
     func updateOffer(_ offer: Offer) {
-        dbInstance?.updateOffer(offer)
+        dbInstance?.updateOrNewOffer(offer)
     }
     
     var imageReference: StorageReference {

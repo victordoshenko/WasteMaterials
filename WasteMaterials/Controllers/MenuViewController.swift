@@ -11,7 +11,7 @@ import SideMenu
 
 extension MenuViewController: DetailsUpdateDelegate {
     func updateOffer(_ offer: Offer) {
-        dbInstance?.updateOffer(offer)
+        dbInstance?.updateOrNewOffer(offer)
     }
 }
 

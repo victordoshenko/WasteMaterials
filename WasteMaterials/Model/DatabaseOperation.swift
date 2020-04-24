@@ -24,7 +24,44 @@ class DatabaseInstance {
     var offerReference: CollectionReference {
         return db.collection("offers")
     }
+
+    var favoritesReference: CollectionReference {
+        return db.collection("favorites/\(Auth.auth().currentUser!.uid)/ids")
+    }
     
+    func isFavorite(_ id: String?) -> Bool {
+        var result = false
+        dbInstance?.favoritesReference.document(id).getDocument { (document, error) in
+            if let document = document {
+                if document.exists {
+                    favoritesReference.document(id!).setData([:])
+                } else {
+                    favoritesReference.document(id!).delete()
+                }
+            }
+        }
+
+    }
+    
+    func addOrRemoveFavorites(_ id: String?) -> Bool {
+        var isFavorite = false
+        dbInstance?.favoritesReference.document(id).getDocument { (document, error) in
+            if let document = document {
+                if document.exists {
+                    favoritesReference.document(id!).setData([:])
+                } else {
+                    favoritesReference.document(id!).delete()
+                }
+            }
+        }
+        
+        return
+    }
+
+    var imageReference: StorageReference {
+        return Storage.storage().reference().child("images").child(Auth.auth().currentUser!.uid)
+    }
+
     func addOferToDB(_ offer: Offer) {
         offerReference.addDocument(data: offer.representation) { error in
             if let e = error {
@@ -56,11 +93,7 @@ class DatabaseInstance {
         })
     }
 
-    var imageReference: StorageReference {
-        return Storage.storage().reference().child("images").child(Auth.auth().currentUser!.uid)
-    }
-
-    func updateOffer2(_ offer: Offer) {
+    func updateOffer(_ offer: Offer) {
         if let image = offer.image,
             Auth.auth().currentUser!.uid == offer.userId,
             let imageData = image.jpegData(compressionQuality: 0.3) {
@@ -83,20 +116,20 @@ class DatabaseInstance {
         }
     }
 
-    func updateOffer(_ offer: Offer) {
+    func updateOrNewOffer(_ offer: Offer) {
         var ref: DocumentReference? = nil
-        if offer.isNew {
+        if offer.id == nil {  // New
             ref = offerReference.addDocument(data: offer.representation) { error in
                 if let e = error {
                     print("Error saving channel: \(e.localizedDescription)")
                 } else {
                     var offer2 = offer
                     offer2.id = ref?.documentID
-                    self.updateOffer2(offer2)
+                    self.updateOffer(offer2)
                 }
             }
         } else {
-            updateOffer2(offer)
+            updateOffer(offer)
         }
     }
 
