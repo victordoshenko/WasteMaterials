@@ -6,6 +6,7 @@
 //
 
 import FirebaseFirestore
+import Firebase
 
 struct Offer {
     
@@ -13,15 +14,17 @@ struct Offer {
     var name: String
     let date: String?
     var imageurl: String?
-    var image: UIImage?
+    var image: UIImage? = nil
     var isNew: Bool = false
+    var userId: String?
     
-    init(name: String, id: String? = nil, date: String? = nil, imageurl: String? = nil, image: UIImage? = nil) {
+    init(name: String, id: String? = nil, date: String? = nil, imageurl: String? = nil, image: UIImage? = nil, userId: String? = Auth.auth().currentUser?.uid) {
         self.id = id
         self.name = name
         self.date = date
         self.imageurl = imageurl
         self.image = image
+        self.userId = userId
     }
     
     init?(document: QueryDocumentSnapshot) {
@@ -36,6 +39,7 @@ struct Offer {
 
         self.date = data["date"] as? String
         self.imageurl = data["imageurl"] as? String
+        self.userId = data["userId"] as? String
     }
     
     mutating func setImageURL(_ url: String?) {
@@ -59,6 +63,10 @@ extension Offer: DatabaseRepresentation {
 
         if let imageurl = imageurl {
             rep["imageurl"] = imageurl
+        }
+
+        if let userId = userId {
+            rep["userId"] = userId
         }
 
         return rep

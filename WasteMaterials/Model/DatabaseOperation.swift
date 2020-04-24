@@ -6,6 +6,7 @@
 //
 
 import Firebase
+import FirebaseFirestore
 
 protocol DocumentsEditDelegate {
     func addOfferToTable(_ offer: Offer)
@@ -56,7 +57,29 @@ class DatabaseInstance {
     }
 
     var imageReference: StorageReference {
-        return Storage.storage().reference().child("images")
+        return Storage.storage().reference().child("images").child(Auth.auth().currentUser!.uid)
+    }
+
+    func updateOffer2(_ offer: Offer) {
+        if let image = offer.image,
+            let imageData = image.jpegData(compressionQuality: 0.3) {
+            let uploadImageRef = imageReference.child(offer.id! + ".JPG") //(offer.id! + ".JPG")
+            let uploadTask = uploadImageRef.putData(imageData, metadata: nil) { (metadata, error) in
+                uploadImageRef.downloadURL { (url, error) in
+                    guard let downloadURL = url else { return }
+                    var offer2 = offer
+                    offer2.imageurl = downloadURL.absoluteString
+                    self.offerReference.document(offer2.id!).setData(offer2.representation) { error in
+                        if let error = error {
+                            print("There's an error: \(error.localizedDescription)")
+                        }
+                    }
+                }
+            }
+            uploadTask.resume()
+        } else {
+            offerReference.document(offer.id!).setData(offer.representation)
+        }
     }
 
     func updateOffer(_ offer: Offer) {
@@ -65,34 +88,29 @@ class DatabaseInstance {
             ref = offerReference.addDocument(data: offer.representation) { error in
                 if let e = error {
                     print("Error saving channel: \(e.localizedDescription)")
+                } else {
+                    var offer2 = offer
+                    offer2.id = ref?.documentID
+                    self.updateOffer2(offer2)
                 }
             }
-        }
-        if let image = offer.image,
-            let imageData = image.jpegData(compressionQuality: 0.5) {
-            let uploadImageRef = imageReference.child(offer.id ?? ref!.documentID + ".JPG") //(offer.id! + ".JPG")
-            let uploadTask = uploadImageRef.putData(imageData, metadata: nil) { (metadata, error) in
-                uploadImageRef.downloadURL { (url, error) in
-                  guard let downloadURL = url else { return }
-                  var offer2 = offer
-                  offer2.imageurl = downloadURL.absoluteString
-                  self.offerReference.document(offer.id ?? ref!.documentID).setData(offer2.representation)
-                }
-            }
-            uploadTask.resume()
         } else {
-          offerReference.document(offer.id ?? ref!.documentID).setData(offer.representation)
+            updateOffer2(offer)
         }
     }
 
     func deleteOffer(_ offer: Offer) {
-        imageReference.child(offer.id! + ".JPG").delete() { error in
+        offerReference.document(offer.id ?? "").delete() { error in
             if let error = error {
                 print("There's an error: \(error.localizedDescription)")
+            } else {
+                self.imageReference.child(offer.id! + ".JPG").delete() { error in
+                    if let error = error {
+                        print("There's an error: \(error.localizedDescription)")
+                    }
+                }
             }
         }
-        
-        offerReference.document(offer.id ?? "").delete()
     }
 
 }

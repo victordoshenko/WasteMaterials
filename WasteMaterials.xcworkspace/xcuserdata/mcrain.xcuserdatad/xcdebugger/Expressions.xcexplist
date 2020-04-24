@@ -25,10 +25,10 @@
                value = "view.frame.height">
             </PersistentString>
             <PersistentString
-               value = "itemsPerRow">
+               value = "view.frame.width">
             </PersistentString>
             <PersistentString
-               value = "view.frame.width">
+               value = "itemsPerRow">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -97,6 +97,17 @@
       </ContextState>
       <ContextState
          contextName = "MyCollectionViewController.updateOffer(_:):MyCollectionViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in DatabaseInstance.updateOffer(_:):DatabaseOperation.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offer2.representation">
+            </PersistentString>
+            <PersistentString
+               value = "ref!.documentID">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "MyCollectionViewController.addOfferToTable(_:):MyCollectionViewController.swift">

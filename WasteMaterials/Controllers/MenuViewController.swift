@@ -5,31 +5,26 @@
 //  Created by Victor Doshchenko on 20.04.2020.
 //  Copyright © 2020 Victor Doshchenko. All rights reserved.
 //
-//  Very simple example of using Left Side Menu with modern nice interface (also known as Hamburger, Burger menu
-//  for iOS/Cupertino or Navigation Drawer for Android/Material) together with Tab Bar Controller on one screen.
-//  Pan gestures included. Special thanks to Jon Kent https://github.com/jonkykong/SideMenu
-//  Actually only 15 lines of code, available for all beginners in iOS
-//  Enjoy and Good Luck :-)
 
 import UIKit
 import SideMenu
 
 extension MenuViewController: DetailsUpdateDelegate {
     func updateOffer(_ offer: Offer) {
-        databaseInstance?.updateOffer(offer)
+        dbInstance?.updateOffer(offer)
     }
 }
 
 class MenuViewController: UITabBarController {
 
-    var databaseInstance: DatabaseInstance?
+    var dbInstance: DatabaseInstance?
 
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        databaseInstance = DatabaseInstance()
+        dbInstance = DatabaseInstance()
         
         hideSearch()
 

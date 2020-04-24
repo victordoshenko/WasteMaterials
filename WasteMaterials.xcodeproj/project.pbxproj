@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		83970464223BDEBD00E935DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83970463223BDEBD00E935DD /* AppDelegate.swift */; };
-		83970466223BDEBD00E935DD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83970465223BDEBD00E935DD /* MainViewController.swift */; };
 		83970469223BDEBD00E935DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83970467223BDEBD00E935DD /* Main.storyboard */; };
 		8397046B223BDEBD00E935DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8397046A223BDEBD00E935DD /* Assets.xcassets */; };
 		8397046E223BDEBD00E935DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8397046C223BDEBD00E935DD /* LaunchScreen.storyboard */; };
@@ -21,7 +20,7 @@
 		929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */; };
 		92ABCCBE2451A60F00329FCB /* FAuthPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */; };
 		92ABCCBF2451A60F00329FCB /* FAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92ABCCBD2451A60F00329FCB /* FAuthPickerViewController.xib */; };
-		92D01BB02428E3EF00C112B5 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */; };
+		92D01BB02428E3EF00C112B5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BAF2428E3EF00C112B5 /* SearchViewController.swift */; };
 		92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */; };
 		92DB8B562431EA3E00CDF69E /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */; };
 		92E0A561244EE483000F7693 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E0A560244EE483000F7693 /* MenuViewController.swift */; };
@@ -34,7 +33,6 @@
 		76D79420562E8E7230AAA1C2 /* Pods_WasteMaterials.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WasteMaterials.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83970460223BDEBD00E935DD /* WasteMaterials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WasteMaterials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83970463223BDEBD00E935DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		83970465223BDEBD00E935DD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		83970468223BDEBD00E935DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8397046A223BDEBD00E935DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = WasteMaterials/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		8397046D223BDEBD00E935DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,7 +46,7 @@
 		929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
 		92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAuthPickerViewController.swift; sourceTree = "<group>"; };
 		92ABCCBD2451A60F00329FCB /* FAuthPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FAuthPickerViewController.xib; sourceTree = "<group>"; };
-		92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
+		92D01BAF2428E3EF00C112B5 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferPhotoCell.swift; sourceTree = "<group>"; };
 		92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		92E0A560244EE483000F7693 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -132,8 +130,7 @@
 				92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */,
 				922BAA56243647080068AA52 /* DetailsEditViewController.swift */,
 				92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */,
-				92D01BAF2428E3EF00C112B5 /* MyCollectionViewController.swift */,
-				83970465223BDEBD00E935DD /* MainViewController.swift */,
+				92D01BAF2428E3EF00C112B5 /* SearchViewController.swift */,
 				925EE2272411169B003DA076 /* SignInViewController.swift */,
 			);
 			path = Controllers;
@@ -287,12 +284,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				92038DF524506F8E00C39B12 /* DatabaseOperation.swift in Sources */,
-				92D01BB02428E3EF00C112B5 /* MyCollectionViewController.swift in Sources */,
+				92D01BB02428E3EF00C112B5 /* SearchViewController.swift in Sources */,
 				929723C2241A2023000B9FD9 /* Offer.swift in Sources */,
 				92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */,
 				922BAA57243647080068AA52 /* DetailsEditViewController.swift in Sources */,
 				92E0A561244EE483000F7693 /* MenuViewController.swift in Sources */,
-				83970466223BDEBD00E935DD /* MainViewController.swift in Sources */,
 				83970464223BDEBD00E935DD /* AppDelegate.swift in Sources */,
 				929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */,
 				925EE2282411169B003DA076 /* SignInViewController.swift in Sources */,
