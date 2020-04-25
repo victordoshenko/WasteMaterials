@@ -233,9 +233,9 @@ extension SearchViewController {
                                numberOfItemsInSection section: Int) -> Int {
     return (dbInstance?.offersQuery.count)!
   }
-  
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
                                                       for: indexPath) as! OfferPhotoCell
         cell.delegate = self
@@ -257,23 +257,18 @@ extension SearchViewController {
         cell.goodsNameLabel.text = dbInstance?.offersQuery[indexPath.row].name
         cell.id = dbInstance?.offersQuery[indexPath.row].id
         
-        dbInstance?.favoritesReference.document(cell.id!).getDocument { (document, error) in
-            if let document = document {
-                if document.exists {
-                    cell.favoriteButton.setTitle("♥︎", for: .normal)
-                } else {
-                    cell.favoriteButton.setTitle("♡", for: .normal)
-                }
-            }
+        let _ = dbInstance?.checkIsFavorite(cell.id!) { isFavorite in
+            cell.setHeart(isFavorite)
         }
 
         cell.imageView.image = nil
         cell.goodsNameLabel.textColor = .systemBlue
         cell.favoriteButton.setTitleColor(.systemBlue, for: .normal)
+        
         if let url = dbInstance?.offersQuery[indexPath.row].imageurl {
             cell.imageView.sd_setImage(with: URL(string: url)) { (img, err, c, u) in
                 if let err = err {
-                    print("There's an error:\(err)")
+                    print("There's an error:\(err.localizedDescription)")
                 } else {
                     cell.imageView.image = img
                     //self.dbInstance?.offersQuery[indexPath.row].image = img
@@ -287,13 +282,14 @@ extension SearchViewController {
 }
 
 protocol FavoritesDelegate {
-    func updateFavorite(_ id: String?, _ isFavorite: Bool)
+    func changeFavoriteStatus(_ id: String, _ completion: @escaping (Bool) -> Void)
 }
 
 extension SearchViewController: FavoritesDelegate {
-    func updateFavorite(_ id: String?) -> Bool{
-//        print("Update favorite! id = \(id ?? "") isFavorite = \(isFavorite)")
-        return dbInstance?.addOrRemoveFavorites(id)
+    func changeFavoriteStatus(_ id: String, _ completion: @escaping (Bool) -> Void) {
+        dbInstance?.changeFavoriteStatus(id) { isFavorite in
+            completion(isFavorite)
+        }
     }
 }
 

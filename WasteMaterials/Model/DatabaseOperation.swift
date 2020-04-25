@@ -29,33 +29,28 @@ class DatabaseInstance {
         return db.collection("favorites/\(Auth.auth().currentUser!.uid)/ids")
     }
     
-    func isFavorite(_ id: String?) -> Bool {
+    func checkIsFavorite(_ id: String, _ completion: @escaping (Bool) -> Void) -> Bool {
         var result = false
-        dbInstance?.favoritesReference.document(id).getDocument { (document, error) in
+        favoritesReference.document(id).getDocument { (document, error) in
             if let document = document {
-                if document.exists {
-                    favoritesReference.document(id!).setData([:])
-                } else {
-                    favoritesReference.document(id!).delete()
-                }
+                result = document.exists
             }
+            completion(result)
         }
-
+        return result
     }
     
-    func addOrRemoveFavorites(_ id: String?) -> Bool {
-        var isFavorite = false
-        dbInstance?.favoritesReference.document(id).getDocument { (document, error) in
-            if let document = document {
-                if document.exists {
-                    favoritesReference.document(id!).setData([:])
-                } else {
-                    favoritesReference.document(id!).delete()
-                }
+    func changeFavoriteStatus(_ id: String, _ completion: @escaping (Bool) -> Void) {
+        let _ = checkIsFavorite(id) { isFavorite in
+            if isFavorite {
+                self.favoritesReference.document(id).delete()
+            } else {
+                self.favoritesReference.document(id).setData([:])
+            }
+            let _ = self.checkIsFavorite(id) { isFavorite in
+                completion(isFavorite)
             }
         }
-        
-        return
     }
 
     var imageReference: StorageReference {
