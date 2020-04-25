@@ -14,6 +14,7 @@
 		83970476223BE36600E935DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83970475223BE36600E935DD /* GoogleService-Info.plist */; };
 		92038DF3245011E700C39B12 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92038DF2245011E700C39B12 /* SideViewController.swift */; };
 		92038DF524506F8E00C39B12 /* DatabaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92038DF424506F8E00C39B12 /* DatabaseOperation.swift */; };
+		9223C9F4245471D400D834A1 /* SearchFavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9223C9F3245471D400D834A1 /* SearchFavoritesController.swift */; };
 		922BAA57243647080068AA52 /* DetailsEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922BAA56243647080068AA52 /* DetailsEditViewController.swift */; };
 		925EE2282411169B003DA076 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925EE2272411169B003DA076 /* SignInViewController.swift */; };
 		929723C2241A2023000B9FD9 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C1241A2023000B9FD9 /* Offer.swift */; };
@@ -40,6 +41,7 @@
 		83970475223BE36600E935DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92038DF2245011E700C39B12 /* SideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
 		92038DF424506F8E00C39B12 /* DatabaseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseOperation.swift; sourceTree = "<group>"; };
+		9223C9F3245471D400D834A1 /* SearchFavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoritesController.swift; sourceTree = "<group>"; };
 		922BAA56243647080068AA52 /* DetailsEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsEditViewController.swift; sourceTree = "<group>"; };
 		925EE2272411169B003DA076 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		929723C1241A2023000B9FD9 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */,
 				92D01BAF2428E3EF00C112B5 /* SearchViewController.swift */,
 				925EE2272411169B003DA076 /* SignInViewController.swift */,
+				9223C9F3245471D400D834A1 /* SearchFavoritesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				929723C2241A2023000B9FD9 /* Offer.swift in Sources */,
 				92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */,
 				922BAA57243647080068AA52 /* DetailsEditViewController.swift in Sources */,
+				9223C9F4245471D400D834A1 /* SearchFavoritesController.swift in Sources */,
 				92E0A561244EE483000F7693 /* MenuViewController.swift in Sources */,
 				83970464223BDEBD00E935DD /* AppDelegate.swift in Sources */,
 				929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */,

@@ -18,7 +18,9 @@ protocol DocumentsEditDelegate {
 
 class DatabaseInstance {
 
+    var isFavoriteList: Bool = false
     var offersQuery = [Offer]()
+    
     let db = Firestore.firestore()
 
     var offerReference: CollectionReference {
@@ -80,6 +82,35 @@ class DatabaseInstance {
                             let imageurl = data["imageurl"] as? String
                             let newOffer = Offer(name:name, id:id, date:date, imageurl: imageurl)
                             self.offersQuery.append(newOffer)
+                        }
+                    }
+                    completion()
+                }
+            }
+        })
+    }
+    
+    func readAllFavoritesFromDB(_ completion: @escaping () -> Void) {
+        favoritesReference.getDocuments(completion: { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                if let snapshot = snapshot {
+                    self.offersQuery.removeAll()
+                    for documentFavorite in snapshot.documents {
+                        let id = documentFavorite.documentID as String
+                        
+                        self.offerReference.document(id).getDocument { (document, error) in
+                            if  let document = document,
+                                let data = document.data(),
+                                let name = data["name"] as? String,
+                                let date = data["date"] as? String {
+                                let id = document.documentID as String
+                                let imageurl = data["imageurl"] as? String
+                                let newOffer = Offer(name:name, id:id, date:date, imageurl: imageurl)
+                                self.offersQuery.append(newOffer)
+                            }
+                            
                         }
                     }
                     completion()

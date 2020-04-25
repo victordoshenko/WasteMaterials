@@ -10,12 +10,12 @@ import FirebaseUI
 import Firebase
 import SDWebImage
 
-final class SearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class SearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    private var dbInstance: DatabaseInstance?
+    var dbInstance: DatabaseInstance?
+    var reuseIdentifier = "OfferCell"
 
     private var searchTextField = UITextField()
-    private let reuseIdentifier = "OfferCell"
     private let sectionInsets = UIEdgeInsets(top: 20.0,
                                              left: 20.0,
                                              bottom: 20.0,
@@ -23,7 +23,7 @@ final class SearchViewController: UICollectionViewController, UICollectionViewDe
     private var currentOfferAlertController: UIAlertController?
     private var offerListener: ListenerRegistration?
     
-    private var offerReferenceQuery: Query {
+    var offerReferenceQuery: Query {
         return (dbInstance?.offerReference.whereField("name", isGreaterThanOrEqualTo: searchTextField.text!))!
     }
 
@@ -301,13 +301,22 @@ extension SearchViewController: DocumentsEditDelegate {
     var imageReference: StorageReference {
         return dbInstance!.imageReference
     }
-
+    
     func addOfferToTable(_ offer: Offer) {
         guard !(dbInstance?.offersQuery.contains(offer))! else {
             return
         }
-        
-        dbInstance?.offersQuery.insert(offer, at: 0)
+
+        if !self.dbInstance!.isFavoriteList {
+            dbInstance?.offersQuery.insert(offer, at: 0)
+        } else {
+            let _ = self.dbInstance?.checkIsFavorite(offer.id!) { isFavorite in
+                if isFavorite {
+                    self.dbInstance?.offersQuery.insert(offer, at: 0)
+                }
+            }
+        }
+
         //offersQuery.sort()
         
         guard let index = dbInstance?.offersQuery.firstIndex(of: offer) else {
