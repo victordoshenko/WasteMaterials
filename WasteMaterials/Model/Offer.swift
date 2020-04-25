@@ -16,7 +16,6 @@ struct Offer {
     var imageurl: String?
     var image: UIImage? = nil
     var userId: String?
-//    var isFavorite: Bool = false
     
     init(name: String, id: String? = nil, date: String? = nil, imageurl: String? = nil, image: UIImage? = nil, userId: String? = Auth.auth().currentUser?.uid) {
         self.id = id
