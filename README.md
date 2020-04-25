@@ -12,6 +12,10 @@ service cloud.firestore {
       allow create: if request.auth.uid != null;
       allow delete, update: if request.auth.uid == resource.data.userId;
     }
+    match /favorites/{userId}/ids/{document} {
+      allow read: if true;
+      allow write: if request.auth.uid == userId;      
+    }
   }
 }
 ```
