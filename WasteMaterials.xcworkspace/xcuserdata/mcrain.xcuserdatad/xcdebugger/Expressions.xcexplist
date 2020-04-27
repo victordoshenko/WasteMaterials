@@ -3,10 +3,16 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "DetailsEditViewController.viewDidLoad():DetailsEditViewController.swift">
+         contextName = "closure #1 in DatabaseInstance.readAllFromDB(_:_:):DatabaseOperation.swift">
          <PersistentStrings>
             <PersistentString
-               value = "offer">
+               value = "offersQuery">
+            </PersistentString>
+            <PersistentString
+               value = "isFavoriteList">
+            </PersistentString>
+            <PersistentString
+               value = "snapshot.documents">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -27,18 +33,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in MyCollectionViewController.updateOffer(_:):MyCollectionViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "downloadURL.absoluteString">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "AppController.show(in:):AppController.swift">
          <PersistentStrings>
             <PersistentString
                value = "FirebaseApp.app()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in MyCollectionViewController.updateOffer(_:):MyCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "downloadURL.absoluteString">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -57,9 +63,15 @@
          contextName = "SearchFavoritesController.collectionView(_:numberOfItemsInSection:):SearchFavoritesController.swift">
          <PersistentStrings>
             <PersistentString
+               value = "dbInstance?.offersFavoritesQuery.count">
+            </PersistentString>
+            <PersistentString
                value = "dbInstance?.offersQuery.count">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in DetailsViewController.deleteAction(_:):DetailsViewController.swift">
       </ContextState>
       <ContextState
          contextName = "MyCollectionViewController.collectionView(_:layout:minimumLineSpacingForSectionAt:):MyCollectionViewController.swift">
@@ -68,9 +80,6 @@
                value = "sectionInsets">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in DetailsViewController.deleteAction(_:):DetailsViewController.swift">
       </ContextState>
       <ContextState
          contextName = "MyCollectionViewController.viewWillAppear(_:):MyCollectionViewController.swift">
@@ -111,6 +120,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in DatabaseInstance.readAllFavoritesFromDB(_:_:):DatabaseOperation.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "snapshot.documents.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DatabaseInstance.readAllFromDB(_:_:):DatabaseOperation.swift">
          <PersistentStrings>
             <PersistentString
@@ -138,6 +155,31 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #2 in SearchViewController.viewDidLoad():SearchViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.dbInstance?.offersQuery">
+            </PersistentString>
+            <PersistentString
+               value = "isFavoriteList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SearchViewController.collectionView(_:cellForItemAt:):SearchViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dbInstance?.offersFavoritesQuery">
+            </PersistentString>
+            <PersistentString
+               value = "isFavoriteList">
+            </PersistentString>
+            <PersistentString
+               value = "dbInstance?.offersQuery">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MyCollectionViewController.addOfferToTable(_:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -157,21 +199,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MyCollectionViewController.updateOffer(_:):MyCollectionViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "DetailsViewController.viewDidLoad():DetailsViewController.swift">
+         contextName = "SearchViewController.addOfferToTable(_:):SearchViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "offer">
+               value = "dbInstance">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MyCollectionViewController.updateOffer(_:):MyCollectionViewController.swift">
       </ContextState>
       <ContextState
          contextName = "DatabaseInstance.checkIsFavorite(_:_:):DatabaseOperation.swift">
          <PersistentStrings>
             <PersistentString
                value = "favoritesReference">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DetailsViewController.viewDidLoad():DetailsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -195,6 +245,23 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "SearchViewController.handleDocumentFavoriteChange(_:):SearchViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.dbInstance?.offersQuery">
+            </PersistentString>
+            <PersistentString
+               value = "dbInstance?.offersFavoritesQuery.count">
+            </PersistentString>
+            <PersistentString
+               value = "isFavoriteList">
+            </PersistentString>
+            <PersistentString
+               value = "dbInstance?.offersQuery.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MyCollectionViewController.collectionView(_:cellForItemAt:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -202,6 +269,22 @@
             </PersistentString>
             <PersistentString
                value = "cell.imageView.image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in SearchViewController.viewDidLoad():SearchViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dbInstance?.offersFavoritesQuery">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SearchViewController.textFieldShouldReturn(_:):SearchViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dbInstance?.offersQuery.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -217,24 +300,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DetailsEditViewController.saveAction(_:):DetailsEditViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "offer">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in closure #1 in DatabaseInstance.readAllFavoritesFromDB(_:):DatabaseOperation.swift">
          <PersistentStrings>
             <PersistentString
                value = "id">
             </PersistentString>
             <PersistentString
-               value = "document.documentID">
+               value = "offersQuery">
             </PersistentString>
             <PersistentString
-               value = "offersQuery">
+               value = "document.documentID">
             </PersistentString>
             <PersistentString
                value = "documentFavorite">
@@ -250,6 +325,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "DetailsEditViewController.saveAction(_:):DetailsEditViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #2 in DatabaseInstance.updateOffer(_:):DatabaseOperation.swift">
          <PersistentStrings>
             <PersistentString
@@ -257,14 +340,6 @@
             </PersistentString>
             <PersistentString
                value = "ref!.documentID">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Offer.init(name:id:):Offer.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.date">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -283,10 +358,40 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Offer.init(name:id:):Offer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.date">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MainViewController.viewDidLoad():MainViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "offers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SearchViewController.viewDidLoad():SearchViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dbInstance?.offersFavoritesQuery">
+            </PersistentString>
+            <PersistentString
+               value = "dbInstance?.offersQuery">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in DatabaseInstance.readAllFromDB(_:_:):DatabaseInstance.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.offersQuery.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.offersFavoritesQuery.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -319,24 +424,18 @@
                value = "view.frame.height">
             </PersistentString>
             <PersistentString
-               value = "view.frame.width">
+               value = "itemsPerRow">
             </PersistentString>
             <PersistentString
-               value = "itemsPerRow">
+               value = "view.frame.width">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in DatabaseInstance.readAllFromDB(_:_:):DatabaseOperation.swift">
+         contextName = "DetailsEditViewController.viewDidLoad():DetailsEditViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "offersQuery">
-            </PersistentString>
-            <PersistentString
-               value = "isFavoriteList">
-            </PersistentString>
-            <PersistentString
-               value = "snapshot.documents">
+               value = "offer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

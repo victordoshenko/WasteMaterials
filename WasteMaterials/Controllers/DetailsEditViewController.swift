@@ -22,7 +22,6 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
             picImageView.image = offer?.image
         } else {
             offer = Offer(name: "", date: String(Int(Date().timeIntervalSince1970 * 1000)))
-//            offer?.isNew = true
         }
         
     }

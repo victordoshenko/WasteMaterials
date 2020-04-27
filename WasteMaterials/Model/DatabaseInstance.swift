@@ -18,8 +18,8 @@ protocol DocumentsEditDelegate {
 
 class DatabaseInstance {
 
-    var isFavoriteList: Bool = false
     var offersQuery = [Offer]()
+    var offersFavoritesQuery = [Offer]()
     
     let db = Firestore.firestore()
 
@@ -43,16 +43,33 @@ class DatabaseInstance {
     }
     
     func changeFavoriteStatus(_ id: String, _ completion: @escaping (Bool) -> Void) {
-        let _ = checkIsFavorite(id) { isFavorite in
-            if isFavorite {
-                self.favoritesReference.document(id).delete()
-            } else {
-                self.favoritesReference.document(id).setData([:])
-            }
-            let _ = self.checkIsFavorite(id) { isFavorite in
-                completion(isFavorite)
-            }
+
+        var isFavorite = false
+
+        if offersFavoritesQuery.firstIndex(where: {$0.id == id}) != nil {
+            isFavorite = true
         }
+        
+        if isFavorite {
+            self.favoritesReference.document(id).delete()
+            isFavorite = !isFavorite
+        } else {
+            self.favoritesReference.document(id).setData([:])
+            isFavorite = !isFavorite
+        }
+        
+        completion(isFavorite)
+
+//        let _ = checkIsFavorite(id) { isFavorite in
+//            if isFavorite {
+//                self.favoritesReference.document(id).delete()
+//            } else {
+//                self.favoritesReference.document(id).setData([:])
+//            }
+//            let _ = self.checkIsFavorite(id) { isFavorite in
+//                completion(isFavorite)
+//            }
+//        }
     }
 
     var imageReference: StorageReference {
@@ -89,28 +106,19 @@ class DatabaseInstance {
             }
         })
     }
-    
-    func readAllFavoritesFromDB(_ completion: @escaping () -> Void) {
-        favoritesReference.getDocuments(completion: { (snapshot, error) in
+/*
+    func readAllFavoritesFromDB(_ query: Query, _ completion: @escaping () -> Void) {
+        query.getDocuments(completion: { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
                 if let snapshot = snapshot {
-                    self.offersQuery.removeAll()
+                    self.offersFavoritesQuery.removeAll()
                     for documentFavorite in snapshot.documents {
                         let id = documentFavorite.documentID as String
-                        
-                        self.offerReference.document(id).getDocument { (document, error) in
-                            if  let document = document,
-                                let data = document.data(),
-                                let name = data["name"] as? String,
-                                let date = data["date"] as? String {
-                                let id = document.documentID as String
-                                let imageurl = data["imageurl"] as? String
-                                let newOffer = Offer(name:name, id:id, date:date, imageurl: imageurl)
-                                self.offersQuery.append(newOffer)
-                            }
-                            
+                        if let index = self.offersQuery.firstIndex(where: {$0.id == id}) {
+                            let newOffer = self.offersQuery[index]
+                            self.offersFavoritesQuery.append(newOffer)
                         }
                     }
                     completion()
@@ -118,7 +126,7 @@ class DatabaseInstance {
             }
         })
     }
-
+*/
     func updateOffer(_ offer: Offer) {
         if let image = offer.image,
             Auth.auth().currentUser!.uid == offer.userId,

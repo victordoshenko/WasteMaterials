@@ -11,13 +11,13 @@ import Firebase
 struct Offer {
     
     var id: String?
-    var name: String
+    var name: String?
     let date: String?
     var imageurl: String?
     var image: UIImage? = nil
     var userId: String?
     
-    init(name: String, id: String? = nil, date: String? = nil, imageurl: String? = nil, image: UIImage? = nil, userId: String? = Auth.auth().currentUser?.uid) {
+    init(name: String? = nil, id: String? = nil, date: String? = nil, imageurl: String? = nil, image: UIImage? = nil, userId: String? = Auth.auth().currentUser?.uid) {
         self.id = id
         self.name = name
         self.date = date
@@ -29,12 +29,12 @@ struct Offer {
     init?(document: QueryDocumentSnapshot) {
         let data = document.data()
         
-        guard let name = data["name"] as? String else {
-            return nil
-        }
+//        guard let name = data["name"] as? String else {
+//            return nil
+//        }
         
         id = document.documentID
-        self.name = name
+        self.name = data["name"] as? String
 
         self.date = data["date"] as? String
         self.imageurl = data["imageurl"] as? String
@@ -68,7 +68,7 @@ extension Offer: DatabaseRepresentation {
             rep["userId"] = userId
         }
 
-        return rep
+        return rep as [String : Any]
     }
     
 }
@@ -83,4 +83,19 @@ extension Offer: Comparable {
         return lhs.date! < rhs.date!
     }
     
+}
+
+
+class Favorite {
+
+    var id: String?
+
+    init(id: String? = nil) {
+        self.id = id
+    }
+
+    init?(document: QueryDocumentSnapshot) {
+        id = document.documentID
+    }
+
 }

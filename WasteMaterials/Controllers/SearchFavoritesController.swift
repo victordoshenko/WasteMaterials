@@ -9,7 +9,14 @@ import Foundation
 import UIKit
 import Firebase
 
-class SearchFavoritesController: SearchViewController {
+class SearchFavoritesController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    var dbInstance: DatabaseInstance?
+    var reuseIdentifier = "OfferCellFavorites"
+
+    var offerFavoritesQuery: Query {
+        return dbInstance!.favoritesReference as Query
+    }
 
     @IBAction func test(_ sender: Any) {
         print("Count: \((self.dbInstance?.offersQuery.count)!)")
@@ -17,27 +24,25 @@ class SearchFavoritesController: SearchViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dbInstance?.isFavoriteList = true
-        self.reuseIdentifier = "OfferCellFavorites"
-        navigationController?.isToolbarHidden = false
         print("viewDidLoad: " + self.description)
+
+        let vc = self.parent as! MenuViewController
+        self.dbInstance = vc.dbInstance
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("viewDidAppear: " + self.description)
-        let activityIndicator = UIActivityIndicatorView(style: .gray)
-        self.collectionView.addSubview(activityIndicator)
-        activityIndicator.frame = self.collectionView.bounds
-        activityIndicator.startAnimating()
-        
-        dbInstance?.readAllFavoritesFromDB {
-            self.collectionView?.reloadData()
-            activityIndicator.removeFromSuperview()
-            print("Count: \((self.dbInstance?.offersQuery.count)!)")
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView?.reloadData()
     }
 
+}
+
+extension SearchFavoritesController: FavoritesDelegate {
+    func changeFavoriteStatus(_ id: String, _ completion: @escaping (Bool) -> Void) {
+        dbInstance?.changeFavoriteStatus(id) { isFavorite in
+            completion(isFavorite)
+        }
+    }
 }
 
 extension SearchFavoritesController {
@@ -48,7 +53,7 @@ extension SearchFavoritesController {
   
   override func collectionView(_ collectionView: UICollectionView,
                                numberOfItemsInSection section: Int) -> Int {
-    return (dbInstance?.offersQuery.count)!
+    return (dbInstance?.offersFavoritesQuery.count)!
   }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -71,18 +76,15 @@ extension SearchFavoritesController {
         cell.layer.shadowOpacity = 1.0
         cell.layer.masksToBounds = false
         
-        cell.goodsNameLabel.text = dbInstance?.offersQuery[indexPath.row].name
-        cell.id = dbInstance?.offersQuery[indexPath.row].id
+        cell.goodsNameLabel.text = dbInstance?.offersFavoritesQuery[indexPath.row].name
+        cell.id = dbInstance?.offersFavoritesQuery[indexPath.row].id
+        cell.setHeart(true)
         
-        let _ = dbInstance?.checkIsFavorite(cell.id!) { isFavorite in
-            cell.setHeart(isFavorite)
-        }
-
         cell.imageView.image = nil
         cell.goodsNameLabel.textColor = .systemBlue
         cell.favoriteButton.setTitleColor(.systemBlue, for: .normal)
         
-        if let url = dbInstance?.offersQuery[indexPath.row].imageurl {
+        if let url = dbInstance?.offersFavoritesQuery[indexPath.row].imageurl {
             cell.imageView.sd_setImage(with: URL(string: url)) { (img, err, c, u) in
                 if let err = err {
                     print("There's an error:\(err.localizedDescription)")

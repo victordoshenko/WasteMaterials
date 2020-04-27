@@ -14,7 +14,7 @@ class OfferPhotoCell: UICollectionViewCell {
     @IBOutlet weak var goodsNameLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBAction func favoriteButtonAction(_ sender: UIButton) {
-        setHeart(sender.titleLabel?.text != "♥︎")
+        //setHeart(sender.titleLabel?.text != "♥︎")
         delegate?.changeFavoriteStatus(id!) { isFavorite in
             self.setHeart(isFavorite)
         }
@@ -22,5 +22,6 @@ class OfferPhotoCell: UICollectionViewCell {
 
     func setHeart(_ isFavorite: Bool) {
         favoriteButton.setTitle(isFavorite ? "♥︎" : "♡", for: .normal)
+        print("Set favorite = \(isFavorite) !  \(self.description)")
     }
 }

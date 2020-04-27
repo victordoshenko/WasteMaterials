@@ -14,7 +14,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     
     var dbInstance: DatabaseInstance?
     var reuseIdentifier = "OfferCell"
-
+    
     private var searchTextField = UITextField()
     private let sectionInsets = UIEdgeInsets(top: 20.0,
                                              left: 20.0,
@@ -22,7 +22,8 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
                                              right: 20.0)
     private var currentOfferAlertController: UIAlertController?
     private var offerListener: ListenerRegistration?
-    
+    private var favoriteListener: ListenerRegistration?
+
     var offerReferenceQuery: Query {
         return (dbInstance?.offerReference.whereField("name", isGreaterThanOrEqualTo: searchTextField.text!))!
     }
@@ -31,6 +32,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         
     deinit {
         offerListener?.remove()
+        favoriteListener?.remove()
     }
 
     func updateUI(_ firstTime: Bool = false) {
@@ -97,6 +99,17 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
 
         clearsSelectionOnViewWillAppear = true
 
+        favoriteListener = dbInstance?.favoritesReference.addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            
+            snapshot.documentChanges.forEach { change in
+                self.handleDocumentFavoriteChange(change)
+            }
+        }
+
         offerListener = dbInstance?.offerReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
@@ -106,6 +119,36 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
             snapshot.documentChanges.forEach { change in
                 self.handleDocumentChange(change)
             }
+        }
+        
+    }
+
+    private func handleDocumentFavoriteChange(_ change: DocumentChange) {
+        guard let favorite = Favorite(document: change.document) else {
+            return
+        }
+        
+        let index = self.dbInstance?.offersQuery.firstIndex(where: {$0.id == favorite.id})
+        var offer: Offer?
+        if index == nil {
+            offer = Offer(id: favorite.id)
+        } else {
+            offer = self.dbInstance?.offersQuery[index!]
+        }
+        
+        switch change.type {
+        case .added:
+            dbInstance?.offersFavoritesQuery.insert(offer!, at: 0)
+
+        case .removed:
+            if let index = self.dbInstance?.offersFavoritesQuery.firstIndex(where: {$0.id == favorite.id}) {
+                dbInstance?.offersFavoritesQuery.remove(at: index)
+            }
+        case .modified: break
+        }
+
+        if (dbInstance?.offersQuery.count)! > 0 && index != nil {
+            self.collectionView.reloadItems(at: [IndexPath(row: index!, section: 0)])
         }
     }
 
@@ -185,6 +228,11 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         case .removed:
             removeOfferFromTable(offer)
         }
+        
+        if let index = self.dbInstance?.offersFavoritesQuery.firstIndex(where: {$0.id == offer.id}) {
+            dbInstance?.offersFavoritesQuery[index] = offer
+        }
+
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -257,9 +305,7 @@ extension SearchViewController {
         cell.goodsNameLabel.text = dbInstance?.offersQuery[indexPath.row].name
         cell.id = dbInstance?.offersQuery[indexPath.row].id
         
-        let _ = dbInstance?.checkIsFavorite(cell.id!) { isFavorite in
-            cell.setHeart(isFavorite)
-        }
+        cell.setHeart(dbInstance?.offersFavoritesQuery.firstIndex(where: {$0.id == cell.id}) != nil)
 
         cell.imageView.image = nil
         cell.goodsNameLabel.textColor = .systemBlue
@@ -307,23 +353,14 @@ extension SearchViewController: DocumentsEditDelegate {
             return
         }
 
-        if !self.dbInstance!.isFavoriteList {
-            dbInstance?.offersQuery.insert(offer, at: 0)
-        } else {
-            let _ = self.dbInstance?.checkIsFavorite(offer.id!) { isFavorite in
-                if isFavorite {
-                    self.dbInstance?.offersQuery.insert(offer, at: 0)
-                }
-            }
-        }
-
+        dbInstance?.offersQuery.insert(offer, at: 0)
         //offersQuery.sort()
         
         guard let index = dbInstance?.offersQuery.firstIndex(of: offer) else {
             return
         }
 
-        if offer.name >= (searchTextField.text ?? "") || searchTextField.text == "" {
+        if offer.name! >= (searchTextField.text ?? "") || searchTextField.text == "" {
             collectionView.insertItems(at: [IndexPath(row: index, section: 0)])
             collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
