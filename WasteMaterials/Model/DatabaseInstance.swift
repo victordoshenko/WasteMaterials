@@ -20,7 +20,8 @@ class DatabaseInstance {
 
     var offersQuery = [Offer]()
     var offersFavoritesQuery = [Offer]()
-    
+    var offersMyQuery = [Offer]()
+
     let db = Firestore.firestore()
 
     var offerReference: CollectionReference {

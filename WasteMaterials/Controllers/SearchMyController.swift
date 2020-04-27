@@ -1,21 +1,21 @@
 //
-//  SearchFavoritesController.swift
+//  SearchMyController.swift
 //  WasteMaterials
 //
-//  Created by Victor Doshchenko on 25.04.2020.
+//  Created by Victor Doshchenko on 27.04.2020.
 //
 
 import Foundation
 import UIKit
 import Firebase
 
-class SearchFavoritesController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class SearchMyController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var dbInstance: DatabaseInstance?
-    var reuseIdentifier = "OfferCellFavorites"
+    var reuseIdentifier = "OfferCellMy"
 
-    var offerFavoritesQuery: Query {
-        return dbInstance!.favoritesReference as Query
+    var offerMyQuery: Query {
+        return (dbInstance?.offerReference.whereField("userId", isEqualTo: Auth.auth().currentUser!.uid))!
     }
 
     override func viewDidLoad() {
@@ -33,28 +33,19 @@ class SearchFavoritesController: UICollectionViewController, UICollectionViewDel
 
 }
 
-extension SearchFavoritesController: FavoritesDelegate {
-    func changeFavoriteStatus(_ id: String, _ completion: @escaping (Bool) -> Void) {
-        dbInstance?.changeFavoriteStatus(id) { isFavorite in
-            completion(isFavorite)
-        }
-    }
-}
-
-extension SearchFavoritesController {
+extension SearchMyController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (dbInstance?.offersFavoritesQuery.count)!
+        return (dbInstance?.offersMyQuery.count)!
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! OfferPhotoCell
-        cell.delegate = self
-        cell.prepareForView(dbInstance?.offersFavoritesQuery, indexPath.row)
-        cell.setHeart(true)
+        cell.prepareForView(dbInstance?.offersMyQuery, indexPath.row)
+        cell.favoriteButton.isHidden = true
         return cell
     }
 }

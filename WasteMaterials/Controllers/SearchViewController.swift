@@ -232,6 +232,9 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         if let index = self.dbInstance?.offersFavoritesQuery.firstIndex(where: {$0.id == offer.id}) {
             dbInstance?.offersFavoritesQuery[index] = offer
         }
+        if let index = self.dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}) {
+            dbInstance?.offersMyQuery[index] = offer
+        }
 
     }
 
@@ -272,57 +275,20 @@ extension SearchViewController : UITextFieldDelegate {
 
 // MARK: - UICollectionViewDataSource
 extension SearchViewController {
-
-  override func numberOfSections(in collectionView: UICollectionView) -> Int {
-    return 1
-  }
-  
-  override func collectionView(_ collectionView: UICollectionView,
-                               numberOfItemsInSection section: Int) -> Int {
-    return (dbInstance?.offersQuery.count)!
-  }
-
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return (dbInstance?.offersQuery.count)!
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
                                                       for: indexPath) as! OfferPhotoCell
         cell.delegate = self
-        //let flickrPhoto = photo(for: indexPath)
-        cell.backgroundColor = .white
-        //cell.imageView.image = flickrPhoto.thumbnail
-        
-        cell.layer.cornerRadius = 2
-        cell.layer.borderWidth = 1.0
-        cell.layer.borderColor = UIColor.lightGray.cgColor
-        
-        cell.layer.backgroundColor = UIColor.white.cgColor
-        cell.layer.shadowColor = UIColor.gray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
-        cell.layer.shadowRadius = 2.0
-        cell.layer.shadowOpacity = 1.0
-        cell.layer.masksToBounds = false
-        
-        cell.goodsNameLabel.text = dbInstance?.offersQuery[indexPath.row].name
-        cell.id = dbInstance?.offersQuery[indexPath.row].id
-        
+        cell.prepareForView(dbInstance?.offersQuery, indexPath.row)
         cell.setHeart(dbInstance?.offersFavoritesQuery.firstIndex(where: {$0.id == cell.id}) != nil)
-
-        cell.imageView.image = nil
-        cell.goodsNameLabel.textColor = .systemBlue
-        cell.favoriteButton.setTitleColor(.systemBlue, for: .normal)
-        
-        if let url = dbInstance?.offersQuery[indexPath.row].imageurl {
-            cell.imageView.sd_setImage(with: URL(string: url)) { (img, err, c, u) in
-                if let err = err {
-                    print("There's an error:\(err.localizedDescription)")
-                } else {
-                    cell.imageView.image = img
-                    //self.dbInstance?.offersQuery[indexPath.row].image = img
-                    cell.goodsNameLabel.textColor = .white
-                    cell.favoriteButton.setTitleColor(.white, for: .normal)
-                }
-            }
-        }
         return cell
     }
 }
@@ -360,10 +326,28 @@ extension SearchViewController: DocumentsEditDelegate {
             return
         }
 
+//        switch change.type {
+//        case .added:
+//            dbInstance?.offersFavoritesQuery.insert(offer!, at: 0)
+//
+//        case .removed:
+//            if let index = self.dbInstance?.offersFavoritesQuery.firstIndex(where: {$0.id == favorite.id}) {
+//                dbInstance?.offersFavoritesQuery.remove(at: index)
+//            }
+//        case .modified: break
+//        }
+
+        if dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}) == nil &&
+           offer.userId == Auth.auth().currentUser!.uid {
+            dbInstance?.offersMyQuery.insert(offer, at: 0)
+        }
+
         if offer.name! >= (searchTextField.text ?? "") || searchTextField.text == "" {
             collectionView.insertItems(at: [IndexPath(row: index, section: 0)])
             collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
+        
+        
     }
     
     func updateOfferInTable(_ offer: Offer) {
@@ -372,6 +356,12 @@ extension SearchViewController: DocumentsEditDelegate {
         }
         
         dbInstance?.offersQuery[index] = offer
+
+        if let index = dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}),
+           offer.userId == Auth.auth().currentUser!.uid {
+            dbInstance?.offersMyQuery[index] = offer
+        }
+
         collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
     }
     
@@ -381,6 +371,11 @@ extension SearchViewController: DocumentsEditDelegate {
         }
         dbInstance?.offersQuery.remove(at: index)
         dbInstance?.deleteOffer(offer)
+
+        if let index = dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}),
+           offer.userId == Auth.auth().currentUser!.uid {
+            dbInstance?.offersMyQuery.remove(at: index)
+        }
 
         collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
     }

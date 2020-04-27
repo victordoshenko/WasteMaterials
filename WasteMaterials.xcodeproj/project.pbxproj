@@ -14,6 +14,8 @@
 		83970476223BE36600E935DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83970475223BE36600E935DD /* GoogleService-Info.plist */; };
 		92038DF3245011E700C39B12 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92038DF2245011E700C39B12 /* SideViewController.swift */; };
 		92038DF524506F8E00C39B12 /* DatabaseInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92038DF424506F8E00C39B12 /* DatabaseInstance.swift */; };
+		921D0B2B2457347F006A8664 /* UICollectionViewCell+OfferPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D0B2A2457347F006A8664 /* UICollectionViewCell+OfferPhotoCell.swift */; };
+		921D0B2E24573755006A8664 /* SearchMyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D0B2D24573755006A8664 /* SearchMyController.swift */; };
 		9223C9F4245471D400D834A1 /* SearchFavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9223C9F3245471D400D834A1 /* SearchFavoritesController.swift */; };
 		922BAA57243647080068AA52 /* DetailsEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922BAA56243647080068AA52 /* DetailsEditViewController.swift */; };
 		925EE2282411169B003DA076 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925EE2272411169B003DA076 /* SignInViewController.swift */; };
@@ -41,6 +43,8 @@
 		83970475223BE36600E935DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92038DF2245011E700C39B12 /* SideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
 		92038DF424506F8E00C39B12 /* DatabaseInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseInstance.swift; sourceTree = "<group>"; };
+		921D0B2A2457347F006A8664 /* UICollectionViewCell+OfferPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+OfferPhotoCell.swift"; sourceTree = "<group>"; };
+		921D0B2D24573755006A8664 /* SearchMyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMyController.swift; sourceTree = "<group>"; };
 		9223C9F3245471D400D834A1 /* SearchFavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoritesController.swift; sourceTree = "<group>"; };
 		922BAA56243647080068AA52 /* DetailsEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsEditViewController.swift; sourceTree = "<group>"; };
 		925EE2272411169B003DA076 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -105,10 +109,19 @@
 			isa = PBXGroup;
 			children = (
 				929723CA241A7150000B9FD9 /* Controllers */,
+				921D0B2C245734DB006A8664 /* Extension */,
 				929723C5241A211C000B9FD9 /* Model */,
 				92ABCCC12451A72B00329FCB /* Supporting Files */,
 			);
 			path = WasteMaterials;
+			sourceTree = "<group>";
+		};
+		921D0B2C245734DB006A8664 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				921D0B2A2457347F006A8664 /* UICollectionViewCell+OfferPhotoCell.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		929723C5241A211C000B9FD9 /* Model */ = {
@@ -124,7 +137,6 @@
 		929723CA241A7150000B9FD9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				83970463223BDEBD00E935DD /* AppDelegate.swift */,
 				92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */,
 				92ABCCBD2451A60F00329FCB /* FAuthPickerViewController.xib */,
 				92038DF2245011E700C39B12 /* SideViewController.swift */,
@@ -135,6 +147,7 @@
 				92D01BAF2428E3EF00C112B5 /* SearchViewController.swift */,
 				925EE2272411169B003DA076 /* SignInViewController.swift */,
 				9223C9F3245471D400D834A1 /* SearchFavoritesController.swift */,
+				921D0B2D24573755006A8664 /* SearchMyController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -142,6 +155,7 @@
 		92ABCCC12451A72B00329FCB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83970463223BDEBD00E935DD /* AppDelegate.swift */,
 				83970467223BDEBD00E935DD /* Main.storyboard */,
 				8397046A223BDEBD00E935DD /* Assets.xcassets */,
 				8397046C223BDEBD00E935DD /* LaunchScreen.storyboard */,
@@ -290,6 +304,8 @@
 				92D01BB02428E3EF00C112B5 /* SearchViewController.swift in Sources */,
 				929723C2241A2023000B9FD9 /* Offer.swift in Sources */,
 				92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */,
+				921D0B2E24573755006A8664 /* SearchMyController.swift in Sources */,
+				921D0B2B2457347F006A8664 /* UICollectionViewCell+OfferPhotoCell.swift in Sources */,
 				922BAA57243647080068AA52 /* DetailsEditViewController.swift in Sources */,
 				9223C9F4245471D400D834A1 /* SearchFavoritesController.swift in Sources */,
 				92E0A561244EE483000F7693 /* MenuViewController.swift in Sources */,
