@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol DetailsUpdateDelegate {
     func updateOffer(_ offer: Offer)
@@ -15,6 +16,7 @@ extension DetailsViewController: DetailsUpdateDelegate {
     func updateOffer(_ offer: Offer) {
         labelName.text = offer.name
         picImageView.image = offer.image
+        descriptionTextView.text = offer.description
         self.offer = offer
         self.delegate?.updateOffer(offer)
     }
@@ -24,18 +26,26 @@ class DetailsViewController: UIViewController {
 
     public var offer: Offer?
     @IBOutlet weak var labelName: UILabel!
-    @IBOutlet weak var labelID: UILabel!
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var picImageView: UIImageView!
     @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
+    @IBOutlet weak var descriptionTextView: UITextView!
     
     var delegate: DocumentsEditDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         labelName.text = offer?.name
-        labelID.text = offer?.id
+        descriptionTextView.text = offer?.description
+
         picImageView.image = offer?.image
+        
+        if offer?.userId == Auth.auth().currentUser!.uid {
+            self.navigationItem.rightBarButtonItems = [editButton, deleteButton]
+        } else {
+            self.navigationItem.rightBarButtonItems = nil
+        }
         
         if picImageView.image == nil {
             if let url = offer?.imageurl {

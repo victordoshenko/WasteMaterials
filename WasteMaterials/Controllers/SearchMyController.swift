@@ -18,6 +18,11 @@ class SearchMyController: UICollectionViewController, UICollectionViewDelegateFl
         return (dbInstance?.offerReference.whereField("userId", isEqualTo: Auth.auth().currentUser!.uid))!
     }
 
+    private let sectionInsets = UIEdgeInsets(top: 20.0,
+                                             left: 20.0,
+                                             bottom: 20.0,
+                                             right: 20.0)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad: " + self.description)
@@ -34,6 +39,18 @@ class SearchMyController: UICollectionViewController, UICollectionViewDelegateFl
 }
 
 extension SearchMyController {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

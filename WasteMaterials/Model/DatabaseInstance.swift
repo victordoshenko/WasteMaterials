@@ -6,7 +6,6 @@
 //
 
 import Firebase
-import FirebaseFirestore
 
 protocol DocumentsEditDelegate {
     func addOfferToTable(_ offer: Offer)
@@ -60,17 +59,6 @@ class DatabaseInstance {
         }
         
         completion(isFavorite)
-
-//        let _ = checkIsFavorite(id) { isFavorite in
-//            if isFavorite {
-//                self.favoritesReference.document(id).delete()
-//            } else {
-//                self.favoritesReference.document(id).setData([:])
-//            }
-//            let _ = self.checkIsFavorite(id) { isFavorite in
-//                completion(isFavorite)
-//            }
-//        }
     }
 
     var imageReference: StorageReference {
@@ -98,7 +86,8 @@ class DatabaseInstance {
                             let date = data["date"] as? String {
                             let id = document.documentID as String
                             let imageurl = data["imageurl"] as? String
-                            let newOffer = Offer(name:name, id:id, date:date, imageurl: imageurl)
+                            let description = data["description"] as? String
+                            let newOffer = Offer(name:name, description: description, id:id, date: date, imageurl: imageurl)
                             self.offersQuery.append(newOffer)
                         }
                     }
@@ -107,27 +96,7 @@ class DatabaseInstance {
             }
         })
     }
-/*
-    func readAllFavoritesFromDB(_ query: Query, _ completion: @escaping () -> Void) {
-        query.getDocuments(completion: { (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                if let snapshot = snapshot {
-                    self.offersFavoritesQuery.removeAll()
-                    for documentFavorite in snapshot.documents {
-                        let id = documentFavorite.documentID as String
-                        if let index = self.offersQuery.firstIndex(where: {$0.id == id}) {
-                            let newOffer = self.offersQuery[index]
-                            self.offersFavoritesQuery.append(newOffer)
-                        }
-                    }
-                    completion()
-                }
-            }
-        })
-    }
-*/
+
     func updateOffer(_ offer: Offer) {
         if let image = offer.image,
             Auth.auth().currentUser!.uid == offer.userId,

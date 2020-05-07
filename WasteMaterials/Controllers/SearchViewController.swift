@@ -34,7 +34,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         offerListener?.remove()
         favoriteListener?.remove()
     }
-
+/*
     func updateUI(_ firstTime: Bool = false) {
         if !firstTime { return }
         let paddingSpace = sectionInsets.left * (itemsPerRow + (firstTime ? 1 : -1))
@@ -54,7 +54,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         layout.minimumInteritemSpacing = 1.0
         collectionView.setCollectionViewLayout(layout, animated: true)
     }
-    
+*/
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         if UIDevice.current.orientation.isLandscape {
             print("***** viewWillTransition Landscape")
@@ -63,7 +63,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
             print("***** viewWillTransition Portrait")
             itemsPerRow = 2
         }
-        updateUI()
+        //updateUI()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -89,7 +89,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
             itemsPerRow = 2
         }
         print("**************************\n")
-        updateUI()
+        //updateUI()
         
         let vc = self.parent as! MenuViewController
         vc.showSearch()
