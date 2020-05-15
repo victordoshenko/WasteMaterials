@@ -103,7 +103,7 @@ class EmptyOffer {
 extension EmptyOffer: DatabaseRepresentation {
     
     var representation: [String : Any] {
-        var rep = ["id": id]
+        let rep = ["id": id]
         return rep as [String : Any]
     }
     
