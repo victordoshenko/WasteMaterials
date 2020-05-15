@@ -23,6 +23,7 @@
 		929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */; };
 		92ABCCBE2451A60F00329FCB /* FAuthPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */; };
 		92ABCCBF2451A60F00329FCB /* FAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92ABCCBD2451A60F00329FCB /* FAuthPickerViewController.xib */; };
+		92AEA4582469418C0020715C /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEA4572469418C0020715C /* Array.swift */; };
 		92D01BB02428E3EF00C112B5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BAF2428E3EF00C112B5 /* SearchViewController.swift */; };
 		92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */; };
 		92DB8B562431EA3E00CDF69E /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */; };
@@ -52,6 +53,7 @@
 		929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
 		92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAuthPickerViewController.swift; sourceTree = "<group>"; };
 		92ABCCBD2451A60F00329FCB /* FAuthPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FAuthPickerViewController.xib; sourceTree = "<group>"; };
+		92AEA4572469418C0020715C /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		92D01BAF2428E3EF00C112B5 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferPhotoCell.swift; sourceTree = "<group>"; };
 		92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				921D0B2A2457347F006A8664 /* UICollectionViewCell+OfferPhotoCell.swift */,
+				92AEA4572469418C0020715C /* Array.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				929723C2241A2023000B9FD9 /* Offer.swift in Sources */,
 				92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */,
 				921D0B2E24573755006A8664 /* SearchMyController.swift in Sources */,
+				92AEA4582469418C0020715C /* Array.swift in Sources */,
 				921D0B2B2457347F006A8664 /* UICollectionViewCell+OfferPhotoCell.swift in Sources */,
 				922BAA57243647080068AA52 /* DetailsEditViewController.swift in Sources */,
 				9223C9F4245471D400D834A1 /* SearchFavoritesController.swift in Sources */,

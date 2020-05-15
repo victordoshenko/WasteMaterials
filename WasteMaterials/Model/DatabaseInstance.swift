@@ -1,5 +1,5 @@
 //
-//  DatabaseOperation.swift
+//  DatabaseInstance.swift
 //  WasteMaterials
 //
 //  Created by Victor Doshchenko on 22.04.2020.
@@ -20,6 +20,7 @@ class DatabaseInstance {
     var offersQuery = [Offer]()
     var offersFavoritesQuery = [Offer]()
     var offersMyQuery = [Offer]()
+    var offersSearchIDsQuery = [EmptyOffer]()
 
     let db = Firestore.firestore()
 
@@ -30,7 +31,7 @@ class DatabaseInstance {
     var favoritesReference: CollectionReference {
         return db.collection("favorites/\(Auth.auth().currentUser!.uid)/ids")
     }
-    
+
     func checkIsFavorite(_ id: String, _ completion: @escaping (Bool) -> Void) -> Bool {
         var result = false
         favoritesReference.document(id).getDocument { (document, error) in
@@ -52,12 +53,11 @@ class DatabaseInstance {
         
         if isFavorite {
             self.favoritesReference.document(id).delete()
-            isFavorite = !isFavorite
         } else {
             self.favoritesReference.document(id).setData([:])
-            isFavorite = !isFavorite
         }
-        
+        isFavorite = !isFavorite
+
         completion(isFavorite)
     }
 
@@ -73,14 +73,18 @@ class DatabaseInstance {
         }
     }
     
-    func readAllFromDB(_ query: Query, _ completion: @escaping () -> Void) {
-        query.getDocuments(completion: { (snapshot, error) in
+    func fillOffersQuery(_ showAll: Bool, _ completion: @escaping () -> Void) {
+        self.offerReference.getDocuments { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
                 if let snapshot = snapshot {
                     self.offersQuery.removeAll()
                     for document in snapshot.documents {
+                        guard showAll ||
+                            self.offersSearchIDsQuery.firstIndex(where: { $0.id == document.documentID }) != nil else {
+                            continue
+                        }
                         let data = document.data()
                         if let name = data["name"] as? String,
                             let date = data["date"] as? String {
@@ -94,7 +98,27 @@ class DatabaseInstance {
                     completion()
                 }
             }
-        })
+        }
+    }
+    
+    func readAllFromDB(_ searchString: String, _ completion: @escaping () -> Void) {
+        self.offersSearchIDsQuery.removeAll()
+        guard searchString != "" else {
+            self.fillOffersQuery(true, completion)
+            return
+        }
+
+        db.collection("words/\(searchString)/ids").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err.localizedDescription)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let empty = EmptyOffer(id: document.documentID)
+                    self.offersSearchIDsQuery.append(empty)
+                }
+                self.fillOffersQuery(false, completion)
+            }
+        }
     }
 
     func updateOffer(_ offer: Offer) {
@@ -123,17 +147,47 @@ class DatabaseInstance {
     func updateOrNewOffer(_ offer: Offer) {
         var ref: DocumentReference? = nil
         if offer.id == nil {  // New
+            let words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
+            //print(words)
+            
             ref = offerReference.addDocument(data: offer.representation) { error in
                 if let e = error {
-                    print("Error saving channel: \(e.localizedDescription)")
+                    print(e.localizedDescription)
                 } else {
                     var offer2 = offer
                     offer2.id = ref?.documentID
                     self.updateOffer(offer2)
+                    for word in words where word.count > 2 {
+                        self.db.collection("words/\(word.lowercased())/ids").document(offer2.id!).setData([:])
+                    }
                 }
             }
         } else {
-            updateOffer(offer)
+            offerReference.document(offer.id!).getDocument { (document, error) in
+                if let e = error {
+                    print(e.localizedDescription)
+                } else {
+                    if let data = document?.data(),
+                        let description = data["description"] as? String
+                    {
+                        let words = description.components(separatedBy: " ").removingDuplicates()
+                        for word in words where word.count > 2 {
+                            self.db.collection("words/\(word)/ids").document(offer.id!).delete() { error in
+                                if let e = error {
+                                    print(e.localizedDescription)
+                                } else {
+                                    print("Document successfully removed!")
+                                }
+                            }
+                        }
+                    }
+                    let words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
+                    for word in words where word.count > 2 {
+                        self.db.collection("words/\(word.lowercased())/ids").document(offer.id!).setData([:])
+                    }
+                    self.updateOffer(offer)
+                }
+            }
         }
     }
 
@@ -142,6 +196,16 @@ class DatabaseInstance {
             if let error = error {
                 print("There's an error: \(error.localizedDescription)")
             } else {
+                let words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
+                for word in words where word.count > 2 {
+                    self.db.collection("words/\(word)/ids").document(offer.id!).delete() { error in
+                        if let e = error {
+                            print(e.localizedDescription)
+                        } else {
+                            print("Document successfully removed!")
+                        }
+                    }
+                }
                 self.imageReference.child(offer.id! + ".JPG").delete() { error in
                     if let error = error {
                         print("There's an error: \(error.localizedDescription)")

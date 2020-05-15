@@ -27,7 +27,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     var offerReferenceQuery: Query {
         return (dbInstance?.offerReference.whereField("name", isGreaterThanOrEqualTo: searchTextField.text!))!
     }
-
+        
     private var itemsPerRow: CGFloat = 2
         
     deinit {
@@ -124,7 +124,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     }
 
     private func handleDocumentFavoriteChange(_ change: DocumentChange) {
-        guard let favorite = Favorite(document: change.document) else {
+        guard let favorite = EmptyOffer(document: change.document) else {
             return
         }
         
@@ -262,7 +262,7 @@ extension SearchViewController : UITextFieldDelegate {
         activityIndicator.frame = textField.bounds
         activityIndicator.startAnimating()
         
-        dbInstance?.readAllFromDB(offerReferenceQuery) {
+        dbInstance?.readAllFromDB(searchTextField.text?.lowercased() ?? "") {
             self.collectionView?.reloadData()
             activityIndicator.removeFromSuperview()
         }

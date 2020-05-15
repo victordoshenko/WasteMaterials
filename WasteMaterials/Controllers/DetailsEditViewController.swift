@@ -22,12 +22,15 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextView.layer.borderWidth = 1.0;
         descriptionTextView.layer.cornerRadius = 5.0;
+        descriptionTextView.text = "Введите описание"
+        descriptionTextView.textColor = .lightGray
 
         if offer != nil {
             nameTextField.text = offer?.name
             picImageView.image = offer?.image
             descriptionTextView.text = offer?.description
-            if descriptionTextView.text == "" {
+            descriptionTextView.textColor = .black
+            if descriptionTextView.text == "" || descriptionTextView.text == "Введите описание" {
                 descriptionTextView.text = "Введите описание"
                 descriptionTextView.textColor = .lightGray
             }
@@ -68,14 +71,39 @@ extension DetailsEditViewController:  UIImagePickerControllerDelegate {
 }
 
 extension DetailsEditViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        if textView.text == "" {
+    func textViewDidBeginEditing(_ textView: UITextView)
+    {
+        if (textView.text == "Введите описание" && textView.textColor == .lightGray)
+        {
+            textView.text = ""
+            textView.textColor = .black
+        }
+        textView.becomeFirstResponder() //Optional
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView)
+    {
+        if (textView.text == "")
+        {
             textView.text = "Введите описание"
             textView.textColor = .lightGray
-            offer?.description = ""
+        }
+        textView.resignFirstResponder()
+    }
+
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text == "" || textView.text == "Введите описание" {
+            offer?.description = nil
         } else {
-            textView.textColor = .black
             offer?.description = textView.text
         }
+//        if textView.text == "" {
+//            textView.text = "Введите описание"
+//            textView.textColor = .lightGray
+//            offer?.description = ""
+//        } else {
+//            textView.textColor = .black
+//            offer?.description = textView.text
+//        }
     }
 }

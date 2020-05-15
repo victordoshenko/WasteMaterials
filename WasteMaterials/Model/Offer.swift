@@ -86,8 +86,7 @@ extension Offer: Comparable {
     
 }
 
-
-class Favorite {
+class EmptyOffer {
 
     var id: String?
 
@@ -99,4 +98,13 @@ class Favorite {
         id = document.documentID
     }
 
+}
+
+extension EmptyOffer: DatabaseRepresentation {
+    
+    var representation: [String : Any] {
+        var rep = ["id": id]
+        return rep as [String : Any]
+    }
+    
 }
