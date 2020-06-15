@@ -21,6 +21,7 @@ class DatabaseInstance {
     var offersFavoritesQuery = [Offer]()
     var offersMyQuery = [Offer]()
     var offersSearchIDsQuery = [EmptyOffer]()
+    public var user = WUser(id: Auth.auth().currentUser!.uid)
 
     let db = Firestore.firestore()
 
@@ -30,6 +31,10 @@ class DatabaseInstance {
 
     var favoritesReference: CollectionReference {
         return db.collection("favorites/\(Auth.auth().currentUser!.uid)/ids")
+    }
+    
+    var userReference: CollectionReference {
+        return db.collection("users")
     }
 
     func checkIsFavorite(_ id: String, _ completion: @escaping (Bool) -> Void) -> Bool {
@@ -118,6 +123,35 @@ class DatabaseInstance {
                 }
                 self.fillOffersQuery(false, completion)
             }
+        }
+    }
+
+    func updateUser(_ name: String?) {
+        self.user.name = name
+        userReference.document(Auth.auth().currentUser!.uid).setData(self.user.representation) { error in
+            if let error = error {
+                print("There's an error: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    func getUser(_ userId: String? = Auth.auth().currentUser!.uid, _ completion: @escaping (WUser) -> Void)  {
+        userReference.document(userId!).getDocument { (document, error) in
+            if let e = error {
+                print(e.localizedDescription)
+            } else {
+                if let data = document?.data() {
+                    var user = WUser(id: document?.documentID)
+                    user.name = data["name"] as? String
+                    completion(user)
+                }
+            }
+        }
+    }
+
+    func initUser() {
+        getUser() { (user) in
+            self.user = user
         }
     }
 

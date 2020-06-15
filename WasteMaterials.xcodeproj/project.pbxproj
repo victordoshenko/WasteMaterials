@@ -19,6 +19,8 @@
 		9223C9F4245471D400D834A1 /* SearchFavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9223C9F3245471D400D834A1 /* SearchFavoritesController.swift */; };
 		922BAA57243647080068AA52 /* DetailsEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922BAA56243647080068AA52 /* DetailsEditViewController.swift */; };
 		925EE2282411169B003DA076 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925EE2272411169B003DA076 /* SignInViewController.swift */; };
+		9287D94E2497772D00D246E9 /* WUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9287D94D2497772D00D246E9 /* WUser.swift */; };
+		9287D9502497871900D246E9 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9287D94F2497871900D246E9 /* ProfileController.swift */; };
 		929723C2241A2023000B9FD9 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C1241A2023000B9FD9 /* Offer.swift */; };
 		929723C4241A20E7000B9FD9 /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */; };
 		92ABCCBE2451A60F00329FCB /* FAuthPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */; };
@@ -49,6 +51,8 @@
 		9223C9F3245471D400D834A1 /* SearchFavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoritesController.swift; sourceTree = "<group>"; };
 		922BAA56243647080068AA52 /* DetailsEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsEditViewController.swift; sourceTree = "<group>"; };
 		925EE2272411169B003DA076 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		9287D94D2497772D00D246E9 /* WUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WUser.swift; sourceTree = "<group>"; };
+		9287D94F2497871900D246E9 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		929723C1241A2023000B9FD9 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
 		92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAuthPickerViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 				929723C1241A2023000B9FD9 /* Offer.swift */,
 				929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */,
 				92038DF424506F8E00C39B12 /* DatabaseInstance.swift */,
+				9287D94D2497772D00D246E9 /* WUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 				925EE2272411169B003DA076 /* SignInViewController.swift */,
 				9223C9F3245471D400D834A1 /* SearchFavoritesController.swift */,
 				921D0B2D24573755006A8664 /* SearchMyController.swift */,
+				9287D94F2497871900D246E9 /* ProfileController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -308,8 +314,10 @@
 				929723C2241A2023000B9FD9 /* Offer.swift in Sources */,
 				92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */,
 				921D0B2E24573755006A8664 /* SearchMyController.swift in Sources */,
+				9287D9502497871900D246E9 /* ProfileController.swift in Sources */,
 				92AEA4582469418C0020715C /* Array.swift in Sources */,
 				921D0B2B2457347F006A8664 /* UICollectionViewCell+OfferPhotoCell.swift in Sources */,
+				9287D94E2497772D00D246E9 /* WUser.swift in Sources */,
 				922BAA57243647080068AA52 /* DetailsEditViewController.swift in Sources */,
 				9223C9F4245471D400D834A1 /* SearchFavoritesController.swift in Sources */,
 				92E0A561244EE483000F7693 /* MenuViewController.swift in Sources */,

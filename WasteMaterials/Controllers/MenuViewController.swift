@@ -15,16 +15,24 @@ extension MenuViewController: DetailsUpdateDelegate {
     }
 }
 
+extension MenuViewController: UserUpdateDelegate {
+    func updateUser(_ name: String?) {
+        dbInstance?.updateUser(name)
+    }
+}
+
 class MenuViewController: UITabBarController {
 
     var dbInstance: DatabaseInstance?
 
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dbInstance = DatabaseInstance()
+        dbInstance?.initUser()
         
         hideSearch()
 
@@ -68,7 +76,7 @@ class MenuViewController: UITabBarController {
         addButton.isEnabled = true
         addButton.tintColor = UIButton(type: .system).tintColor
     }
-
+    
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item == (self.tabBar.items!)[0] {
             showSearch()
