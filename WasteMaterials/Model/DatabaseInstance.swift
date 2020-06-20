@@ -36,7 +36,11 @@ class DatabaseInstance {
     var userReference: CollectionReference {
         return db.collection("users")
     }
-
+    
+    init() {
+        initUser()
+    }
+	
     func checkIsFavorite(_ id: String, _ completion: @escaping (Bool) -> Void) -> Bool {
         var result = false
         favoritesReference.document(id).getDocument { (document, error) in
@@ -126,8 +130,11 @@ class DatabaseInstance {
         }
     }
 
-    func updateUser(_ name: String?) {
-        self.user.name = name
+    func updateUser(_ user: WUser?) {
+        self.user.name = user?.name
+        self.user.email = user?.email
+        self.user.phone = user?.phone
+        
         userReference.document(Auth.auth().currentUser!.uid).setData(self.user.representation) { error in
             if let error = error {
                 print("There's an error: \(error.localizedDescription)")
@@ -143,6 +150,8 @@ class DatabaseInstance {
                 if let data = document?.data() {
                     var user = WUser(id: document?.documentID)
                     user.name = data["name"] as? String
+                    user.email = data["email"] as? String
+                    user.phone = data["phone"] as? String
                     completion(user)
                 }
             }

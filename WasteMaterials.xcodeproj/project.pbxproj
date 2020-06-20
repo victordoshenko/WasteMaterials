@@ -26,10 +26,13 @@
 		92ABCCBE2451A60F00329FCB /* FAuthPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */; };
 		92ABCCBF2451A60F00329FCB /* FAuthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92ABCCBD2451A60F00329FCB /* FAuthPickerViewController.xib */; };
 		92AEA4582469418C0020715C /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEA4572469418C0020715C /* Array.swift */; };
+		92CA0998249E47A600643923 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA0997249E47A600643923 /* UIButton.swift */; };
 		92D01BB02428E3EF00C112B5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BAF2428E3EF00C112B5 /* SearchViewController.swift */; };
 		92D01BB22428F17600C112B5 /* OfferPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */; };
 		92DB8B562431EA3E00CDF69E /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */; };
 		92E0A561244EE483000F7693 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E0A560244EE483000F7693 /* MenuViewController.swift */; };
+		92F12305249C90EE0041BE3E /* GeoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F12304249C90EE0041BE3E /* GeoController.swift */; };
+		92F12307249CF3CD0041BE3E /* GeoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F12306249CF3CD0041BE3E /* GeoItem.swift */; };
 		F0FDC6313617E2CB6F70446D /* Pods_WasteMaterials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D79420562E8E7230AAA1C2 /* Pods_WasteMaterials.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,10 +61,13 @@
 		92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAuthPickerViewController.swift; sourceTree = "<group>"; };
 		92ABCCBD2451A60F00329FCB /* FAuthPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FAuthPickerViewController.xib; sourceTree = "<group>"; };
 		92AEA4572469418C0020715C /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		92CA0997249E47A600643923 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		92D01BAF2428E3EF00C112B5 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		92D01BB12428F17600C112B5 /* OfferPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferPhotoCell.swift; sourceTree = "<group>"; };
 		92DB8B552431EA3E00CDF69E /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		92E0A560244EE483000F7693 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		92F12304249C90EE0041BE3E /* GeoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoController.swift; sourceTree = "<group>"; };
+		92F12306249CF3CD0041BE3E /* GeoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,7 @@
 			children = (
 				921D0B2A2457347F006A8664 /* UICollectionViewCell+OfferPhotoCell.swift */,
 				92AEA4572469418C0020715C /* Array.swift */,
+				92CA0997249E47A600643923 /* UIButton.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -138,6 +145,7 @@
 				929723C3241A20E7000B9FD9 /* DatabaseRepresentation.swift */,
 				92038DF424506F8E00C39B12 /* DatabaseInstance.swift */,
 				9287D94D2497772D00D246E9 /* WUser.swift */,
+				92F12306249CF3CD0041BE3E /* GeoItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -145,6 +153,7 @@
 		929723CA241A7150000B9FD9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				92F12304249C90EE0041BE3E /* GeoController.swift */,
 				92ABCCBC2451A60F00329FCB /* FAuthPickerViewController.swift */,
 				92ABCCBD2451A60F00329FCB /* FAuthPickerViewController.xib */,
 				92038DF2245011E700C39B12 /* SideViewController.swift */,
@@ -185,8 +194,8 @@
 				8397045C223BDEBD00E935DD /* Sources */,
 				8397045D223BDEBD00E935DD /* Frameworks */,
 				8397045E223BDEBD00E935DD /* Resources */,
-				56FCEFF9707CF3809B14A0AB /* [CP] Embed Pods Frameworks */,
-				E59E35B8232046BA59B79283 /* [CP] Copy Pods Resources */,
+				4E925F437E64D46E39F123A8 /* [CP] Embed Pods Frameworks */,
+				8E77D907200F6CE66BE161F6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,7 +255,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		56FCEFF9707CF3809B14A0AB /* [CP] Embed Pods Frameworks */ = {
+		4E925F437E64D46E39F123A8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -261,6 +270,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WasteMaterials/Pods-WasteMaterials-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E77D907200F6CE66BE161F6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WasteMaterials/Pods-WasteMaterials-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WasteMaterials/Pods-WasteMaterials-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WasteMaterials/Pods-WasteMaterials-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D86EE6A2B9F0A992DC5D0F94 /* [CP] Check Pods Manifest.lock */ = {
@@ -285,23 +311,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E59E35B8232046BA59B79283 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WasteMaterials/Pods-WasteMaterials-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WasteMaterials/Pods-WasteMaterials-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WasteMaterials/Pods-WasteMaterials-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -309,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92F12305249C90EE0041BE3E /* GeoController.swift in Sources */,
 				92038DF524506F8E00C39B12 /* DatabaseInstance.swift in Sources */,
 				92D01BB02428E3EF00C112B5 /* SearchViewController.swift in Sources */,
 				929723C2241A2023000B9FD9 /* Offer.swift in Sources */,
@@ -319,6 +329,7 @@
 				921D0B2B2457347F006A8664 /* UICollectionViewCell+OfferPhotoCell.swift in Sources */,
 				9287D94E2497772D00D246E9 /* WUser.swift in Sources */,
 				922BAA57243647080068AA52 /* DetailsEditViewController.swift in Sources */,
+				92CA0998249E47A600643923 /* UIButton.swift in Sources */,
 				9223C9F4245471D400D834A1 /* SearchFavoritesController.swift in Sources */,
 				92E0A561244EE483000F7693 /* MenuViewController.swift in Sources */,
 				83970464223BDEBD00E935DD /* AppDelegate.swift in Sources */,
@@ -327,6 +338,7 @@
 				92ABCCBE2451A60F00329FCB /* FAuthPickerViewController.swift in Sources */,
 				92DB8B562431EA3E00CDF69E /* DetailsViewController.swift in Sources */,
 				92038DF3245011E700C39B12 /* SideViewController.swift in Sources */,
+				92F12307249CF3CD0041BE3E /* GeoItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,7 +415,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -458,7 +470,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -478,6 +490,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YT36F46MQZ;
 				INFOPLIST_FILE = WasteMaterials/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -498,6 +511,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YT36F46MQZ;
 				INFOPLIST_FILE = WasteMaterials/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

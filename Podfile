@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '10.0'
+platform :ios, '11.0'
 use_frameworks!
 
 target 'WasteMaterials' do
@@ -10,5 +10,6 @@ target 'WasteMaterials' do
   pod 'FirebaseUI'
   pod 'SDWebImage'
   pod 'SideMenu', '~> 6.0'
+  pod 'Alamofire'
 
 end

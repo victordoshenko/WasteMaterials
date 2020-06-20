@@ -16,8 +16,8 @@ extension MenuViewController: DetailsUpdateDelegate {
 }
 
 extension MenuViewController: UserUpdateDelegate {
-    func updateUser(_ name: String?) {
-        dbInstance?.updateUser(name)
+    func updateUser(_ user: WUser?) {
+        dbInstance?.updateUser(user)
     }
 }
 
@@ -32,8 +32,6 @@ class MenuViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dbInstance = DatabaseInstance()
-        dbInstance?.initUser()
-        
         hideSearch()
 
         self.navigationController?.navigationBar.isTranslucent = false
@@ -43,6 +41,7 @@ class MenuViewController: UITabBarController {
         SideMenuManager.default.leftMenuNavigationController = Menu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
