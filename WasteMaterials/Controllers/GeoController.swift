@@ -43,7 +43,7 @@ class GeoController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let geoitem = geoitems[indexPath.row]
-        cell.textLabel?.text = geoitem.cnam //.nam
+        cell.textLabel?.text = geoitem.cnam   //.nam
         cell.detailTextLabel?.text = "\(geoitem.cid ?? 0)" //.rnam
 
         return cell
