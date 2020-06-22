@@ -115,6 +115,9 @@ class ProfileController: UIViewController {
     func showCountry() {
         let cfn = defaults.string(forKey: "CountryFullName")
         if cfn != "" && cfn != nil {
+            if cfn != selectCountryButton.titleLabel?.text && selectCountryButton.titleLabel?.text != "Select Country" {
+                clearRegionData()
+            }
             selectCountryButton.setTitle(cfn, for: .normal)
             selectRegionButton.isEnabled = true
         } else {

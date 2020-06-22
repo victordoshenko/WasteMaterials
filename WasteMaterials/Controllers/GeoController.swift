@@ -33,7 +33,6 @@ class GeoController: UITableViewController {
         self.extendedLayoutIncludesOpaqueBars = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        //tableView.allowsSelection = false
 
         loadData(countryID, searchController.searchBar.text!)
     }
@@ -88,7 +87,6 @@ class GeoController: UITableViewController {
                     self.geoitems = try JSONDecoder().decode(GeoItems.self, from: data)
                     self.tableView.reloadData()
                     activityIndicator.removeFromSuperview()
-                    //print(self.geoitems)
                 } catch {
                     print(error.localizedDescription)
                 }
