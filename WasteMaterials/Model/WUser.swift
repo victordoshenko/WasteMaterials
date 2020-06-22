@@ -14,15 +14,19 @@ struct WUser {
     var name: String?
     var email: String?
     var phone: String?
+    var countryid: String?
     var regionid: String?
+    var cityid: String?
     let date: String?
     
-    init(id: String? = Auth.auth().currentUser?.uid, name: String? = nil, email: String? = nil, phone: String? = nil, regionid: String? = nil, date: String? = nil) {
+    init(id: String? = Auth.auth().currentUser?.uid, name: String? = nil, email: String? = nil, phone: String? = nil, countryid: String? = nil, regionid: String? = nil, cityid: String? = nil, date: String? = nil) {
         self.id = id
         self.name = name
         self.email = email
         self.phone = phone
+        self.countryid = countryid
         self.regionid = regionid
+        self.cityid = cityid
         self.date = date
     }
     

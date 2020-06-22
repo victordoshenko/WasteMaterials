@@ -257,7 +257,7 @@ extension SearchViewController : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // 1
-        let activityIndicator = UIActivityIndicatorView(style: .gray)
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
         textField.addSubview(activityIndicator)
         activityIndicator.frame = textField.bounds
         activityIndicator.startAnimating()

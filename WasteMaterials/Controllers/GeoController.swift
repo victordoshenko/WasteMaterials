@@ -9,7 +9,9 @@ import Alamofire
 
 class GeoController: UITableViewController {
     
+    let apiPath = "https://mcrain.pythonanywhere.com/api"
     var geoitems: GeoItems = []
+    var countryID = 0
 
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarIsEmpty: Bool {
@@ -22,7 +24,6 @@ class GeoController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -32,6 +33,9 @@ class GeoController: UITableViewController {
         self.extendedLayoutIncludesOpaqueBars = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        //tableView.allowsSelection = false
+
+        loadData(countryID, searchController.searchBar.text!)
     }
 
     // MARK: - Table view data source
@@ -43,20 +47,48 @@ class GeoController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let geoitem = geoitems[indexPath.row]
-        cell.textLabel?.text = geoitem.cnam   //.nam
-        cell.detailTextLabel?.text = "\(geoitem.cid ?? 0)" //.rnam
+        if countryID == 0 {
+            cell.textLabel?.text = getFlag(from: geoitem.ccod ?? "") + " " + geoitem.cnam!
+            cell.detailTextLabel?.text = "\(geoitem.ccod ?? "")"
+        } else {
+            cell.textLabel?.text = geoitem.nam
+            cell.detailTextLabel?.text = geoitem.rnam
+        }
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let geoitem = geoitems[indexPath.row]
+        let defaults = UserDefaults.standard
+        if countryID == 0 {
+            defaults.set(geoitem.cid, forKey: "CountryID")
+            defaults.set(geoitem.cnam, forKey: "CountryName")
+            defaults.set(geoitem.ccod, forKey: "CountryCode")
+            defaults.set(getFlag(from: geoitem.ccod ?? "") + " " + geoitem.cnam!, forKey: "CountryFullName")
+        } else {
+            defaults.set(geoitem.rid , forKey: "RegionID")
+            defaults.set(geoitem.cid , forKey: "CityID")
+            defaults.set(geoitem.nam! + (geoitem.rnam ?? "" == "" ? "" : " (\(geoitem.rnam ?? ""))"), forKey: "RegionCityName")
+        }
 
-    func loadData() {
-        AF.request("https://mcrain.pythonanywhere.com/api").responseJSON {
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    func loadData(_ countryid: Int, _ string: String) {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        self.view.addSubview(activityIndicator)
+        activityIndicator.frame = UIScreen.main.bounds
+        activityIndicator.startAnimating()
+        
+        AF.request(apiPath, headers: ["name":string, "countryid":String(countryid)]).responseJSON {
             response in
             if let data = response.data {
                 do {
                     self.geoitems = try JSONDecoder().decode(GeoItems.self, from: data)
                     self.tableView.reloadData()
-                    print(self.geoitems)
+                    activityIndicator.removeFromSuperview()
+                    //print(self.geoitems)
                 } catch {
                     print(error.localizedDescription)
                 }
@@ -74,7 +106,6 @@ extension GeoController: UISearchResultsUpdating {
     
     private func filterContentForSearchText(_ searchText: String) {
         print("Reload!")
-        loadData()
+        loadData(countryID, searchText)
     }
 }
-

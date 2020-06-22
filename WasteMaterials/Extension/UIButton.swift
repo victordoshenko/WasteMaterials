@@ -37,4 +37,10 @@ extension UIButton {
             return UIColor(cgColor: color)
         }
     }
+    
+    func setRoundedCorners() {
+        borderWidth = 0.5
+        borderColor = .gray
+        cornerRadius = 5
+    }
 }

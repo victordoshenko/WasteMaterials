@@ -138,46 +138,95 @@
                                     <action selector="phoneChange:" destination="fyl-XG-VxT" eventType="editingChanged" id="X1Q-wE-Q0u"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Region" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5d-S0-39e">
-                                <rect key="frame" x="19" y="213" width="111" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5d-S0-39e">
+                                <rect key="frame" x="19" y="213" width="69" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="111" id="fwA-VM-r2N"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="69" id="fwA-VM-r2N"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dwv-gV-Rrl">
-                                <rect key="frame" x="19" y="242" width="340" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dwv-gV-Rrl">
+                                <rect key="frame" x="16" y="243" width="343" height="30"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="Select Region"/>
+                                <state key="normal" title="Select Country"/>
                                 <connections>
-                                    <action selector="selectRegionAction:" destination="fyl-XG-VxT" eventType="touchUpInside" id="wyT-If-bnF"/>
+                                    <segue destination="eLo-mz-SOI" kind="show" identifier="chooseCountry" id="CHw-0L-ZXS"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Region / City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3F-M8-LKf">
+                                <rect key="frame" x="16" y="281" width="98" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="98" id="EZl-Rc-vNm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hco-Hk-HEt">
+                                <rect key="frame" x="16" y="310" width="343" height="30"/>
+                                <state key="normal" title="Select Region / City"/>
+                                <connections>
+                                    <segue destination="eLo-mz-SOI" kind="show" identifier="chooseRegion" id="qZy-OI-ECH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbm-Eb-71O">
+                                <rect key="frame" x="96" y="213" width="24" height="22"/>
+                                <state key="normal" title="Clear Country" image="clear" catalog="system"/>
+                                <connections>
+                                    <action selector="clearCountry:" destination="fyl-XG-VxT" eventType="touchUpInside" id="QdT-1G-3Vd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fd-ao-d03">
+                                <rect key="frame" x="122" y="281" width="122.5" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="88k-fa-BpH"/>
+                                </constraints>
+                                <state key="normal" title="Clear Region" image="clear" catalog="system"/>
+                                <connections>
+                                    <action selector="clearRegion:" destination="fyl-XG-VxT" eventType="touchUpInside" id="cAp-fZ-U6p"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="7fd-ao-d03" firstAttribute="leading" secondItem="h3F-M8-LKf" secondAttribute="trailing" constant="8" id="0pF-TJ-3ZV"/>
+                            <constraint firstItem="wem-Bj-hMV" firstAttribute="trailing" secondItem="hco-Hk-HEt" secondAttribute="trailing" constant="16" id="1Wo-pg-5Gg"/>
                             <constraint firstItem="I5d-S0-39e" firstAttribute="leading" secondItem="wem-Bj-hMV" secondAttribute="leading" constant="19" id="4nN-Ba-DJB"/>
                             <constraint firstItem="gE9-Ht-0vd" firstAttribute="leading" secondItem="wem-Bj-hMV" secondAttribute="leading" constant="16" id="54p-JQ-nTE"/>
+                            <constraint firstItem="Dwv-gV-Rrl" firstAttribute="top" secondItem="I5d-S0-39e" secondAttribute="bottom" constant="8" id="6Al-YH-qKv"/>
+                            <constraint firstItem="h3F-M8-LKf" firstAttribute="leading" secondItem="wem-Bj-hMV" secondAttribute="leading" constant="16" id="8Vr-0O-RCd"/>
                             <constraint firstItem="wem-Bj-hMV" firstAttribute="trailing" secondItem="IiS-dw-uI3" secondAttribute="trailing" constant="16" id="9UQ-Oz-9hq"/>
                             <constraint firstItem="y00-zj-zET" firstAttribute="top" secondItem="XiS-Vc-huG" secondAttribute="bottom" constant="8" id="ANV-71-DAQ"/>
+                            <constraint firstItem="7fd-ao-d03" firstAttribute="top" secondItem="Dwv-gV-Rrl" secondAttribute="bottom" constant="8" id="Cog-Ff-U6V"/>
                             <constraint firstItem="I5d-S0-39e" firstAttribute="top" secondItem="IiS-dw-uI3" secondAttribute="bottom" constant="8" id="E8t-pU-ZIl"/>
+                            <constraint firstItem="h3F-M8-LKf" firstAttribute="top" secondItem="Dwv-gV-Rrl" secondAttribute="bottom" constant="8" id="K6G-AT-QN2"/>
                             <constraint firstItem="XiS-Vc-huG" firstAttribute="top" secondItem="7w2-ES-qSY" secondAttribute="bottom" constant="8" id="Lni-Sg-gh1"/>
                             <constraint firstItem="y00-zj-zET" firstAttribute="leading" secondItem="wem-Bj-hMV" secondAttribute="leading" constant="16" id="M4n-YQ-2M3"/>
                             <constraint firstItem="wem-Bj-hMV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7w2-ES-qSY" secondAttribute="trailing" symbolic="YES" id="Muy-QI-4Mp"/>
                             <constraint firstItem="IiS-dw-uI3" firstAttribute="leading" secondItem="wem-Bj-hMV" secondAttribute="leading" constant="16" id="P0D-kD-ho9"/>
                             <constraint firstItem="OPh-P7-qFa" firstAttribute="top" secondItem="y00-zj-zET" secondAttribute="bottom" constant="8" id="PYI-sh-0lC"/>
                             <constraint firstItem="XiS-Vc-huG" firstAttribute="leading" secondItem="wem-Bj-hMV" secondAttribute="leading" constant="16" id="Q9M-Qc-xYY"/>
+                            <constraint firstItem="wem-Bj-hMV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h3F-M8-LKf" secondAttribute="trailing" symbolic="YES" id="UBk-RI-U5w"/>
+                            <constraint firstItem="xbm-Eb-71O" firstAttribute="centerY" secondItem="I5d-S0-39e" secondAttribute="centerY" id="Yue-yF-lhC"/>
+                            <constraint firstItem="wem-Bj-hMV" firstAttribute="trailing" secondItem="xbm-Eb-71O" secondAttribute="trailing" constant="255" id="bQP-Cg-tFt"/>
                             <constraint firstItem="OPh-P7-qFa" firstAttribute="leading" secondItem="wem-Bj-hMV" secondAttribute="leading" constant="16" id="bvX-cu-Nua"/>
+                            <constraint firstItem="xbm-Eb-71O" firstAttribute="leading" secondItem="I5d-S0-39e" secondAttribute="trailing" constant="8" symbolic="YES" id="crK-eC-p4C"/>
                             <constraint firstItem="wem-Bj-hMV" firstAttribute="trailing" secondItem="OPh-P7-qFa" secondAttribute="trailing" constant="16" id="dPc-py-vLm"/>
                             <constraint firstItem="wem-Bj-hMV" firstAttribute="trailing" secondItem="XiS-Vc-huG" secondAttribute="trailing" constant="16" id="dU5-kJ-1uV"/>
+                            <constraint firstItem="wem-Bj-hMV" firstAttribute="trailing" secondItem="Dwv-gV-Rrl" secondAttribute="trailing" constant="16" id="eb1-Oe-7Ik"/>
+                            <constraint firstItem="hco-Hk-HEt" firstAttribute="leading" secondItem="wem-Bj-hMV" secondAttribute="leading" constant="16" id="exD-Bt-SXn"/>
+                            <constraint firstItem="wem-Bj-hMV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7fd-ao-d03" secondAttribute="trailing" symbolic="YES" id="f8n-K4-bPN"/>
+                            <constraint firstItem="wem-Bj-hMV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="I5d-S0-39e" secondAttribute="trailing" symbolic="YES" id="fr5-sR-oVp"/>
                             <constraint firstItem="gE9-Ht-0vd" firstAttribute="top" secondItem="OPh-P7-qFa" secondAttribute="bottom" constant="8" id="goX-V3-Nbr"/>
+                            <constraint firstItem="xbm-Eb-71O" firstAttribute="top" secondItem="I5d-S0-39e" secondAttribute="top" id="hI4-hH-e4w"/>
                             <constraint firstItem="IiS-dw-uI3" firstAttribute="top" secondItem="gE9-Ht-0vd" secondAttribute="bottom" constant="8" id="m0f-fg-Loq"/>
                             <constraint firstItem="7w2-ES-qSY" firstAttribute="top" secondItem="wem-Bj-hMV" secondAttribute="top" id="mYa-ce-MGL"/>
+                            <constraint firstItem="Dwv-gV-Rrl" firstAttribute="leading" secondItem="wem-Bj-hMV" secondAttribute="leading" constant="16" id="mZQ-6W-2Qi"/>
                             <constraint firstItem="wem-Bj-hMV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y00-zj-zET" secondAttribute="trailing" symbolic="YES" id="qcj-Yg-Nrw"/>
                             <constraint firstItem="wem-Bj-hMV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gE9-Ht-0vd" secondAttribute="trailing" symbolic="YES" id="qub-ol-WV5"/>
+                            <constraint firstItem="hco-Hk-HEt" firstAttribute="top" secondItem="h3F-M8-LKf" secondAttribute="bottom" constant="8" id="qwb-Re-pY3"/>
                             <constraint firstItem="7w2-ES-qSY" firstAttribute="leading" secondItem="wem-Bj-hMV" secondAttribute="leading" constant="16" id="zMK-D8-Jix"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wem-Bj-hMV"/>
@@ -187,7 +236,8 @@
                     <connections>
                         <outlet property="email" destination="OPh-P7-qFa" id="yEk-wc-sVz"/>
                         <outlet property="phone" destination="IiS-dw-uI3" id="iY5-fe-L5j"/>
-                        <outlet property="selectRegionButton" destination="Dwv-gV-Rrl" id="DkY-fq-ohq"/>
+                        <outlet property="selectCountryButton" destination="Dwv-gV-Rrl" id="DkY-fq-ohq"/>
+                        <outlet property="selectRegionButton" destination="hco-Hk-HEt" id="rDe-EF-Q3s"/>
                         <outlet property="userName" destination="XiS-Vc-huG" id="FDQ-yg-NQy"/>
                     </connections>
                 </viewController>
@@ -732,7 +782,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SelectRegion" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eLo-mz-SOI" userLabel="Geo Controller" customClass="GeoController" customModule="WasteMaterials" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Oak-3E-yS1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -773,7 +823,11 @@
             <point key="canvasLocation" x="2015" y="-1324"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="CHw-0L-ZXS"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="clear" catalog="system" width="128" height="114"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" width="14" height="14"/>
         <image name="text.justify" width="17" height="15"/>

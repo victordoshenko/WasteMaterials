@@ -234,30 +234,30 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MyCollectionViewController.updateUI(_:):MyCollectionViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "view.frame.height">
-            </PersistentString>
-            <PersistentString
-               value = "itemsPerRow">
-            </PersistentString>
-            <PersistentString
-               value = "view.frame.width">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "ProfileController.userNameChange(_:):ProfileController.swift">
          <PersistentStrings>
+            <PersistentString
+               value = "user">
+            </PersistentString>
             <PersistentString
                value = "delegate">
             </PersistentString>
             <PersistentString
                value = "dbInstance">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MyCollectionViewController.updateUI(_:):MyCollectionViewController.swift">
+         <PersistentStrings>
             <PersistentString
-               value = "user">
+               value = "view.frame.height">
+            </PersistentString>
+            <PersistentString
+               value = "view.frame.width">
+            </PersistentString>
+            <PersistentString
+               value = "itemsPerRow">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -307,6 +307,31 @@
             </PersistentString>
             <PersistentString
                value = "itemsPerRow">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GeoController.tableView(_:cellForRowAt:):GeoController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "countryID">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ProfileController.defineCountry():ProfileController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "geoitems[index]">
+            </PersistentString>
+            <PersistentString
+               value = "locale.regionCode">
+            </PersistentString>
+            <PersistentString
+               value = "geoitems">
+            </PersistentString>
+            <PersistentString
+               value = "Locale.current">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -363,6 +388,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "GeoController.tableView(_:didSelectRowAt:):GeoController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "countryID">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #1 in DatabaseInstance.readAllFavoritesFromDB(_:):DatabaseOperation.swift">
          <PersistentStrings>
             <PersistentString
@@ -410,6 +443,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in DatabaseInstance.updateUser(_:):DatabaseInstance.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "user">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MyCollectionViewController.addOfferToTable(_:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -422,14 +463,6 @@
          <PersistentStrings>
             <PersistentString
                value = "dbInstance?.offersQuery.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in DatabaseInstance.updateUser(_:):DatabaseInstance.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "user">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

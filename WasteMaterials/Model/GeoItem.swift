@@ -13,8 +13,8 @@ struct GeoItem: Decodable {
     let ccod: String?  // country code
     let nam: String?   // city or region name
     let rnam: String?  // region name
-    let rid: String?   // region id
-    let cyid: String?  // city id
+    let rid: Int?   // region id
+    let cyid: Int?  // city id
     let rcod: String?  // region code
     let lat: String?   // latitude
     let lon: String?   // longitude
