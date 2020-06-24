@@ -9,7 +9,6 @@ import Alamofire
 
 class GeoController: UITableViewController {
     
-    let apiPath = "https://mcrain.pythonanywhere.com/api"
     var geoitems: GeoItems = []
     var countryID = 0
 
@@ -103,7 +102,6 @@ extension GeoController: UISearchResultsUpdating {
     }
     
     private func filterContentForSearchText(_ searchText: String) {
-        print("Reload!")
         loadData(countryID, searchText)
     }
 }

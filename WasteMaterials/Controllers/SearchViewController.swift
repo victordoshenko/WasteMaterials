@@ -23,11 +23,11 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     private var currentOfferAlertController: UIAlertController?
     private var offerListener: ListenerRegistration?
     private var favoriteListener: ListenerRegistration?
-
+/*
     var offerReferenceQuery: Query {
         return (dbInstance?.offerReference.whereField("name", isGreaterThanOrEqualTo: searchTextField.text!))!
     }
-        
+*/
     private var itemsPerRow: CGFloat = 2
         
     deinit {
@@ -77,6 +77,11 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        refreshTable()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -109,7 +114,9 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
                 self.handleDocumentFavoriteChange(change)
             }
         }
+                
 
+/*
         offerListener = dbInstance?.offerReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
@@ -120,7 +127,19 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
                 self.handleDocumentChange(change)
             }
         }
-        
+*/
+    }
+    
+    func refreshTable(_ string: String = "") {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        self.view.addSubview(activityIndicator)
+        activityIndicator.frame = self.view.bounds
+        activityIndicator.startAnimating()
+
+        dbInstance?.readAllFromDB(string) {
+            self.collectionView?.reloadData()
+            activityIndicator.removeFromSuperview()
+        }
     }
 
     private func handleDocumentFavoriteChange(_ change: DocumentChange) {
@@ -212,7 +231,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         let offer = Offer(name: offerName, date: String(Int(Date().timeIntervalSince1970 * 1000)))
         dbInstance?.addOferToDB(offer)
     }
-
+/*
     private func handleDocumentChange(_ change: DocumentChange) {
         guard let offer = Offer(document: change.document) else {
             return
@@ -235,8 +254,8 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         if let index = self.dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}) {
             dbInstance?.offersMyQuery[index] = offer
         }
-
     }
+*/
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -257,6 +276,10 @@ extension SearchViewController : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // 1
+        
+        refreshTable(searchTextField.text?.lowercased() ?? "")
+        
+        /*
         let activityIndicator = UIActivityIndicatorView(style: .medium)
         textField.addSubview(activityIndicator)
         activityIndicator.frame = textField.bounds
@@ -266,6 +289,7 @@ extension SearchViewController : UITextFieldDelegate {
             self.collectionView?.reloadData()
             activityIndicator.removeFromSuperview()
         }
+        */
 
         //textField.text = nil
         textField.resignFirstResponder()

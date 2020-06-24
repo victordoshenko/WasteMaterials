@@ -16,6 +16,8 @@ protocol DocumentsEditDelegate {
 }
 
 class DatabaseInstance {
+    
+    let defaults = UserDefaults.standard
 
     var offersQuery = [Offer]()
     var offersFavoritesQuery = [Offer]()
@@ -83,7 +85,12 @@ class DatabaseInstance {
     }
     
     func fillOffersQuery(_ showAll: Bool, _ completion: @escaping () -> Void) {
-        self.offerReference.getDocuments { (snapshot, error) in
+        offerReference
+            .whereField(defaults.integer(forKey: "CountryID") == 0 ? "z" : "countryid", isEqualTo: defaults.integer(forKey: "CountryID") == 0 ? "0" : defaults.string(forKey: "CountryID") ?? "0")
+            .whereField(defaults.integer(forKey: "RegionID") == 0 ? "z" : "regionid", isEqualTo: defaults.integer(forKey: "RegionID") == 0 ? "0" : defaults.string(forKey: "RegionID") ?? "0")
+            .whereField(defaults.integer(forKey: "CityID") == 0 ? "z" : "cityid", isEqualTo: defaults.integer(forKey: "CityID") == 0 ? "0" : defaults.string(forKey: "CityID") ?? "0")
+            
+            .getDocuments { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {

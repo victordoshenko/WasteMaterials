@@ -9,7 +9,9 @@ import FirebaseFirestore
 import Firebase
 
 struct Offer {
-    
+
+    let defaults = UserDefaults.standard
+
     var id: String?
     var name: String?
     var description: String?
@@ -48,6 +50,20 @@ extension Offer: DatabaseRepresentation {
     
     var representation: [String : Any] {
         var rep = ["name": name]
+
+        rep["z"] = "0"
+
+        if defaults.integer(forKey: "CountryID") > 0 {
+            rep["countryid"] = defaults.string(forKey: "CountryID")
+        }
+
+        if defaults.integer(forKey: "RegionID") > 0 {
+            rep["regionid"] = defaults.string(forKey: "RegionID")
+        }
+
+        if defaults.integer(forKey: "CityID") > 0 {
+            rep["cityid"] = defaults.string(forKey: "CityID")
+        }
 
         if let description = description {
             rep["description"] = description

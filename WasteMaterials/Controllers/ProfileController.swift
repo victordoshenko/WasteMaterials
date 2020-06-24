@@ -9,6 +9,8 @@ import UIKit
 import Firebase
 import Alamofire
 
+let apiPath = "https://mcrain.pythonanywhere.com/api"
+
 protocol UserUpdateDelegate {
     func updateUser(_ user: WUser?)
 }
@@ -16,7 +18,6 @@ protocol UserUpdateDelegate {
 class ProfileController: UIViewController {
 
     let defaults = UserDefaults.standard
-    let apiPath = "https://mcrain.pythonanywhere.com/api"
 
     var delegate: UserUpdateDelegate?
     var vc: MenuViewController?
@@ -97,6 +98,9 @@ class ProfileController: UIViewController {
                         self.defaults.set(geoitems[index].ccod, forKey: "CountryCode")
                         self.defaults.set(getFlag(from: geoitems[index].ccod ?? "") + " " + geoitems[index].cnam!, forKey: "CountryFullName")
                         self.showCountry()
+                        let ac = UIAlertController(title: nil, message: "Your country defined automatically as \(geoitems[index].cnam ?? "").", preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "Ok", style: .default , handler: nil))
+                        self.present(ac, animated: true, completion: nil)
                     }
                 } catch {
                     print(error.localizedDescription)

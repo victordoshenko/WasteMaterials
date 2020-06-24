@@ -13,11 +13,11 @@ class SearchMyController: UICollectionViewController, UICollectionViewDelegateFl
     
     var dbInstance: DatabaseInstance?
     var reuseIdentifier = "OfferCellMy"
-
+/*
     var offerMyQuery: Query {
         return (dbInstance?.offerReference.whereField("userId", isEqualTo: Auth.auth().currentUser!.uid))!
     }
-
+*/
     private let sectionInsets = UIEdgeInsets(top: 20.0,
                                              left: 20.0,
                                              bottom: 20.0,
