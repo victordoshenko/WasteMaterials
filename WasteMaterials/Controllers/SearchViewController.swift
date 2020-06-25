@@ -23,38 +23,14 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     private var currentOfferAlertController: UIAlertController?
     private var offerListener: ListenerRegistration?
     private var favoriteListener: ListenerRegistration?
-/*
-    var offerReferenceQuery: Query {
-        return (dbInstance?.offerReference.whereField("name", isGreaterThanOrEqualTo: searchTextField.text!))!
-    }
-*/
+
     private var itemsPerRow: CGFloat = 2
         
     deinit {
         offerListener?.remove()
         favoriteListener?.remove()
     }
-/*
-    func updateUI(_ firstTime: Bool = false) {
-        if !firstTime { return }
-        let paddingSpace = sectionInsets.left * (itemsPerRow + (firstTime ? 1 : -1))
-        let availableWidth = (firstTime ? view.frame.width : view.frame.height) - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
-        let cellSize = CGSize(width: widthPerItem , height: widthPerItem)
-        
-        searchTextField.frame =  CGRect(x: searchTextField.frame.origin.x , y: searchTextField.frame.origin.y, width: availableWidth
-            //- filterButton.width //- menuButton.width
-            , height: searchTextField.frame.height)
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.itemSize = cellSize
-        layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
-        layout.minimumLineSpacing = 1.0
-        layout.minimumInteritemSpacing = 1.0
-        collectionView.setCollectionViewLayout(layout, animated: true)
-    }
-*/
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         if UIDevice.current.orientation.isLandscape {
             print("***** viewWillTransition Landscape")
@@ -63,7 +39,6 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
             print("***** viewWillTransition Portrait")
             itemsPerRow = 2
         }
-        //updateUI()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,24 +52,14 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        refreshTable()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("\n**************************")
         if UIDevice.current.orientation.isLandscape {
-            print("***** viewDidLoad Landscape")
             itemsPerRow = 3
         } else {
-            print("***** viewDidLoad Portrait")
             itemsPerRow = 2
         }
-        print("**************************\n")
-        //updateUI()
         
         let vc = self.parent as! MenuViewController
         vc.showSearch()
@@ -102,6 +67,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         self.searchTextField.delegate = self
         self.dbInstance = vc.dbInstance
 
+        vc.defineCountry{}
         clearsSelectionOnViewWillAppear = true
 
         favoriteListener = dbInstance?.favoritesReference.addSnapshotListener { querySnapshot, error in
@@ -116,7 +82,6 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         }
                 
 
-/*
         offerListener = dbInstance?.offerReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
@@ -127,7 +92,6 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
                 self.handleDocumentChange(change)
             }
         }
-*/
     }
     
     func refreshTable(_ string: String = "") {
@@ -158,14 +122,14 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         switch change.type {
         case .added:
             dbInstance?.offersFavoritesQuery.insert(offer!, at: 0)
-
+            
         case .removed:
             if let index = self.dbInstance?.offersFavoritesQuery.firstIndex(where: {$0.id == favorite.id}) {
                 dbInstance?.offersFavoritesQuery.remove(at: index)
             }
         case .modified: break
         }
-
+        
         if (dbInstance?.offersQuery.count)! > 0 && index != nil {
             self.collectionView.reloadItems(at: [IndexPath(row: index!, section: 0)])
         }
@@ -231,7 +195,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         let offer = Offer(name: offerName, date: String(Int(Date().timeIntervalSince1970 * 1000)))
         dbInstance?.addOferToDB(offer)
     }
-/*
+
     private func handleDocumentChange(_ change: DocumentChange) {
         guard let offer = Offer(document: change.document) else {
             return
@@ -255,7 +219,6 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
             dbInstance?.offersMyQuery[index] = offer
         }
     }
-*/
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -273,25 +236,8 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
 
 // MARK: - Text Field Delegate
 extension SearchViewController : UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // 1
-        
         refreshTable(searchTextField.text?.lowercased() ?? "")
-        
-        /*
-        let activityIndicator = UIActivityIndicatorView(style: .medium)
-        textField.addSubview(activityIndicator)
-        activityIndicator.frame = textField.bounds
-        activityIndicator.startAnimating()
-        
-        dbInstance?.readAllFromDB(searchTextField.text?.lowercased() ?? "") {
-            self.collectionView?.reloadData()
-            activityIndicator.removeFromSuperview()
-        }
-        */
-
-        //textField.text = nil
         textField.resignFirstResponder()
         return true
     }
@@ -349,17 +295,6 @@ extension SearchViewController: DocumentsEditDelegate {
         guard let index = dbInstance?.offersQuery.firstIndex(of: offer) else {
             return
         }
-
-//        switch change.type {
-//        case .added:
-//            dbInstance?.offersFavoritesQuery.insert(offer!, at: 0)
-//
-//        case .removed:
-//            if let index = self.dbInstance?.offersFavoritesQuery.firstIndex(where: {$0.id == favorite.id}) {
-//                dbInstance?.offersFavoritesQuery.remove(at: index)
-//            }
-//        case .modified: break
-//        }
 
         if dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}) == nil &&
            offer.userId == Auth.auth().currentUser!.uid {

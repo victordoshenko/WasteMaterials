@@ -7,9 +7,6 @@
 
 import UIKit
 import Firebase
-import Alamofire
-
-let apiPath = "https://mcrain.pythonanywhere.com/api"
 
 protocol UserUpdateDelegate {
     func updateUser(_ user: WUser?)
@@ -81,34 +78,11 @@ class ProfileController: UIViewController {
         email.text = self.user?.email
         phone.text = self.user?.phone
         
-        defineCountry()
-    }
-    
-    func defineCountry() {
-        guard defaults.integer(forKey: "CountryID") == 0 else { return }
-        AF.request(apiPath).responseJSON {
-            response in
-            if let data = response.data {
-                do {
-                    let regionCode = Locale.current.regionCode
-                    let geoitems = try JSONDecoder().decode(GeoItems.self, from: data)
-                    if let index = geoitems.firstIndex(where: { $0.ccod == regionCode?.lowercased()}) {
-                        self.defaults.set(geoitems[index].cid, forKey: "CountryID")
-                        self.defaults.set(geoitems[index].cnam, forKey: "CountryName")
-                        self.defaults.set(geoitems[index].ccod, forKey: "CountryCode")
-                        self.defaults.set(getFlag(from: geoitems[index].ccod ?? "") + " " + geoitems[index].cnam!, forKey: "CountryFullName")
-                        self.showCountry()
-                        let ac = UIAlertController(title: nil, message: "Your country defined automatically as \(geoitems[index].cnam ?? "").", preferredStyle: .alert)
-                        ac.addAction(UIAlertAction(title: "Ok", style: .default , handler: nil))
-                        self.present(ac, animated: true, completion: nil)
-                    }
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
+        vc?.defineCountry {
+            self.showCountry()
         }
     }
-    
+
     func showRegion() {
         let rcn = defaults.string(forKey: "RegionCityName")
         if rcn != "" && rcn != nil {
@@ -128,10 +102,6 @@ class ProfileController: UIViewController {
             selectRegionButton.isEnabled = false
         }
         showRegion()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        showCountry()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

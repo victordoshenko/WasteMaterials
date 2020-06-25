@@ -8,6 +8,9 @@
 
 import UIKit
 import SideMenu
+import Alamofire
+
+let apiPath = "https://mcrain.pythonanywhere.com/api"
 
 extension MenuViewController: DetailsUpdateDelegate {
     func updateOffer(_ offer: Offer) {
@@ -22,6 +25,8 @@ extension MenuViewController: UserUpdateDelegate {
 }
 
 class MenuViewController: UITabBarController {
+
+    let defaults = UserDefaults.standard
 
     var dbInstance: DatabaseInstance?
 
@@ -41,9 +46,34 @@ class MenuViewController: UITabBarController {
         SideMenuManager.default.leftMenuNavigationController = Menu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
-        
+
     }
-    
+
+    func defineCountry(_ completion: @escaping () -> Void) {
+        guard defaults.integer(forKey: "CountryID") == 0 else { completion(); return }
+        AF.request(apiPath).responseJSON {
+            response in
+            if let data = response.data {
+                do {
+                    let regionCode = Locale.current.regionCode
+                    let geoitems = try JSONDecoder().decode(GeoItems.self, from: data)
+                    if let index = geoitems.firstIndex(where: { $0.ccod == regionCode?.lowercased()}) {
+                        self.defaults.set(geoitems[index].cid, forKey: "CountryID")
+                        self.defaults.set(geoitems[index].cnam, forKey: "CountryName")
+                        self.defaults.set(geoitems[index].ccod, forKey: "CountryCode")
+                        self.defaults.set(getFlag(from: geoitems[index].ccod ?? "") + " " + geoitems[index].cnam!, forKey: "CountryFullName")
+                        completion()
+                        let ac = UIAlertController(title: nil, message: "Your country defined automatically as \(geoitems[index].cnam ?? "").", preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "Ok", style: .default , handler: nil))
+                        self.present(ac, animated: true, completion: nil)
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailsNew" {
             let controller = segue.destination as! DetailsEditViewController
