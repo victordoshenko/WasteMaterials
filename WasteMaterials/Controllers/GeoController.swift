@@ -9,6 +9,7 @@ import Alamofire
 
 class GeoController: UITableViewController {
     
+    let defaults = UserDefaults.standard
     var geoitems: GeoItems = []
     var countryID = 0
 
@@ -33,6 +34,9 @@ class GeoController: UITableViewController {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
 
+        if countryID > 0 {
+            searchController.searchBar.text = defaults.string(forKey: "RegionName")
+        }
         loadData(countryID, searchController.searchBar.text!)
     }
 
@@ -66,7 +70,8 @@ class GeoController: UITableViewController {
             defaults.set(getFlag(from: geoitem.ccod ?? "") + " " + geoitem.cnam!, forKey: "CountryFullName")
         } else {
             defaults.set(geoitem.rid , forKey: "RegionID")
-            defaults.set(geoitem.cid , forKey: "CityID")
+            defaults.set(geoitem.cyid , forKey: "CityID")
+            defaults.set(geoitem.nam! , forKey: "RegionName")
             defaults.set(geoitem.nam! + (geoitem.rnam ?? "" == "" ? "" : " (\(geoitem.rnam ?? ""))"), forKey: "RegionCityName")
         }
 
@@ -85,11 +90,12 @@ class GeoController: UITableViewController {
                 do {
                     self.geoitems = try JSONDecoder().decode(GeoItems.self, from: data)
                     self.tableView.reloadData()
-                    activityIndicator.removeFromSuperview()
+                    
                 } catch {
                     print(error.localizedDescription)
                 }
             }
+            activityIndicator.removeFromSuperview()
         }
     }
 }
@@ -98,7 +104,9 @@ class GeoController: UITableViewController {
 extension GeoController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
+        if (searchController.searchBar.text ?? "").count > 2 {
+            filterContentForSearchText(searchController.searchBar.text!)
+        }
     }
     
     private func filterContentForSearchText(_ searchText: String) {

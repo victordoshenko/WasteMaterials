@@ -59,6 +59,7 @@ class ProfileController: UIViewController {
         defaults.removeObject(forKey: "RegionID")
         defaults.removeObject(forKey: "CityID")
         defaults.removeObject(forKey: "RegionCityName")
+        defaults.removeObject(forKey: "RegionName")
         selectRegionButton.setTitle("Select Region / City", for: .normal)
 
     }
@@ -81,6 +82,11 @@ class ProfileController: UIViewController {
         vc?.defineCountry {
             self.showCountry()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showCountry()
     }
 
     func showRegion() {

@@ -11,11 +11,15 @@ import Firebase
 import SDWebImage
 
 class SearchViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
+
+    let defaults = UserDefaults.standard
+
     var dbInstance: DatabaseInstance?
     var reuseIdentifier = "OfferCell"
     
     private var searchTextField = UITextField()
+    private var searchButton = UIBarButtonItem()
+
     private let sectionInsets = UIEdgeInsets(top: 20.0,
                                              left: 20.0,
                                              bottom: 20.0,
@@ -52,9 +56,14 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         }
     }
 
+    @objc func searchButtonClick(_ sender: UIButton) {
+        refreshTable(searchTextField.text?.lowercased() ?? "")
+    }
+    
     override func viewDidLoad() {
+        guard self.parent != nil else { return }
         super.viewDidLoad()
-        
+
         if UIDevice.current.orientation.isLandscape {
             itemsPerRow = 3
         } else {
@@ -66,8 +75,13 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
         self.searchTextField = vc.searchTextField
         self.searchTextField.delegate = self
         self.dbInstance = vc.dbInstance
+        self.searchButton = vc.searchButton
+        self.searchButton.target = self
+        self.searchButton.action = #selector(searchButtonClick)
 
-        vc.defineCountry{}
+        vc.defineCountry{
+            self.refreshTable()
+        }
         clearsSelectionOnViewWillAppear = true
 
         favoriteListener = dbInstance?.favoritesReference.addSnapshotListener { querySnapshot, error in
@@ -289,16 +303,23 @@ extension SearchViewController: DocumentsEditDelegate {
             return
         }
 
+        if dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}) == nil &&
+           offer.userId == Auth.auth().currentUser!.uid {
+            dbInstance?.offersMyQuery.insert(offer, at: 0)
+        }
+
+        guard (offer.countryid == String(defaults.integer(forKey: "CountryID")) || defaults.integer(forKey: "CountryID") == 0) &&
+              (offer.regionid == String(defaults.integer(forKey: "RegionID")) || defaults.integer(forKey: "RegionID") == 0) &&
+              (offer.cityid == String(defaults.integer(forKey: "CityID")) || defaults.integer(forKey: "CityID") == 0)
+        else {
+            return
+        }
+
         dbInstance?.offersQuery.insert(offer, at: 0)
         //offersQuery.sort()
         
         guard let index = dbInstance?.offersQuery.firstIndex(of: offer) else {
             return
-        }
-
-        if dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}) == nil &&
-           offer.userId == Auth.auth().currentUser!.uid {
-            dbInstance?.offersMyQuery.insert(offer, at: 0)
         }
 
         if offer.name! >= (searchTextField.text ?? "") || searchTextField.text == "" {

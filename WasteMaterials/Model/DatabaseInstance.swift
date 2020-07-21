@@ -261,6 +261,11 @@ class DatabaseInstance {
                         print("There's an error: \(error.localizedDescription)")
                     }
                 }
+                self.favoritesReference.document(offer.id ?? "").delete() { error in
+                    if let error = error {
+                        print("There's an error: \(error.localizedDescription)")
+                    }
+                }
             }
         }
     }

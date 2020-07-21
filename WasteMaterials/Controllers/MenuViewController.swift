@@ -33,6 +33,7 @@ class MenuViewController: UITabBarController {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    @IBOutlet weak var searchButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,10 @@ class MenuViewController: UITabBarController {
     }
 
     func defineCountry(_ completion: @escaping () -> Void) {
-        guard defaults.integer(forKey: "CountryID") == 0 else { completion(); return }
+        guard defaults.integer(forKey: "CountryID") == 0 else {
+            //completion();
+            return
+        }
         AF.request(apiPath).responseJSON {
             response in
             if let data = response.data {
@@ -98,12 +102,16 @@ class MenuViewController: UITabBarController {
         searchTextField.isHidden = true
         addButton.isEnabled = false
         addButton.tintColor = .clear
+        searchButton.isEnabled = false
+        searchButton.tintColor = .clear
     }
 
     public func showSearch() {
         searchTextField.isHidden = false
         addButton.isEnabled = true
         addButton.tintColor = UIButton(type: .system).tintColor
+        searchButton.isEnabled = true
+        searchButton.tintColor = UIButton(type: .system).tintColor
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

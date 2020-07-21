@@ -36,13 +36,13 @@
          contextName = "DatabaseInstance.fillOffersQuery(_:_:):DatabaseInstance.swift">
          <PersistentStrings>
             <PersistentString
+               value = "defaults.integer(forKey: &quot;RegionID&quot;)">
+            </PersistentString>
+            <PersistentString
                value = "defaults.integer(forKey: &quot;CityID&quot;)">
             </PersistentString>
             <PersistentString
                value = "defaults.integer(forKey: &quot;CountryID&quot;)">
-            </PersistentString>
-            <PersistentString
-               value = "defaults.integer(forKey: &quot;RegionID&quot;)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -237,6 +237,23 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "DatabaseInstance.updateOrNewOffer(_:):DatabaseInstance.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "defaults.integer(forKey: &quot;RegionID&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "defaults.integer(forKey: &quot;CountryID&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "offer.representation">
+            </PersistentString>
+            <PersistentString
+               value = "defaults.integer(forKey: &quot;CityID&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MyCollectionViewController.collectionView(_:cellForItemAt:):MyCollectionViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -251,13 +268,29 @@
          contextName = "ProfileController.userNameChange(_:):ProfileController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "delegate">
-            </PersistentString>
-            <PersistentString
                value = "dbInstance">
             </PersistentString>
             <PersistentString
                value = "user">
+            </PersistentString>
+            <PersistentString
+               value = "delegate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OfferPhotoCell.prepareForView(_:_:):UICollectionViewCell+OfferPhotoCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "arr?[index]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SearchFavoritesController.collectionView(_:cellForItemAt:):SearchFavoritesController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dbInstance?.offersFavoritesQuery">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -272,22 +305,6 @@
             </PersistentString>
             <PersistentString
                value = "itemsPerRow">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SearchFavoritesController.collectionView(_:cellForItemAt:):SearchFavoritesController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "dbInstance?.offersFavoritesQuery">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "OfferPhotoCell.prepareForView(_:_:):UICollectionViewCell+OfferPhotoCell.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "arr?[index]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -448,6 +465,9 @@
             <PersistentString
                value = "dbInstance">
             </PersistentString>
+            <PersistentString
+               value = "defaults.integer(forKey: &quot;CountryID&quot;)">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -526,6 +546,14 @@
             </PersistentString>
             <PersistentString
                value = "controller.offer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SearchViewController.viewDidLoad():SearchViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.parent">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

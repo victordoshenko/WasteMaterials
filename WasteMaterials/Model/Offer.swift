@@ -19,8 +19,11 @@ struct Offer {
     var imageurl: String?
     var image: UIImage? = nil
     var userId: String?
-    
-    init(name: String? = nil, description: String? = nil, id: String? = nil, date: String? = nil, imageurl: String? = nil, image: UIImage? = nil, userId: String? = Auth.auth().currentUser?.uid) {
+    var countryid: String?
+    var regionid: String?
+    var cityid: String?
+
+    init(name: String? = nil, description: String? = nil, id: String? = nil, date: String? = nil, imageurl: String? = nil, image: UIImage? = nil, userId: String? = Auth.auth().currentUser?.uid, countryid: String? = nil, regionid: String? = nil, cityid: String? = nil) {
         self.id = id
         self.name = name
         self.description = description
@@ -28,6 +31,9 @@ struct Offer {
         self.imageurl = imageurl
         self.image = image
         self.userId = userId
+        self.countryid = countryid
+        self.regionid = regionid
+        self.cityid = cityid
     }
     
     init?(document: QueryDocumentSnapshot) {
@@ -38,6 +44,9 @@ struct Offer {
         self.date = data["date"] as? String
         self.imageurl = data["imageurl"] as? String
         self.userId = data["userId"] as? String
+        self.countryid = data["countryid"] as? String
+        self.regionid = data["regionid"] as? String
+        self.cityid = data["cityid"] as? String
     }
     
     mutating func setImageURL(_ url: String?) {
@@ -55,14 +64,20 @@ extension Offer: DatabaseRepresentation {
 
         if defaults.integer(forKey: "CountryID") > 0 {
             rep["countryid"] = defaults.string(forKey: "CountryID")
+        } else {
+            rep["countryid"] = countryid
         }
 
         if defaults.integer(forKey: "RegionID") > 0 {
             rep["regionid"] = defaults.string(forKey: "RegionID")
+        } else {
+            rep["regionid"] = regionid
         }
 
         if defaults.integer(forKey: "CityID") > 0 {
             rep["cityid"] = defaults.string(forKey: "CityID")
+        } else {
+            rep["cityid"] = cityid
         }
 
         if let description = description {

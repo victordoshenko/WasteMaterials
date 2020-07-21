@@ -675,17 +675,20 @@
                             </connections>
                         </barButtonItem>
                         <textField key="titleView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Spl-1V-BFD">
-                            <rect key="frame" x="56.5" y="5" width="262" height="34"/>
+                            <rect key="frame" x="50" y="5" width="223.5" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <viewLayoutGuide key="safeArea" id="EN4-aV-dgj"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" title="Add" image="plus" id="N1g-1R-H6r">
-                            <connections>
-                                <segue destination="sBe-N1-0bh" kind="show" identifier="showDetailsNew" id="nO0-0q-2gO"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Add" image="plus" id="N1g-1R-H6r">
+                                <connections>
+                                    <segue destination="sBe-N1-0bh" kind="show" identifier="showDetailsNew" id="nO0-0q-2gO"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="search" id="aRx-js-HL9"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0Zj-0b-OZt">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -695,6 +698,7 @@
                     <connections>
                         <outlet property="addButton" destination="N1g-1R-H6r" id="Q1q-gV-l10"/>
                         <outlet property="menuButton" destination="9z5-gs-mzd" id="Pfh-Cn-bpu"/>
+                        <outlet property="searchButton" destination="aRx-js-HL9" id="dMg-vq-BHq"/>
                         <outlet property="searchTextField" destination="Spl-1V-BFD" id="2Og-v3-dnW"/>
                         <segue destination="sBZ-AU-gKg" kind="relationship" relationship="viewControllers" id="73v-Sn-YN5"/>
                         <segue destination="g9x-pf-DBy" kind="relationship" relationship="viewControllers" id="Jtf-i3-Q5T"/>
