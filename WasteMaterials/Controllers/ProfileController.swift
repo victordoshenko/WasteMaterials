@@ -15,7 +15,9 @@ protocol UserUpdateDelegate {
 class ProfileController: UIViewController {
 
     let defaults = UserDefaults.standard
+    var dbInstance: DatabaseInstance?
 
+    private var userListener: ListenerRegistration?
     var delegate: UserUpdateDelegate?
     var vc: MenuViewController?
     var user: WUser?
@@ -73,17 +75,35 @@ class ProfileController: UIViewController {
         vc = self.parent as? MenuViewController
         self.delegate = vc
         
-        self.user = vc?.dbInstance?.user
-        
-        userName.text = self.user?.name
-        email.text = self.user?.email
-        phone.text = self.user?.phone
+        self.dbInstance = vc?.dbInstance
+        userListener = dbInstance?.userReference.addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            
+            snapshot.documentChanges.forEach { change in
+                self.handleUserChange(change)
+            }
+        }
         
         vc?.defineCountry {
             self.showCountry()
         }
     }
-    
+
+    private func handleUserChange(_ change: DocumentChange) {
+        guard let user = WUser(document: change.document),
+            user.id == Auth.auth().currentUser!.uid
+            else { return }
+        
+        self.user = user
+        self.userName.text = user.name
+        self.email.text = user.email
+        self.phone.text = user.phone
+        
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         showCountry()

@@ -36,13 +36,13 @@
          contextName = "DatabaseInstance.fillOffersQuery(_:_:):DatabaseInstance.swift">
          <PersistentStrings>
             <PersistentString
-               value = "defaults.integer(forKey: &quot;RegionID&quot;)">
-            </PersistentString>
-            <PersistentString
                value = "defaults.integer(forKey: &quot;CityID&quot;)">
             </PersistentString>
             <PersistentString
                value = "defaults.integer(forKey: &quot;CountryID&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "defaults.integer(forKey: &quot;RegionID&quot;)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -162,6 +162,9 @@
                value = "self.delegate">
             </PersistentString>
             <PersistentString
+               value = "self.user">
+            </PersistentString>
+            <PersistentString
                value = "vc">
             </PersistentString>
          </PersistentStrings>
@@ -268,13 +271,13 @@
          contextName = "ProfileController.userNameChange(_:):ProfileController.swift">
          <PersistentStrings>
             <PersistentString
+               value = "delegate">
+            </PersistentString>
+            <PersistentString
                value = "dbInstance">
             </PersistentString>
             <PersistentString
                value = "user">
-            </PersistentString>
-            <PersistentString
-               value = "delegate">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -301,10 +304,10 @@
                value = "view.frame.height">
             </PersistentString>
             <PersistentString
-               value = "view.frame.width">
+               value = "itemsPerRow">
             </PersistentString>
             <PersistentString
-               value = "itemsPerRow">
+               value = "view.frame.width">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
