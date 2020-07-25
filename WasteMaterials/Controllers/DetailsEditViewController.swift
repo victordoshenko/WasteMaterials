@@ -15,6 +15,7 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var picImageView: UIImageView!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var priceTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,16 +23,17 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
         descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextView.layer.borderWidth = 1.0;
         descriptionTextView.layer.cornerRadius = 5.0;
-        descriptionTextView.text = "Введите описание"
+        descriptionTextView.text = "Description"
         descriptionTextView.textColor = .lightGray
 
         if offer != nil {
             nameTextField.text = offer?.name
             picImageView.image = offer?.image
+            priceTextField.text = offer?.price
             descriptionTextView.text = offer?.description
             descriptionTextView.textColor = .black
-            if descriptionTextView.text == "" || descriptionTextView.text == "Введите описание" {
-                descriptionTextView.text = "Введите описание"
+            if descriptionTextView.text == "" || descriptionTextView.text == "Description" {
+                descriptionTextView.text = "Description"
                 descriptionTextView.textColor = .lightGray
             }
         } else {
@@ -39,6 +41,10 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
         }
     }
 
+    @IBAction func priceEditAction(_ sender: Any) {
+        offer?.price = priceTextField.text!
+    }
+    
     @IBAction func nameEditAction(_ sender: Any) {
         offer?.name = nameTextField.text!
     }
@@ -73,7 +79,7 @@ extension DetailsEditViewController:  UIImagePickerControllerDelegate {
 extension DetailsEditViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView)
     {
-        if (textView.text == "Введите описание" && textView.textColor == .lightGray)
+        if (textView.text == "Description" && textView.textColor == .lightGray)
         {
             textView.text = ""
             textView.textColor = .black
@@ -85,25 +91,17 @@ extension DetailsEditViewController: UITextViewDelegate {
     {
         if (textView.text == "")
         {
-            textView.text = "Введите описание"
+            textView.text = "Description"
             textView.textColor = .lightGray
         }
         textView.resignFirstResponder()
     }
 
     func textViewDidChange(_ textView: UITextView) {
-        if textView.text == "" || textView.text == "Введите описание" {
+        if textView.text == "" || textView.text == "Description" {
             offer?.description = nil
         } else {
             offer?.description = textView.text
         }
-//        if textView.text == "" {
-//            textView.text = "Введите описание"
-//            textView.textColor = .lightGray
-//            offer?.description = ""
-//        } else {
-//            textView.textColor = .black
-//            offer?.description = textView.text
-//        }
     }
 }

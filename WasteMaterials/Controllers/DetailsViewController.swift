@@ -15,6 +15,7 @@ protocol DetailsUpdateDelegate {
 extension DetailsViewController: DetailsUpdateDelegate {
     func updateOffer(_ offer: Offer) {
         labelName.text = offer.name
+        priceLabel.text = offer.price
         picImageView.image = offer.image
         descriptionTextView.text = offer.description
         self.offer = offer
@@ -31,12 +32,14 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var deleteButton: UIBarButtonItem!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var priceLabel: UILabel!
     
     var delegate: DocumentsEditDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         labelName.text = offer?.name
+        priceLabel.text = offer?.price
         descriptionTextView.text = offer?.description
 
         picImageView.image = offer?.image

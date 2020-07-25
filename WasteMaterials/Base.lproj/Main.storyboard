@@ -496,12 +496,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pP5-X5-3AB">
-                                <rect key="frame" x="16" y="80" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" scrollEnabled="NO" editable="NO" text="description" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frp-pV-8GS">
                                 <rect key="frame" x="16" y="37" width="343" height="35"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -521,8 +515,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcT-8F-5dR">
+                                <rect key="frame" x="16" y="80" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pP5-X5-3AB">
+                                <rect key="frame" x="16" y="109" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WR5-68-PXo">
-                                <rect key="frame" x="16" y="109" width="343" height="343"/>
+                                <rect key="frame" x="16" y="138" width="343" height="343"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -532,13 +538,16 @@
                             <constraint firstItem="WR5-68-PXo" firstAttribute="width" secondItem="WR5-68-PXo" secondAttribute="height" multiplier="1:1" id="5zL-nv-xBX"/>
                             <constraint firstItem="frp-pV-8GS" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="16" id="Cb0-LM-tCN"/>
                             <constraint firstItem="OEY-Mz-sbg" firstAttribute="top" secondItem="G4k-GX-T8Z" secondAttribute="top" constant="8" id="Fan-go-jRT"/>
+                            <constraint firstItem="UcT-8F-5dR" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="16" id="GxW-WU-arB"/>
                             <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="OEY-Mz-sbg" secondAttribute="trailing" constant="16" id="Jpz-hO-qHe"/>
                             <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="pP5-X5-3AB" secondAttribute="trailing" constant="16" id="MfY-IG-sBW"/>
+                            <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="UcT-8F-5dR" secondAttribute="trailing" constant="16" id="WMI-pL-rBT"/>
+                            <constraint firstItem="UcT-8F-5dR" firstAttribute="top" secondItem="frp-pV-8GS" secondAttribute="bottom" constant="8" id="ZML-7g-CRF"/>
                             <constraint firstItem="pP5-X5-3AB" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="16" id="cDp-HS-Q51"/>
                             <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="frp-pV-8GS" secondAttribute="trailing" constant="16" id="ci4-AN-Rl6"/>
                             <constraint firstItem="WR5-68-PXo" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="16" id="lxA-py-DiO"/>
-                            <constraint firstItem="pP5-X5-3AB" firstAttribute="top" secondItem="frp-pV-8GS" secondAttribute="bottom" constant="8" id="mkx-Ij-auo"/>
                             <constraint firstItem="OEY-Mz-sbg" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="16" id="q6X-5J-8xf"/>
+                            <constraint firstItem="pP5-X5-3AB" firstAttribute="top" secondItem="UcT-8F-5dR" secondAttribute="bottom" constant="8" id="t5b-po-zxf"/>
                             <constraint firstItem="frp-pV-8GS" firstAttribute="top" secondItem="OEY-Mz-sbg" secondAttribute="bottom" constant="8" id="zhH-hh-QWW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="G4k-GX-T8Z"/>
@@ -564,6 +573,7 @@
                         <outlet property="labelDate" destination="pP5-X5-3AB" id="THf-YW-1fx"/>
                         <outlet property="labelName" destination="OEY-Mz-sbg" id="mSK-B0-Ch4"/>
                         <outlet property="picImageView" destination="WR5-68-PXo" id="3ZF-h5-FYp"/>
+                        <outlet property="priceLabel" destination="UcT-8F-5dR" id="iR2-3y-gfn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byk-Ak-q2t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -596,8 +606,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qGR-3G-IOX">
+                                <rect key="frame" x="8" y="93" width="359" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <connections>
+                                    <action selector="priceEditAction:" destination="tkT-3Y-9Ja" eventType="editingChanged" id="EaZ-5b-3R1"/>
+                                </connections>
+                            </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P2U-5I-Lhw">
-                                <rect key="frame" x="8" y="93" width="359" height="359"/>
+                                <rect key="frame" x="8" y="135" width="359" height="359"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="P2U-5I-Lhw" secondAttribute="height" multiplier="1:1" id="UfQ-im-B85"/>
                                 </constraints>
@@ -609,11 +627,14 @@
                             <constraint firstItem="zA3-ad-YTA" firstAttribute="top" secondItem="yQF-C4-Xgz" secondAttribute="top" constant="8" id="3c7-5i-dDu"/>
                             <constraint firstItem="yQF-C4-Xgz" firstAttribute="trailing" secondItem="P2U-5I-Lhw" secondAttribute="trailing" constant="8" id="4i9-Dd-Wt5"/>
                             <constraint firstItem="yQF-C4-Xgz" firstAttribute="trailing" secondItem="XmB-7o-1ED" secondAttribute="trailing" constant="8" id="A3o-MZ-ROk"/>
+                            <constraint firstItem="yQF-C4-Xgz" firstAttribute="trailing" secondItem="qGR-3G-IOX" secondAttribute="trailing" constant="8" id="IkR-kO-JoC"/>
+                            <constraint firstItem="qGR-3G-IOX" firstAttribute="leading" secondItem="yQF-C4-Xgz" secondAttribute="leading" constant="8" id="OuQ-rw-iZd"/>
+                            <constraint firstItem="P2U-5I-Lhw" firstAttribute="top" secondItem="qGR-3G-IOX" secondAttribute="bottom" constant="8" id="Pid-2g-FBU"/>
                             <constraint firstItem="zA3-ad-YTA" firstAttribute="leading" secondItem="yQF-C4-Xgz" secondAttribute="leading" constant="8" id="Wyd-C9-T7F"/>
                             <constraint firstItem="P2U-5I-Lhw" firstAttribute="leading" secondItem="yQF-C4-Xgz" secondAttribute="leading" constant="8" id="bix-WR-vnu"/>
                             <constraint firstItem="yQF-C4-Xgz" firstAttribute="trailing" secondItem="zA3-ad-YTA" secondAttribute="trailing" constant="8" id="hdr-yj-ZLv"/>
                             <constraint firstItem="XmB-7o-1ED" firstAttribute="top" secondItem="zA3-ad-YTA" secondAttribute="bottom" constant="8" id="nhJ-y2-TzG"/>
-                            <constraint firstItem="P2U-5I-Lhw" firstAttribute="top" secondItem="XmB-7o-1ED" secondAttribute="bottom" constant="8" id="q1v-CA-6fu"/>
+                            <constraint firstItem="qGR-3G-IOX" firstAttribute="top" secondItem="XmB-7o-1ED" secondAttribute="bottom" constant="8" id="rIo-JI-o59"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yQF-C4-Xgz"/>
                     </view>
@@ -635,6 +656,7 @@
                         <outlet property="descriptionTextView" destination="XmB-7o-1ED" id="v0h-nH-IBj"/>
                         <outlet property="nameTextField" destination="zA3-ad-YTA" id="pX9-Pi-Q8N"/>
                         <outlet property="picImageView" destination="P2U-5I-Lhw" id="vNU-hs-xtS"/>
+                        <outlet property="priceTextField" destination="qGR-3G-IOX" id="m4T-Kr-jPJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mh6-6s-x1C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -718,7 +740,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JNc-Tv-igs">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your offer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JNc-Tv-igs">
                                 <rect key="frame" x="8" y="8" width="359" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -726,7 +748,7 @@
                                     <action selector="nameEditAction:" destination="sBe-N1-0bh" eventType="editingChanged" id="aDO-5d-n0X"/>
                                 </connections>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Введите описание" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lHQ-16-T0X">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lHQ-16-T0X">
                                 <rect key="frame" x="8" y="50" width="359" height="35"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -736,8 +758,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="joT-Eu-hGs">
+                                <rect key="frame" x="8" y="93" width="359" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <connections>
+                                    <action selector="priceEditAction:" destination="sBe-N1-0bh" eventType="editingChanged" id="4Sa-Bc-r1R"/>
+                                </connections>
+                            </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Goj-4z-fdj">
-                                <rect key="frame" x="8" y="93" width="359" height="359"/>
+                                <rect key="frame" x="8" y="135" width="359" height="359"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Goj-4z-fdj" secondAttribute="height" multiplier="1:1" id="f8h-Bq-shu"/>
                                 </constraints>
@@ -749,10 +779,13 @@
                             <constraint firstItem="lHQ-16-T0X" firstAttribute="top" secondItem="JNc-Tv-igs" secondAttribute="bottom" constant="8" id="CWO-2D-Ilb"/>
                             <constraint firstItem="fMA-mj-Pyy" firstAttribute="trailing" secondItem="Goj-4z-fdj" secondAttribute="trailing" constant="8" id="Cuc-oO-5ir"/>
                             <constraint firstItem="JNc-Tv-igs" firstAttribute="leading" secondItem="fMA-mj-Pyy" secondAttribute="leading" constant="8" id="FAr-HD-BXV"/>
+                            <constraint firstItem="fMA-mj-Pyy" firstAttribute="trailing" secondItem="joT-Eu-hGs" secondAttribute="trailing" constant="8" id="Rqx-6d-pdS"/>
                             <constraint firstItem="Goj-4z-fdj" firstAttribute="leading" secondItem="fMA-mj-Pyy" secondAttribute="leading" constant="8" id="Sxt-NT-dDQ"/>
+                            <constraint firstItem="Goj-4z-fdj" firstAttribute="top" secondItem="joT-Eu-hGs" secondAttribute="bottom" constant="8" id="TbT-vc-Ppo"/>
                             <constraint firstItem="fMA-mj-Pyy" firstAttribute="trailing" secondItem="JNc-Tv-igs" secondAttribute="trailing" constant="8" id="Vhh-xF-sfR"/>
-                            <constraint firstItem="Goj-4z-fdj" firstAttribute="top" secondItem="lHQ-16-T0X" secondAttribute="bottom" constant="8" id="ZDi-A6-Iue"/>
                             <constraint firstItem="lHQ-16-T0X" firstAttribute="leading" secondItem="fMA-mj-Pyy" secondAttribute="leading" constant="8" id="eCG-gk-8xO"/>
+                            <constraint firstItem="joT-Eu-hGs" firstAttribute="leading" secondItem="fMA-mj-Pyy" secondAttribute="leading" constant="8" id="loO-gg-Fdy"/>
+                            <constraint firstItem="joT-Eu-hGs" firstAttribute="top" secondItem="lHQ-16-T0X" secondAttribute="bottom" constant="8" id="omA-0p-fUU"/>
                             <constraint firstItem="JNc-Tv-igs" firstAttribute="top" secondItem="fMA-mj-Pyy" secondAttribute="top" constant="8" id="uqp-r3-tHY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fMA-mj-Pyy"/>
@@ -775,6 +808,7 @@
                         <outlet property="descriptionTextView" destination="lHQ-16-T0X" id="0Iz-iw-kv8"/>
                         <outlet property="nameTextField" destination="JNc-Tv-igs" id="e5S-Ij-OaC"/>
                         <outlet property="picImageView" destination="Goj-4z-fdj" id="If5-TL-Upn"/>
+                        <outlet property="priceTextField" destination="joT-Eu-hGs" id="cUM-VS-oKZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZ1-fh-tsY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

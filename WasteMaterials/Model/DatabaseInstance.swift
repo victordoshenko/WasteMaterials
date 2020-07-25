@@ -107,7 +107,8 @@ class DatabaseInstance {
                             let id = document.documentID as String
                             let imageurl = data["imageurl"] as? String
                             let description = data["description"] as? String
-                            let newOffer = Offer(name:name, description: description, id:id, date: date, imageurl: imageurl)
+                            let price = data["price"] as? String
+                            let newOffer = Offer(name:name, description: description, id:id, date: date, imageurl: imageurl, price: price)
                             self.offersQuery.append(newOffer)
                         }
                     }

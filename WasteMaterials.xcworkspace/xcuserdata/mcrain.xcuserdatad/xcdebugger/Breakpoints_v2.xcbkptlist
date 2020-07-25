@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "39D10923-5FC8-4806-9477-0BB79F9A96DB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WasteMaterials/Model/DatabaseInstance.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
-            landmarkName = "updateOrNewOffer(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "372B8EC0-5823-4198-B599-8340CE4D7741"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -71,80 +55,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A6E768ED-2075-4216-B66D-150169CCECFD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WasteMaterials/Controllers/MenuViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "73B5F9AF-DDE3-41AB-A208-CCE660C1D8B6"
+            uuid = "F3023B9C-F426-400A-83B8-809D70018A4D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WasteMaterials/Model/DatabaseInstance.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "initUser()"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "updateOffer(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "73B5F9AF-DDE3-41AB-A208-CCE660C1D8B6 - 9ba04b7591465cd2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WasteMaterials.DatabaseInstance.initUser() -&gt; ()"
-                  moduleName = "WasteMaterials"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mcrain/Library/Autosave%20Information/WasteMaterials/WasteMaterials/Model/DatabaseInstance.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169"
-                  offsetFromSymbolStart = "38">
-               </Location>
-               <Location
-                  uuid = "73B5F9AF-DDE3-41AB-A208-CCE660C1D8B6 - 906e1f4193ed9c8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (WasteMaterials.WUser) -&gt; () in WasteMaterials.DatabaseInstance.initUser() -&gt; ()"
-                  moduleName = "WasteMaterials"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mcrain/Library/Autosave%20Information/WasteMaterials/WasteMaterials/Model/DatabaseInstance.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "170"
-                  endingLineNumber = "170"
-                  offsetFromSymbolStart = "42">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8A6DB503-05BA-4956-A987-22274C50A140"
+            uuid = "AD1339CA-0DCD-413E-8436-898C3F988375"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WasteMaterials/Model/DatabaseInstance.swift"
+            filePath = "WasteMaterials/Controllers/DetailsEditViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "initUser()"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "saveAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3D4FAC51-430D-4A9F-BC5C-43968A3797B6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WasteMaterials/Controllers/DetailsEditViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "priceEditAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F1BEF9BD-C96A-4F6A-9DC7-2E806FFB629D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WasteMaterials/Controllers/DetailsEditViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "nameEditAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
