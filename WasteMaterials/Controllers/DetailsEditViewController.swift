@@ -16,6 +16,7 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var picImageView: UIImageView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var priceTextField: UITextField!
+    @IBOutlet weak var hiddenSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,7 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
                 descriptionTextView.text = "Description"
                 descriptionTextView.textColor = .lightGray
             }
+            hiddenSwitch.isOn = offer?.hidden == "1"
         } else {
             offer = Offer(name: "", date: String(Int(Date().timeIntervalSince1970 * 1000)))
         }
@@ -53,7 +55,10 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
         self.delegate?.updateOffer(offer!)
         _ = self.navigationController?.popViewController(animated: true)
     }
-
+    @IBAction func hiddenAction(_ sender: Any) {
+        offer?.hidden = hiddenSwitch.isOn ? "1" : "0"
+    }
+    
     @IBAction func photoAction(_ sender: Any) {
         imagePicker =  UIImagePickerController()
         imagePicker.delegate = self
@@ -84,7 +89,7 @@ extension DetailsEditViewController: UITextViewDelegate {
             textView.text = ""
             textView.textColor = .black
         }
-        textView.becomeFirstResponder() //Optional
+        textView.becomeFirstResponder()
     }
 
     func textViewDidEndEditing(_ textView: UITextView)

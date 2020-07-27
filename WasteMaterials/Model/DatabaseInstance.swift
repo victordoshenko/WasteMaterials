@@ -42,7 +42,15 @@ class DatabaseInstance {
     init() {
         initUser()
     }
-	
+
+    func getOffer(_ id: String, _ completion: @escaping (Offer) -> Void) -> Void {
+        offerReference.document(id).getDocument { (document, error) in
+            if let offer = Offer(document: document as! QueryDocumentSnapshot) {
+                completion(offer)
+            }
+        }
+    }
+
     func checkIsFavorite(_ id: String, _ completion: @escaping (Bool) -> Void) -> Bool {
         var result = false
         favoritesReference.document(id).getDocument { (document, error) in
@@ -86,35 +94,30 @@ class DatabaseInstance {
     
     func fillOffersQuery(_ showAll: Bool, _ completion: @escaping () -> Void) {
         offerReference
+            .whereField("hidden", isLessThan: "1")
             .whereField(defaults.integer(forKey: "CountryID") == 0 ? "z" : "countryid", isEqualTo: defaults.integer(forKey: "CountryID") == 0 ? "0" : defaults.string(forKey: "CountryID") ?? "0")
             .whereField(defaults.integer(forKey: "RegionID") == 0 ? "z" : "regionid", isEqualTo: defaults.integer(forKey: "RegionID") == 0 ? "0" : defaults.string(forKey: "RegionID") ?? "0")
             .whereField(defaults.integer(forKey: "CityID") == 0 ? "z" : "cityid", isEqualTo: defaults.integer(forKey: "CityID") == 0 ? "0" : defaults.string(forKey: "CityID") ?? "0")
             
             .getDocuments { (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                if let snapshot = snapshot {
-                    self.offersQuery.removeAll()
-                    for document in snapshot.documents {
-                        guard showAll ||
-                            self.offersSearchIDsQuery.firstIndex(where: { $0.id == document.documentID }) != nil else {
-                            continue
-                        }
-                        let data = document.data()
-                        if let name = data["name"] as? String,
-                            let date = data["date"] as? String {
-                            let id = document.documentID as String
-                            let imageurl = data["imageurl"] as? String
-                            let description = data["description"] as? String
-                            let price = data["price"] as? String
-                            let newOffer = Offer(name:name, description: description, id:id, date: date, imageurl: imageurl, price: price)
-                            self.offersQuery.append(newOffer)
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    if let snapshot = snapshot {
+                        self.offersQuery.removeAll()
+                        for document in snapshot.documents {
+                            guard showAll ||
+                                self.offersSearchIDsQuery.firstIndex(where: { $0.id == document.documentID }) != nil else {
+                                    continue
+                            }
+                            
+                            if let offer = Offer(document: document) {
+                                self.offersQuery.append(offer)
+                            }
                         }
                     }
-                    completion()
                 }
-            }
+                completion()
         }
     }
     

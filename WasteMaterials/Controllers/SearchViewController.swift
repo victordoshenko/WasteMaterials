@@ -16,7 +16,8 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
 
     var dbInstance: DatabaseInstance?
     var reuseIdentifier = "OfferCell"
-    
+    var refreshed = false
+
     private var searchTextField = UITextField()
     private var searchButton = UIBarButtonItem()
 
@@ -29,7 +30,7 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     private var favoriteListener: ListenerRegistration?
 
     private var itemsPerRow: CGFloat = 2
-        
+    
     deinit {
         offerListener?.remove()
         favoriteListener?.remove()
@@ -58,6 +59,15 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
 
     @objc func searchButtonClick(_ sender: UIButton) {
         refreshTable(searchTextField.text?.lowercased() ?? "")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !refreshed {
+            refreshed = true
+        } else {
+            self.refreshTable(self.searchTextField.text?.lowercased() ?? "")
+        }
     }
     
     override func viewDidLoad() {
@@ -308,7 +318,8 @@ extension SearchViewController: DocumentsEditDelegate {
             dbInstance?.offersMyQuery.insert(offer, at: 0)
         }
 
-        guard (offer.countryid == String(defaults.integer(forKey: "CountryID")) || defaults.integer(forKey: "CountryID") == 0) &&
+        guard (offer.hidden != "1") &&
+              (offer.countryid == String(defaults.integer(forKey: "CountryID")) || defaults.integer(forKey: "CountryID") == 0) &&
               (offer.regionid == String(defaults.integer(forKey: "RegionID")) || defaults.integer(forKey: "RegionID") == 0) &&
               (offer.cityid == String(defaults.integer(forKey: "CityID")) || defaults.integer(forKey: "CityID") == 0)
         else {
@@ -332,6 +343,12 @@ extension SearchViewController: DocumentsEditDelegate {
     
     func updateOfferInTable(_ offer: Offer) {
         guard let index = dbInstance?.offersQuery.firstIndex(of: offer) else {
+            return
+        }
+        
+        guard offer.hidden != "1" else {
+            dbInstance?.offersQuery.remove(at: index)
+            collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
             return
         }
         

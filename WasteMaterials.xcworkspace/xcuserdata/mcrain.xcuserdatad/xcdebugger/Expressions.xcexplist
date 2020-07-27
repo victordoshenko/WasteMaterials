@@ -36,13 +36,13 @@
          contextName = "DatabaseInstance.fillOffersQuery(_:_:):DatabaseInstance.swift">
          <PersistentStrings>
             <PersistentString
+               value = "defaults.integer(forKey: &quot;CityID&quot;)">
+            </PersistentString>
+            <PersistentString
                value = "defaults.integer(forKey: &quot;CountryID&quot;)">
             </PersistentString>
             <PersistentString
                value = "defaults.integer(forKey: &quot;RegionID&quot;)">
-            </PersistentString>
-            <PersistentString
-               value = "defaults.integer(forKey: &quot;CityID&quot;)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -116,6 +116,17 @@
             </PersistentString>
             <PersistentString
                value = "offer.id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SearchMyController.prepare(for:sender:):SearchMyController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "dbInstance?.offersQuery">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -277,13 +288,13 @@
          contextName = "ProfileController.userNameChange(_:):ProfileController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "user">
-            </PersistentString>
-            <PersistentString
                value = "delegate">
             </PersistentString>
             <PersistentString
                value = "dbInstance">
+            </PersistentString>
+            <PersistentString
+               value = "user">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -567,6 +578,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "SearchViewController.viewWillAppear(_:):SearchViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "favoriteListener">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ProfileController.viewWillAppear(_:):ProfileController.swift">
          <PersistentStrings>
             <PersistentString
@@ -579,6 +598,14 @@
          <PersistentStrings>
             <PersistentString
                value = "offers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DatabaseInstance.readAllFromDB(_:_:):DatabaseInstance.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "searchString.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -18,6 +18,7 @@ extension DetailsViewController: DetailsUpdateDelegate {
         priceLabel.text = offer.price
         picImageView.image = offer.image
         descriptionTextView.text = offer.description
+        hiddenSwitch.isOn = offer.hidden == "1"
         self.offer = offer
         self.delegate?.updateOffer(offer)
     }
@@ -33,6 +34,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var deleteButton: UIBarButtonItem!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var hiddenSwitch: UISwitch!
     
     var delegate: DocumentsEditDelegate?
 
@@ -41,6 +43,7 @@ class DetailsViewController: UIViewController {
         labelName.text = offer?.name
         priceLabel.text = offer?.price
         descriptionTextView.text = offer?.description
+        hiddenSwitch.isOn = offer?.hidden == "1"
 
         picImageView.image = offer?.image
         

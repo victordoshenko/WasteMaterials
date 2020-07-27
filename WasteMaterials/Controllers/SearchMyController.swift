@@ -11,13 +11,10 @@ import Firebase
 
 class SearchMyController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    let defaults = UserDefaults.standard
+
     var dbInstance: DatabaseInstance?
     var reuseIdentifier = "OfferCellMy"
-/*
-    var offerMyQuery: Query {
-        return (dbInstance?.offerReference.whereField("userId", isEqualTo: Auth.auth().currentUser!.uid))!
-    }
-*/
     private let sectionInsets = UIEdgeInsets(top: 20.0,
                                              left: 20.0,
                                              bottom: 20.0,
@@ -34,6 +31,17 @@ class SearchMyController: UICollectionViewController, UICollectionViewDelegateFl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.collectionView?.reloadData()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailsMy" {
+            let controller = segue.destination as! DetailsViewController
+            let cell = sender as! UICollectionViewCell
+            if let indexPath = self.collectionView!.indexPath(for: cell) {
+                controller.offer = dbInstance?.offersMyQuery[indexPath.row]
+                controller.delegate = self
+            }
+        }
     }
 
 }
@@ -65,4 +73,67 @@ extension SearchMyController {
         cell.favoriteButton.isHidden = true
         return cell
     }
+}
+
+extension SearchMyController: DocumentsEditDelegate {
+    func updateOffer(_ offer: Offer) {
+        dbInstance?.updateOrNewOffer(offer)
+    }
+    
+    var imageReference: StorageReference {
+        return dbInstance!.imageReference
+    }
+    
+    func addOfferToTable(_ offer: Offer) {
+        guard !(dbInstance?.offersQuery.contains(offer))! else {
+            return
+        }
+
+        if dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}) == nil &&
+           offer.userId == Auth.auth().currentUser!.uid {
+            dbInstance?.offersMyQuery.insert(offer, at: 0)
+        }
+
+        guard (offer.hidden != "1") &&
+              (offer.countryid == String(defaults.integer(forKey: "CountryID")) || defaults.integer(forKey: "CountryID") == 0) &&
+              (offer.regionid == String(defaults.integer(forKey: "RegionID")) || defaults.integer(forKey: "RegionID") == 0) &&
+              (offer.cityid == String(defaults.integer(forKey: "CityID")) || defaults.integer(forKey: "CityID") == 0)
+        else {
+            return
+        }
+
+        dbInstance?.offersQuery.insert(offer, at: 0)
+        
+    }
+    
+    func updateOfferInTable(_ offer: Offer) {
+        guard let index = dbInstance?.offersQuery.firstIndex(of: offer) else {
+            return
+        }
+        
+        dbInstance?.offersQuery[index] = offer
+
+        if let index = dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}),
+           offer.userId == Auth.auth().currentUser!.uid {
+            dbInstance?.offersMyQuery[index] = offer
+        }
+
+        collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+    }
+    
+    func removeOfferFromTable(_ offer: Offer) {
+        guard let index = dbInstance?.offersQuery.firstIndex(of: offer) else {
+            return
+        }
+        dbInstance?.offersQuery.remove(at: index)
+        dbInstance?.deleteOffer(offer)
+
+        if let index = dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}),
+           offer.userId == Auth.auth().currentUser!.uid {
+            dbInstance?.offersMyQuery.remove(at: index)
+        }
+
+        collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
+    }
+
 }

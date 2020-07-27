@@ -23,9 +23,9 @@ struct Offer {
     var regionid: String?
     var cityid: String?
     var price: String?
-    var state: String?
+    var hidden: String?
 
-    init(name: String? = nil, description: String? = nil, id: String? = nil, date: String? = nil, imageurl: String? = nil, image: UIImage? = nil, userId: String? = Auth.auth().currentUser?.uid, countryid: String? = nil, regionid: String? = nil, cityid: String? = nil, price: String? = nil, state: String? = "1") {
+    init(name: String? = nil, description: String? = nil, id: String? = nil, date: String? = nil, imageurl: String? = nil, image: UIImage? = nil, userId: String? = Auth.auth().currentUser?.uid, countryid: String? = nil, regionid: String? = nil, cityid: String? = nil, price: String? = nil, hidden: String? = "0") {
         self.id = id
         self.name = name
         self.description = description
@@ -37,7 +37,7 @@ struct Offer {
         self.regionid = regionid
         self.cityid = cityid
         self.price = price
-        self.state = state
+        self.hidden = hidden
     }
     
     init?(document: QueryDocumentSnapshot) {
@@ -52,7 +52,7 @@ struct Offer {
         self.regionid = data["regionid"] as? String
         self.cityid = data["cityid"] as? String
         self.price = data["price"] as? String
-        self.state = data["state"] as? String
+        self.hidden = data["hidden"] as? String
     }
     
     mutating func setImageURL(_ url: String?) {
@@ -110,8 +110,8 @@ extension Offer: DatabaseRepresentation {
             rep["price"] = price
         }
 
-        if let state = state {
-            rep["state"] = state
+        if let hidden = hidden {
+            rep["hidden"] = hidden
         }
 
         return rep as [String : Any]
