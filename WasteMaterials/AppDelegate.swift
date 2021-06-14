@@ -45,4 +45,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false
   }
 
+    
 }
