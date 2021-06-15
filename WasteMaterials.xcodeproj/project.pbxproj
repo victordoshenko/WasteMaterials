@@ -492,7 +492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YT36F46MQZ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = WasteMaterials/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -512,8 +512,9 @@
 			baseConfigurationReference = 7296862BC1F4B8E0621F9752 /* Pods-WasteMaterials.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YT36F46MQZ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = WasteMaterials/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -522,6 +523,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kusyandr.wastematerials;
 				PRODUCT_NAME = WasteMaterials;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
