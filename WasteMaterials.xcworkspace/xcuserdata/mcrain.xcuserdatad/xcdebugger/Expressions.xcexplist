@@ -36,13 +36,13 @@
          contextName = "DatabaseInstance.fillOffersQuery(_:_:):DatabaseInstance.swift">
          <PersistentStrings>
             <PersistentString
-               value = "defaults.integer(forKey: &quot;CityID&quot;)">
-            </PersistentString>
-            <PersistentString
                value = "defaults.integer(forKey: &quot;CountryID&quot;)">
             </PersistentString>
             <PersistentString
                value = "defaults.integer(forKey: &quot;RegionID&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "defaults.integer(forKey: &quot;CityID&quot;)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -51,6 +51,14 @@
          <PersistentStrings>
             <PersistentString
                value = "offers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in DatabaseInstance.fillOffersQuery(_:_:):DatabaseInstance.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "error.localizedDescription">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -89,6 +97,14 @@
          <PersistentStrings>
             <PersistentString
                value = "dbInstance?.offersQuery">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SearchViewController.searchButtonClick(_:):SearchViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "searchTextField.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -288,13 +304,13 @@
          contextName = "ProfileController.userNameChange(_:):ProfileController.swift">
          <PersistentStrings>
             <PersistentString
+               value = "user">
+            </PersistentString>
+            <PersistentString
                value = "delegate">
             </PersistentString>
             <PersistentString
                value = "dbInstance">
-            </PersistentString>
-            <PersistentString
-               value = "user">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -321,10 +337,10 @@
                value = "view.frame.height">
             </PersistentString>
             <PersistentString
-               value = "view.frame.width">
+               value = "itemsPerRow">
             </PersistentString>
             <PersistentString
-               value = "itemsPerRow">
+               value = "view.frame.width">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -494,10 +510,13 @@
          contextName = "closure #1 in DatabaseInstance.readAllFromDB(_:_:):DatabaseInstance.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.offersQuery.count">
+               value = "defaults.string(forKey: &quot;CountryID&quot;)">
             </PersistentString>
             <PersistentString
-               value = "self.offersFavoritesQuery.count">
+               value = "defaults.string(forKey: &quot;RegionID&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "defaults.string(forKey: &quot;CityID&quot;)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -614,6 +633,14 @@
          <PersistentStrings>
             <PersistentString
                value = "selectCountryButton">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in DatabaseInstance.deleteOffer(_:):DatabaseInstance.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "offer.id">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

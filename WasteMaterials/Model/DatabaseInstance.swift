@@ -211,7 +211,7 @@ class DatabaseInstance {
                     var offer2 = offer
                     offer2.id = ref?.documentID
                     self.updateOffer(offer2)
-                    for word in words where word.count > 2 {
+                    for word in words where word.count > 0 {
                         self.db.collection("words/\(word.lowercased())/ids").document(offer2.id!).setData([:])
                     }
                 }
@@ -251,7 +251,7 @@ class DatabaseInstance {
                 print("There's an error: \(error.localizedDescription)")
             } else {
                 let words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
-                for word in words where word.count > 2 {
+                for word in words where word.count > 0 {
                     self.db.collection("words/\(word)/ids").document(offer.id!).delete() { error in
                         if let e = error {
                             print(e.localizedDescription)
