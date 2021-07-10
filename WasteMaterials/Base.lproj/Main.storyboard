@@ -539,6 +539,24 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sellerName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQS-Wc-uFf">
+                                <rect key="frame" x="29" y="525" width="73" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sellerPhone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KY2-uP-WI4">
+                                <rect key="frame" x="29" y="550" width="76" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sellerEmail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIl-nE-pi3">
+                                <rect key="frame" x="29" y="575" width="69.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="G4k-GX-T8Z"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -555,13 +573,19 @@
                             <constraint firstItem="frp-pV-8GS" firstAttribute="top" secondItem="UcT-8F-5dR" secondAttribute="bottom" constant="8" id="M14-Ex-fMI"/>
                             <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="pP5-X5-3AB" secondAttribute="trailing" constant="8" id="MfY-IG-sBW"/>
                             <constraint firstItem="WR5-68-PXo" firstAttribute="top" secondItem="ANu-t2-z8V" secondAttribute="bottom" constant="8" id="Oqt-hO-8YG"/>
+                            <constraint firstItem="xIl-nE-pi3" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="29" id="Pbu-1q-Bk0"/>
                             <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="ANu-t2-z8V" secondAttribute="trailing" constant="18" id="ScJ-Ff-dAi"/>
                             <constraint firstItem="pP5-X5-3AB" firstAttribute="top" secondItem="frp-pV-8GS" secondAttribute="bottom" constant="8" id="W3o-Mo-53n"/>
                             <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="UcT-8F-5dR" secondAttribute="trailing" constant="16" id="WMI-pL-rBT"/>
+                            <constraint firstItem="sQS-Wc-uFf" firstAttribute="top" secondItem="WR5-68-PXo" secondAttribute="bottom" constant="8" symbolic="YES" id="aZG-xj-xTj"/>
                             <constraint firstItem="pP5-X5-3AB" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="8" id="cDp-HS-Q51"/>
                             <constraint firstItem="G4k-GX-T8Z" firstAttribute="trailing" secondItem="frp-pV-8GS" secondAttribute="trailing" constant="8" id="ci4-AN-Rl6"/>
                             <constraint firstItem="ANu-t2-z8V" firstAttribute="top" secondItem="pP5-X5-3AB" secondAttribute="bottom" constant="8" id="e42-cr-sar"/>
+                            <constraint firstItem="KY2-uP-WI4" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="29" id="eeJ-if-UQT"/>
+                            <constraint firstItem="xIl-nE-pi3" firstAttribute="top" secondItem="KY2-uP-WI4" secondAttribute="bottom" constant="8" symbolic="YES" id="ftA-ao-9QX"/>
+                            <constraint firstItem="KY2-uP-WI4" firstAttribute="top" secondItem="sQS-Wc-uFf" secondAttribute="bottom" constant="8" symbolic="YES" id="khh-hQ-nrb"/>
                             <constraint firstItem="WR5-68-PXo" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="16" id="lxA-py-DiO"/>
+                            <constraint firstItem="sQS-Wc-uFf" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="29" id="nYg-RG-AUG"/>
                             <constraint firstItem="ANu-t2-z8V" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mON-Rm-6yR" secondAttribute="trailing" constant="8" symbolic="YES" id="pj8-t9-e5a"/>
                             <constraint firstItem="OEY-Mz-sbg" firstAttribute="leading" secondItem="G4k-GX-T8Z" secondAttribute="leading" constant="16" id="q6X-5J-8xf"/>
                         </constraints>
@@ -589,6 +613,9 @@
                         <outlet property="labelName" destination="OEY-Mz-sbg" id="mSK-B0-Ch4"/>
                         <outlet property="picImageView" destination="WR5-68-PXo" id="3ZF-h5-FYp"/>
                         <outlet property="priceLabel" destination="UcT-8F-5dR" id="iR2-3y-gfn"/>
+                        <outlet property="sellerEmail" destination="xIl-nE-pi3" id="zuJ-ru-6fF"/>
+                        <outlet property="sellerName" destination="sQS-Wc-uFf" id="CSb-JB-cCz"/>
+                        <outlet property="sellerPhone" destination="KY2-uP-WI4" id="MVh-LB-IK3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byk-Ak-q2t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

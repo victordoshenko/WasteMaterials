@@ -26,6 +26,10 @@ extension DetailsViewController: DetailsUpdateDelegate {
 
 class DetailsViewController: UIViewController {
 
+    let defaults = UserDefaults.standard
+    var dbInstance: DatabaseInstance?
+    var user: WUser?
+
     public var offer: Offer?
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelDate: UILabel!
@@ -35,10 +39,14 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var hiddenSwitch: UISwitch!
+    @IBOutlet weak var sellerName: UILabel!
+    @IBOutlet weak var sellerPhone: UILabel!
+    @IBOutlet weak var sellerEmail: UILabel!
     
     var delegate: DocumentsEditDelegate?
 
     override func viewDidLoad() {
+        guard self.parent != nil else { return }
         super.viewDidLoad()
         labelName.text = offer?.name
         priceLabel.text = offer?.price
@@ -46,7 +54,17 @@ class DetailsViewController: UIViewController {
         hiddenSwitch.isOn = offer?.hidden == "1"
 
         picImageView.image = offer?.image
+
+        let vc = self.navigationController?.viewControllers[0]
         
+        self.dbInstance = (vc as? MenuViewController)?.dbInstance
+
+        self.dbInstance?.getUser(offer?.userId, { (wuser) in
+            self.sellerName.text = wuser.name
+            self.sellerPhone.text = wuser.phone
+            self.sellerEmail.text = wuser.email
+        })
+
         if offer?.userId == Auth.auth().currentUser!.uid {
             self.navigationItem.rightBarButtonItems = [editButton, deleteButton]
         } else {

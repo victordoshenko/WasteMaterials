@@ -201,8 +201,8 @@ class DatabaseInstance {
     func updateOrNewOffer(_ offer: Offer) {
         var ref: DocumentReference? = nil
         if offer.id == nil {  // New
-            let words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
-            //print(words)
+            var words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
+            words.append(offer.name!)
             
             ref = offerReference.addDocument(data: offer.representation) { error in
                 if let e = error {
@@ -224,7 +224,8 @@ class DatabaseInstance {
                     if let data = document?.data(),
                         let description = data["description"] as? String
                     {
-                        let words = description.components(separatedBy: " ").removingDuplicates()
+                        var words = description.components(separatedBy: " ").removingDuplicates()
+                        words.append(offer.name!)
                         for word in words where word.count > 2 {
                             self.db.collection("words/\(word)/ids").document(offer.id!).delete() { error in
                                 if let e = error {
@@ -235,7 +236,8 @@ class DatabaseInstance {
                             }
                         }
                     }
-                    let words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
+                    var words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
+                    words.append(offer.name!)
                     for word in words where word.count > 2 {
                         self.db.collection("words/\(word.lowercased())/ids").document(offer.id!).setData([:])
                     }
@@ -250,9 +252,10 @@ class DatabaseInstance {
             if let error = error {
                 print("There's an error: \(error.localizedDescription)")
             } else {
-                let words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
+                var words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
+                words.append(offer.name!)
                 for word in words where word.count > 0 {
-                    self.db.collection("words/\(word)/ids").document(offer.id!).delete() { error in
+                    self.db.collection("words/\(word.lowercased())/ids").document(offer.id!).delete() { error in
                         if let e = error {
                             print(e.localizedDescription)
                         } else {
