@@ -19,6 +19,13 @@ service cloud.firestore {
     match /words/{word}/ids/{document} {
       allow read, write: if true;
     }
+    match /geo/countries/{country}/{region}/{city}/{document} {
+      allow read, write: if true;
+    }
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if request.auth.uid == userId;      
+    }
   }
 }
 ```
