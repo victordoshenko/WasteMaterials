@@ -19,7 +19,6 @@ class ProfileController: UIViewController {
 
     private var userListener: ListenerRegistration?
     var delegate: UserUpdateDelegate?
-    var vc: MenuViewController?
     var user: WUser?
 
     @IBOutlet weak var userName: UITextField!
@@ -72,10 +71,10 @@ class ProfileController: UIViewController {
         selectCountryButton.setRoundedCorners()
         selectRegionButton.setRoundedCorners()
         
-        vc = self.parent as? MenuViewController
-        self.delegate = vc
-        
-        self.dbInstance = vc?.dbInstance
+        let vc = self.navigationController?.viewControllers[0]
+        self.delegate = vc as? UserUpdateDelegate
+        self.dbInstance = (vc as? MenuViewController)?.dbInstance
+
         userListener = dbInstance?.userReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
@@ -87,7 +86,7 @@ class ProfileController: UIViewController {
             }
         }
         
-        vc?.defineCountry {
+        (vc as? MenuViewController)?.defineCountry {
             self.showCountry()
         }
     }

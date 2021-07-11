@@ -24,8 +24,8 @@ class SearchMyController: UICollectionViewController, UICollectionViewDelegateFl
         super.viewDidLoad()
         print("viewDidLoad: " + self.description)
 
-        let vc = self.parent as! MenuViewController
-        self.dbInstance = vc.dbInstance
+        let vc = self.navigationController?.viewControllers[0]
+        self.dbInstance = (vc as? MenuViewController)?.dbInstance
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -29,4 +29,17 @@ class SideViewController: UIViewController {
         present(ac, animated: true, completion: nil)
     }
     
+    @IBAction func goProfile(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "ProfileController") as? ProfileController else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
+
+    }
+    @IBAction func goFavorites(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "SearchFavorites") as? SearchFavoritesController else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func goBookmarks(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "Bookmarks") as? SearchMyController else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

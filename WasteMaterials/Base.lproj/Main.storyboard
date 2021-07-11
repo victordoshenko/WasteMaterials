@@ -12,7 +12,7 @@
         <!--Search My Controller-->
         <scene sceneID="9bO-85-bsc">
             <objects>
-                <collectionViewController id="n7S-Hr-Z38" customClass="SearchMyController" customModule="WasteMaterials" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="Bookmarks" id="n7S-Hr-Z38" customClass="SearchMyController" customModule="WasteMaterials" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6Qa-Cc-fX0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,10 +76,11 @@
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="" systemItem="bookmarks" id="xmd-ju-pf1"/>
+                    <navigationItem key="navigationItem" id="JI8-jF-3lm"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NwQ-Hk-J4t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2954" y="-1323"/>
+            <point key="canvasLocation" x="2953" y="-1325"/>
         </scene>
         <!--Profile-->
         <scene sceneID="XhT-HX-qHN">
@@ -251,7 +252,7 @@
         <!--Search Favorites Controller-->
         <scene sceneID="pc9-D1-Bnd">
             <objects>
-                <collectionViewController id="g9x-pf-DBy" customClass="SearchFavoritesController" customModule="WasteMaterials" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="SearchFavorites" id="g9x-pf-DBy" customClass="SearchFavoritesController" customModule="WasteMaterials" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="zho-wb-2BT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -315,6 +316,7 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="9wr-Ep-FyW"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="JwC-qO-T6z"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZE-Ne-2mo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -419,23 +421,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0Z-JM-0Uk">
-                                <rect key="frame" x="152.5" y="20" width="70" height="33"/>
+                                <rect key="frame" x="153" y="20" width="69" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Go green"/>
+                                <state key="normal" title="Favorites"/>
                                 <connections>
-                                    <segue destination="uda-Gh-493" kind="show" id="2uG-TD-nEc"/>
+                                    <action selector="goFavorites:" destination="CGE-Mz-xd0" eventType="touchUpInside" id="qOo-3N-NWm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="are-pq-0Zw">
-                                <rect key="frame" x="147.5" y="61" width="80" height="33"/>
+                                <rect key="frame" x="144.5" y="61" width="86" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Go orange"/>
+                                <state key="normal" title="Bookmarks"/>
                                 <connections>
-                                    <segue destination="QsT-pV-sCQ" kind="show" id="3TW-wY-lf4"/>
+                                    <action selector="goBookmarks:" destination="CGE-Mz-xd0" eventType="touchUpInside" id="Vsb-Jo-at8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcb-rH-nUi">
+                                <rect key="frame" x="165.5" y="102" width="44" height="30"/>
+                                <state key="normal" title="Profile"/>
+                                <connections>
+                                    <action selector="goProfile:" destination="CGE-Mz-xd0" eventType="touchUpInside" id="Yew-aM-uu3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0p-kJ-z7L">
-                                <rect key="frame" x="159" y="102" width="57" height="30"/>
+                                <rect key="frame" x="159" y="140" width="57" height="30"/>
                                 <state key="normal" title="Sign out"/>
                                 <connections>
                                     <action selector="logOut:" destination="CGE-Mz-xd0" eventType="touchUpInside" id="Non-hl-poP"/>
@@ -447,9 +456,11 @@
                         <constraints>
                             <constraint firstItem="h0Z-JM-0Uk" firstAttribute="centerX" secondItem="2RK-tB-Dsn" secondAttribute="centerX" id="JVY-5V-eWZ"/>
                             <constraint firstItem="j0p-kJ-z7L" firstAttribute="centerX" secondItem="2RK-tB-Dsn" secondAttribute="centerX" id="RQT-Sp-MD1"/>
+                            <constraint firstItem="hcb-rH-nUi" firstAttribute="centerX" secondItem="2RK-tB-Dsn" secondAttribute="centerX" id="WNU-Mj-4cS"/>
                             <constraint firstItem="are-pq-0Zw" firstAttribute="top" secondItem="h0Z-JM-0Uk" secondAttribute="bottom" constant="8" symbolic="YES" id="oU3-Au-Igv"/>
-                            <constraint firstItem="j0p-kJ-z7L" firstAttribute="top" secondItem="are-pq-0Zw" secondAttribute="bottom" constant="8" symbolic="YES" id="onZ-wk-x1z"/>
                             <constraint firstItem="are-pq-0Zw" firstAttribute="centerX" secondItem="2RK-tB-Dsn" secondAttribute="centerX" id="pqB-en-DVC"/>
+                            <constraint firstItem="j0p-kJ-z7L" firstAttribute="top" secondItem="hcb-rH-nUi" secondAttribute="bottom" constant="8" symbolic="YES" id="q3h-jX-gV5"/>
+                            <constraint firstItem="hcb-rH-nUi" firstAttribute="top" secondItem="are-pq-0Zw" secondAttribute="bottom" constant="8" symbolic="YES" id="qOf-b2-40y"/>
                             <constraint firstItem="h0Z-JM-0Uk" firstAttribute="top" secondItem="iXe-Us-OHa" secondAttribute="top" constant="20" id="uMQ-zA-l91"/>
                         </constraints>
                     </view>
@@ -457,23 +468,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dR3-4g-3no" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2014" y="1510"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="HJc-WH-K9t">
-            <objects>
-                <viewController id="uda-Gh-493" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4SS-vF-Hwf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="YGR-3F-3xQ"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="NKm-ah-TLi"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zUw-Hi-k80" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2954" y="1510"/>
+            <point key="canvasLocation" x="2013.5999999999999" y="1509.8950524737631"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="pDl-0h-k4H">
@@ -960,9 +955,6 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
