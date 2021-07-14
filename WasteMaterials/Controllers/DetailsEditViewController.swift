@@ -21,21 +21,17 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.delegate = self
-        descriptionTextView.layer.borderColor = UIColor.lightGray.cgColor
         descriptionTextView.layer.borderWidth = 1.0;
         descriptionTextView.layer.cornerRadius = 5.0;
-        descriptionTextView.text = "Description"
-        descriptionTextView.textColor = .lightGray
+        descriptionTextView.text = ""
 
         if offer != nil {
             nameTextField.text = offer?.name
             picImageView.image = offer?.image
             priceTextField.text = offer?.price
             descriptionTextView.text = offer?.description
-            descriptionTextView.textColor = .black
             if descriptionTextView.text == "" || descriptionTextView.text == "Description" {
                 descriptionTextView.text = "Description"
-                descriptionTextView.textColor = .lightGray
             }
             hiddenSwitch.isOn = offer?.hidden == "1"
         } else {

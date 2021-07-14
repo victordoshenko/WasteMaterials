@@ -202,8 +202,13 @@ class DatabaseInstance {
         var ref: DocumentReference? = nil
         if offer.id == nil {  // New
             var words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
-            words.append(offer.name!)
-            
+            let n_words = offer.name?.components(separatedBy: " ").removingDuplicates() ?? []
+            for n_word in n_words where n_word.count > 2 {
+                words.append(n_word)
+            }
+
+            words = words.removingDuplicates()
+
             ref = offerReference.addDocument(data: offer.representation) { error in
                 if let e = error {
                     print(e.localizedDescription)
@@ -211,7 +216,7 @@ class DatabaseInstance {
                     var offer2 = offer
                     offer2.id = ref?.documentID
                     self.updateOffer(offer2)
-                    for word in words where word.count > 0 {
+                    for word in words where word.count > 2 {
                         self.db.collection("words/\(word.lowercased())/ids").document(offer2.id!).setData([:])
                     }
                 }
@@ -254,7 +259,7 @@ class DatabaseInstance {
             } else {
                 var words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
                 words.append(offer.name!)
-                for word in words where word.count > 0 {
+                for word in words where word.count > 2 {
                     self.db.collection("words/\(word.lowercased())/ids").document(offer.id!).delete() { error in
                         if let e = error {
                             print(e.localizedDescription)

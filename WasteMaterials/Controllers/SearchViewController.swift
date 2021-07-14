@@ -116,6 +116,8 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
                 self.handleDocumentChange(change)
             }
         }
+        
+        refreshTable("")
     }
     
     func refreshTable(_ string: String = "") {
@@ -328,17 +330,6 @@ extension SearchViewController: DocumentsEditDelegate {
 
         dbInstance?.offersQuery.insert(offer, at: 0)
         //offersQuery.sort()
-        
-        guard let index = dbInstance?.offersQuery.firstIndex(of: offer) else {
-            return
-        }
-
-        if offer.name! >= (searchTextField.text ?? "") || searchTextField.text == "" {
-            collectionView.insertItems(at: [IndexPath(row: index, section: 0)])
-            collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        }
-        
-        
     }
     
     func updateOfferInTable(_ offer: Offer) {
