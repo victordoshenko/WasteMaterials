@@ -42,9 +42,15 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var sellerName: UILabel!
     @IBOutlet weak var sellerPhone: UILabel!
     @IBOutlet weak var sellerEmail: UILabel!
+    @IBOutlet weak var contactsView: UIView!
     
     var delegate: DocumentsEditDelegate?
 
+    @IBAction func showContacts(_ sender: UIButton) {
+        contactsView.isHidden = false
+        sender.isHidden = true
+    }
+    
     override func viewDidLoad() {
         guard self.parent != nil else { return }
         super.viewDidLoad()
