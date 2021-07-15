@@ -39,6 +39,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var hiddenSwitch: UISwitch!
+    @IBOutlet weak var hiddenLabel: UILabel!
     @IBOutlet weak var sellerName: UILabel!
     @IBOutlet weak var sellerPhone: UILabel!
     @IBOutlet weak var sellerEmail: UILabel!
@@ -58,7 +59,6 @@ class DetailsViewController: UIViewController {
         priceLabel.text = offer?.price
         descriptionTextView.text = offer?.description
         hiddenSwitch.isOn = offer?.hidden == "1"
-
         picImageView.image = offer?.image
 
         let vc = self.navigationController?.viewControllers[0]
@@ -75,6 +75,8 @@ class DetailsViewController: UIViewController {
             self.navigationItem.rightBarButtonItems = [editButton, deleteButton]
         } else {
             self.navigationItem.rightBarButtonItems = nil
+            hiddenSwitch.isHidden = true
+            hiddenLabel.isHidden = true
         }
         
         if picImageView.image == nil {

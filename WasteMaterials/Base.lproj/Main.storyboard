@@ -347,12 +347,12 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kKs-Yu-xdv">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="goodsName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wej-2Y-zVV">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="goodsName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wej-2Y-zVV">
                                             <rect key="frame" x="8" y="109" width="134" height="33"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="33" id="kEj-om-RYn"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                             <color key="textColor" systemColor="systemBlueColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -634,6 +634,7 @@
                         <outlet property="deleteButton" destination="dwX-Ci-hXI" id="7t7-ot-vUj"/>
                         <outlet property="descriptionTextView" destination="frp-pV-8GS" id="Kgi-WM-Yb2"/>
                         <outlet property="editButton" destination="g2B-3q-sDx" id="VlY-E7-7nT"/>
+                        <outlet property="hiddenLabel" destination="mON-Rm-6yR" id="tmV-53-CI9"/>
                         <outlet property="hiddenSwitch" destination="ANu-t2-z8V" id="dEx-1E-Rjg"/>
                         <outlet property="labelDate" destination="pP5-X5-3AB" id="THf-YW-1fx"/>
                         <outlet property="labelName" destination="OEY-Mz-sbg" id="mSK-B0-Ch4"/>
@@ -805,7 +806,7 @@
                             </connections>
                         </barButtonItem>
                         <textField key="titleView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Spl-1V-BFD">
-                            <rect key="frame" x="53" y="5" width="223.5" height="34"/>
+                            <rect key="frame" x="53.5" y="5" width="223.5" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <viewLayoutGuide key="safeArea" id="EN4-aV-dgj"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
