@@ -21,14 +21,16 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
       dismiss(animated: true, completion: nil)
       return
     }
-    let authUI = FUIAuth.defaultAuthUI()
-    authUI?.delegate = self
-    authUI?.tosurl = kFirebaseTermsOfService
-    authUI?.providers = [FUIEmailAuth(), FUIGoogleAuth(), FUIFacebookAuth()]
-    let authViewController: UINavigationController? = authUI?.authViewController()
-    authViewController?.navigationBar.isHidden = true
-    authViewController?.modalPresentationStyle = .fullScreen
-    present(authViewController!, animated: true, completion: nil)
+    if let authUI = FUIAuth.defaultAuthUI() {
+        authUI.delegate = self
+        authUI.tosurl = kFirebaseTermsOfService
+        authUI.providers = [FUIEmailAuth(), FUIGoogleAuth(), FUIFacebookAuth(), FUIOAuth.appleAuthProvider()]
+        let authViewController = authUI.authViewController()
+        authViewController.navigationBar.isHidden = true
+        authViewController.modalPresentationStyle = .fullScreen
+        //present(authViewController!, animated: true, completion: nil)
+        self.present(authViewController, animated: true)
+    }
   }
 
   func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
@@ -41,6 +43,7 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
       print("Login error: \(error.localizedDescription)")
     case .none:
       if let user = authDataResult?.user {
+        print("Signed as \(user.uid). E-mail: \(user.email ?? "")")
         signed(in: user)
       }
     }
@@ -55,4 +58,5 @@ class SignInViewController: UIViewController, FUIAuthDelegate {
     appDelegate?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
     dismiss(animated: true, completion: nil)
   }
+
 }
