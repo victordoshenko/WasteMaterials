@@ -37,7 +37,7 @@ class GeoController: UITableViewController {
         if countryID > 0 {
             searchController.searchBar.text = defaults.string(forKey: "RegionName")
         }
-        loadData(countryID, searchController.searchBar.text!)
+        loadData(countryID, searchController.searchBar.text ?? "")
     }
 
     // MARK: - Table view data source
@@ -50,7 +50,7 @@ class GeoController: UITableViewController {
         
         let geoitem = geoitems[indexPath.row]
         if countryID == 0 {
-            cell.textLabel?.text = getFlag(from: geoitem.ccod ?? "") + " " + geoitem.cnam!
+            cell.textLabel?.text = getFlag(from: geoitem.ccod ?? "") + " " + (geoitem.cnam ?? "")
             cell.detailTextLabel?.text = "\(geoitem.ccod ?? "")"
         } else {
             cell.textLabel?.text = geoitem.nam
@@ -67,12 +67,12 @@ class GeoController: UITableViewController {
             defaults.set(geoitem.cid, forKey: "CountryID")
             defaults.set(geoitem.cnam, forKey: "CountryName")
             defaults.set(geoitem.ccod, forKey: "CountryCode")
-            defaults.set(getFlag(from: geoitem.ccod ?? "") + " " + geoitem.cnam!, forKey: "CountryFullName")
+            defaults.set(getFlag(from: geoitem.ccod ?? "") + " " + (geoitem.cnam ?? ""), forKey: "CountryFullName")
         } else {
             defaults.set(geoitem.rid , forKey: "RegionID")
             defaults.set(geoitem.cyid , forKey: "CityID")
-            defaults.set(geoitem.nam! , forKey: "RegionName")
-            defaults.set(geoitem.nam! + (geoitem.rnam ?? "" == "" ? "" : " (\(geoitem.rnam ?? ""))"), forKey: "RegionCityName")
+            defaults.set(geoitem.nam ?? "" , forKey: "RegionName")
+            defaults.set(geoitem.nam ?? "" + (geoitem.rnam ?? "" == "" ? "" : " (\(geoitem.rnam ?? ""))"), forKey: "RegionCityName")
         }
 
         self.navigationController?.popViewController(animated: true)
@@ -105,7 +105,7 @@ extension GeoController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         if (searchController.searchBar.text ?? "").count > 2 {
-            filterContentForSearchText(searchController.searchBar.text!)
+            filterContentForSearchText(searchController.searchBar.text ?? "")
         }
     }
     

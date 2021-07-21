@@ -126,9 +126,13 @@ extension Offer: Comparable {
     }
     
     static func < (lhs: Offer, rhs: Offer) -> Bool {
-        return lhs.date! < rhs.date!
+        if let ld = lhs.date, let rd = rhs.date {
+            return ld < rd
+        } else {
+            return false
+        }
     }
-    
+
 }
 
 class EmptyOffer {

@@ -40,15 +40,17 @@ class DetailsEditViewController: UIViewController, UINavigationControllerDelegat
     }
 
     @IBAction func priceEditAction(_ sender: Any) {
-        offer?.price = priceTextField.text!
+        offer?.price = priceTextField.text ?? ""
     }
     
     @IBAction func nameEditAction(_ sender: Any) {
-        offer?.name = nameTextField.text!
+        offer?.name = nameTextField.text ?? ""
     }
     
     @IBAction func saveAction(_ sender: Any) {
-        self.delegate?.updateOffer(offer!)
+        if let offer = offer {
+            self.delegate?.updateOffer(offer)
+        }
         _ = self.navigationController?.popViewController(animated: true)
     }
     @IBAction func hiddenAction(_ sender: Any) {

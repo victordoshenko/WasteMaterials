@@ -15,7 +15,7 @@ class SearchFavoritesController: UICollectionViewController, UICollectionViewDel
     var reuseIdentifier = "OfferCellFavorites"
 
     var offerFavoritesQuery: Query {
-        return dbInstance!.favoritesReference as Query
+        return (dbInstance ?? DatabaseInstance()).favoritesReference as Query
     }
 
     private let sectionInsets = UIEdgeInsets(top: 20.0,
@@ -64,14 +64,14 @@ extension SearchFavoritesController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (dbInstance?.offersFavoritesQuery.count)!
+        return (dbInstance?.offersFavoritesQuery.count) ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! OfferPhotoCell
-        cell.delegate = self
-        cell.prepareForView(dbInstance?.offersFavoritesQuery, indexPath.row)
-        cell.setHeart(true)
-        return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? OfferPhotoCell
+        cell?.delegate = self
+        cell?.prepareForView(dbInstance?.offersFavoritesQuery, indexPath.row)
+        cell?.setHeart(true)
+        return cell ?? OfferPhotoCell()
     }
 }

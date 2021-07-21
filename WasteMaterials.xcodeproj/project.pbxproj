@@ -495,7 +495,7 @@
 				CODE_SIGN_ENTITLEMENTS = WasteMaterials/WasteMaterials.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = YT36F46MQZ;
 				INFOPLIST_FILE = WasteMaterials/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -503,7 +503,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Kusyandr.WasteMaterials;
 				PRODUCT_NAME = WasteMaterials;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -520,7 +520,7 @@
 				CODE_SIGN_ENTITLEMENTS = WasteMaterials/WasteMaterials.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = YT36F46MQZ;
 				INFOPLIST_FILE = WasteMaterials/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -528,7 +528,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Kusyandr.WasteMaterials;
 				PRODUCT_NAME = WasteMaterials;
 				PROVISIONING_PROFILE_SPECIFIER = "";

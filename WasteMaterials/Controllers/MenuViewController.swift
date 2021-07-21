@@ -65,7 +65,7 @@ class MenuViewController: UITabBarController {
                         self.defaults.set(geoitems[index].cid, forKey: "CountryID")
                         self.defaults.set(geoitems[index].cnam, forKey: "CountryName")
                         self.defaults.set(geoitems[index].ccod, forKey: "CountryCode")
-                        self.defaults.set(getFlag(from: geoitems[index].ccod ?? "") + " " + geoitems[index].cnam!, forKey: "CountryFullName")
+                        self.defaults.set(getFlag(from: geoitems[index].ccod ?? "") + " " + (geoitems[index].cnam ?? ""), forKey: "CountryFullName")
                         completion()
                         let ac = UIAlertController(title: nil, message: "Your country defined automatically as \(geoitems[index].cnam ?? "").", preferredStyle: .alert)
                         ac.addAction(UIAlertAction(title: "Ok", style: .default , handler: nil))
@@ -80,8 +80,8 @@ class MenuViewController: UITabBarController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailsNew" {
-            let controller = segue.destination as! DetailsEditViewController
-            controller.delegate = self
+            let controller = segue.destination as? DetailsEditViewController
+            controller?.delegate = self
         }
 
         guard let sideMenuNavigationController = segue.destination as? SideMenuNavigationController else { return }
@@ -115,7 +115,7 @@ class MenuViewController: UITabBarController {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item == (self.tabBar.items!)[0] {
+        if item == (self.tabBar.items)?[0] {
             showSearch()
         } else {
             hideSearch()

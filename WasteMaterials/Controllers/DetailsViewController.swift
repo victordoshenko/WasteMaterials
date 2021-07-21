@@ -71,7 +71,7 @@ class DetailsViewController: UIViewController {
             self.sellerEmail.text = wuser.email
         })
 
-        if offer?.userId == Auth.auth().currentUser!.uid {
+        if offer?.userId == Auth.auth().currentUser?.uid {
             self.navigationItem.rightBarButtonItems = [editButton, deleteButton]
         } else {
             self.navigationItem.rightBarButtonItems = nil
@@ -97,7 +97,7 @@ class DetailsViewController: UIViewController {
         if let date = offer?.date {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd.MM.yyyy HH:mm:ss.SSS"
-            labelDate.text = dateFormatter.string(from: Date(timeIntervalSince1970: Double(Int(date)!) / 1000 ))
+            labelDate.text = dateFormatter.string(from: Date(timeIntervalSince1970: Double(Int(date) ?? 0) / 1000 ))
         } else {
             labelDate.text = ""
         }
@@ -105,9 +105,9 @@ class DetailsViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailsEdit" {
-            let controller = segue.destination as! DetailsEditViewController
-            controller.offer = self.offer
-            controller.delegate = self
+            let controller = segue.destination as? DetailsEditViewController
+            controller?.offer = self.offer
+            controller?.delegate = self
         }
     }
 
@@ -115,7 +115,9 @@ class DetailsViewController: UIViewController {
         let ac = UIAlertController(title: nil, message: "Are you sure you want to delete offer?", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-            self.delegate?.removeOfferFromTable(self.offer!)
+            if let offer = self.offer {
+                self.delegate?.removeOfferFromTable(offer)
+            }
             _ = self.navigationController?.popViewController(animated: true)
         }))
         present(ac, animated: true, completion: nil)

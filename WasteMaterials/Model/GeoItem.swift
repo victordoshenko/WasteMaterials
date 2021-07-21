@@ -31,16 +31,5 @@ struct GeoItem: Decodable {
         case lon = "LON"
     }
 }
-/*
-struct GeoItem: Codable {
-    let cid: Int?
-    let cnam, ccod: String?
 
-    enum CodingKeys: String, CodingKey {
-        case cid = "CID"
-        case cnam = "CNAM"
-        case ccod = "CCOD"
-    }
-}
-*/
 typealias GeoItems = [GeoItem]

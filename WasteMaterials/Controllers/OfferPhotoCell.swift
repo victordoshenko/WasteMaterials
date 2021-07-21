@@ -15,13 +15,13 @@ class OfferPhotoCell: UICollectionViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBAction func favoriteButtonAction(_ sender: UIButton) {
         //setHeart(sender.titleLabel?.text != "♥︎")
-        delegate?.changeFavoriteStatus(id!) { isFavorite in
+        delegate?.changeFavoriteStatus(id ?? "") { isFavorite in
             self.setHeart(isFavorite)
         }
     }
 
     func setHeart(_ isFavorite: Bool) {
         favoriteButton.setTitle(isFavorite ? "♥︎" : "♡", for: .normal)
-        print("Set favorite = \(isFavorite) !  \(self.description)")
+        print("Set favorite = \(isFavorite)  \(self.description)")
     }
 }

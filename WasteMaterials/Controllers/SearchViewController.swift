@@ -48,11 +48,10 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails" {
-            let controller = segue.destination as! DetailsViewController
-            let cell = sender as! UICollectionViewCell
-            if let indexPath = self.collectionView!.indexPath(for: cell) {
-                controller.offer = dbInstance?.offersQuery[indexPath.row]
-                controller.delegate = self
+            let controller = segue.destination as? DetailsViewController
+            if let cell = sender as? UICollectionViewCell, let indexPath = self.collectionView?.indexPath(for: cell) {
+                controller?.offer = dbInstance?.offersQuery[indexPath.row]
+                controller?.delegate = self
             }
         }
     }
@@ -80,18 +79,19 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
             itemsPerRow = 2
         }
         
-        let vc = self.parent as! MenuViewController
-        vc.showSearch()
-        self.searchTextField = vc.searchTextField
-        self.searchTextField.delegate = self
-        self.dbInstance = vc.dbInstance
-        self.searchButton = vc.searchButton
-        self.searchButton.target = self
-        self.searchButton.action = #selector(searchButtonClick)
-
-        vc.defineCountry{
-            self.refreshTable()
+        if let vc = self.parent as? MenuViewController {
+            vc.showSearch()
+            self.searchTextField = vc.searchTextField
+            self.searchTextField.delegate = self
+            self.dbInstance = vc.dbInstance
+            self.searchButton = vc.searchButton
+            self.searchButton.target = self
+            self.searchButton.action = #selector(searchButtonClick)
+            vc.defineCountry{
+                self.refreshTable()
+            }
         }
+
         clearsSelectionOnViewWillAppear = true
 
         favoriteListener = dbInstance?.favoritesReference.addSnapshotListener { querySnapshot, error in
@@ -137,17 +137,19 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
             return
         }
         
-        let index = self.dbInstance?.offersQuery.firstIndex(where: {$0.id == favorite.id})
         var offer: Offer?
-        if index == nil {
-            offer = Offer(id: favorite.id)
+
+        if let index = self.dbInstance?.offersQuery.firstIndex(where: {$0.id == favorite.id}) {
+            offer = self.dbInstance?.offersQuery[index]
         } else {
-            offer = self.dbInstance?.offersQuery[index!]
+            offer = Offer(id: favorite.id)
         }
         
         switch change.type {
         case .added:
-            dbInstance?.offersFavoritesQuery.insert(offer!, at: 0)
+            if let offer = offer {
+                dbInstance?.offersFavoritesQuery.insert(offer, at: 0)
+            }
             
         case .removed:
             if let index = self.dbInstance?.offersFavoritesQuery.firstIndex(where: {$0.id == favorite.id}) {
@@ -155,10 +157,13 @@ class SearchViewController: UICollectionViewController, UICollectionViewDelegate
             }
         case .modified: break
         }
-        
-        if (dbInstance?.offersQuery.count)! > 0 && index != nil {
-            self.collectionView.reloadItems(at: [IndexPath(row: index!, section: 0)])
+
+        if let index = self.dbInstance?.offersFavoritesQuery.firstIndex(where: {$0.id == favorite.id}) {
+            if dbInstance?.offersQuery.count ?? 0 > 0 {
+                self.collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+            }
         }
+        
     }
 
     @objc private func signOut() {
@@ -276,16 +281,16 @@ extension SearchViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (dbInstance?.offersQuery.count)!
+        return (dbInstance?.offersQuery.count) ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
-                                                      for: indexPath) as! OfferPhotoCell
-        cell.delegate = self
-        cell.prepareForView(dbInstance?.offersQuery, indexPath.row)
-        cell.setHeart(dbInstance?.offersFavoritesQuery.firstIndex(where: {$0.id == cell.id}) != nil)
-        return cell
+                                                      for: indexPath) as? OfferPhotoCell
+        cell?.delegate = self
+        cell?.prepareForView(dbInstance?.offersQuery, indexPath.row)
+        cell?.setHeart(dbInstance?.offersFavoritesQuery.firstIndex(where: {$0.id == cell?.id}) != nil)
+        return cell ?? OfferPhotoCell()
     }
 }
 
@@ -307,17 +312,23 @@ extension SearchViewController: DocumentsEditDelegate {
     }
     
     var imageReference: StorageReference {
-        return dbInstance!.imageReference
+        if let instance = dbInstance {
+            return instance.imageReference
+        } else {
+            return StorageReference()
+        }
     }
     
     func addOfferToTable(_ offer: Offer) {
-        guard !(dbInstance?.offersQuery.contains(offer))! else {
+        guard (dbInstance?.offersQuery.contains(offer) ?? false) == false else {
             return
         }
 
-        if dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}) == nil &&
-           offer.userId == Auth.auth().currentUser!.uid {
-            dbInstance?.offersMyQuery.insert(offer, at: 0)
+        if let user = Auth.auth().currentUser {
+            if dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}) == nil &&
+               offer.userId == user.uid {
+                dbInstance?.offersMyQuery.insert(offer, at: 0)
+            }
         }
 
         guard (offer.hidden != "1") &&
@@ -346,7 +357,7 @@ extension SearchViewController: DocumentsEditDelegate {
         dbInstance?.offersQuery[index] = offer
 
         if let index = dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}),
-           offer.userId == Auth.auth().currentUser!.uid {
+           offer.userId == Auth.auth().currentUser?.uid {
             dbInstance?.offersMyQuery[index] = offer
         }
 
@@ -361,7 +372,7 @@ extension SearchViewController: DocumentsEditDelegate {
         dbInstance?.deleteOffer(offer)
 
         if let index = dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}),
-           offer.userId == Auth.auth().currentUser!.uid {
+           offer.userId == Auth.auth().currentUser?.uid {
             dbInstance?.offersMyQuery.remove(at: index)
         }
 

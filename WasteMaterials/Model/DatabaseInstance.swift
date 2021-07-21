@@ -23,7 +23,7 @@ class DatabaseInstance {
     var offersFavoritesQuery = [Offer]()
     var offersMyQuery = [Offer]()
     var offersSearchIDsQuery = [EmptyOffer]()
-    public var user = WUser(id: Auth.auth().currentUser!.uid)
+    public var user = WUser(id: Auth.auth().currentUser?.uid)
 
     let db = Firestore.firestore()
 
@@ -32,7 +32,7 @@ class DatabaseInstance {
     }
 
     var favoritesReference: CollectionReference {
-        return db.collection("favorites/\(Auth.auth().currentUser!.uid)/ids")
+        return db.collection("favorites/\(String(describing: Auth.auth().currentUser?.uid))/ids")
     }
     
     var userReference: CollectionReference {
@@ -81,7 +81,11 @@ class DatabaseInstance {
     }
 
     var imageReference: StorageReference {
-        return Storage.storage().reference().child("images").child(Auth.auth().currentUser!.uid)
+        if let user = Auth.auth().currentUser {
+            return Storage.storage().reference().child("images").child(user.uid)
+        } else {
+            return StorageReference()
+        }
     }
 
     func addOferToDB(_ offer: Offer) {
@@ -132,9 +136,11 @@ class DatabaseInstance {
             if let err = err {
                 print("Error getting documents: \(err.localizedDescription)")
             } else {
-                for document in querySnapshot!.documents {
-                    let empty = EmptyOffer(id: document.documentID)
-                    self.offersSearchIDsQuery.append(empty)
+                if let qs = querySnapshot {
+                    for document in qs.documents {
+                        let empty = EmptyOffer(id: document.documentID)
+                        self.offersSearchIDsQuery.append(empty)
+                    }
                 }
                 self.fillOffersQuery(false, completion)
             }
@@ -146,15 +152,17 @@ class DatabaseInstance {
         self.user.email = user?.email
         self.user.phone = user?.phone
         
-        userReference.document(Auth.auth().currentUser!.uid).setData(self.user.representation) { error in
-            if let error = error {
-                print("There's an error: \(error.localizedDescription)")
+        if let user = Auth.auth().currentUser {
+            userReference.document(user.uid).setData(self.user.representation) { error in
+                if let error = error {
+                    print("There's an error: \(error.localizedDescription)")
+                }
             }
         }
     }
 
-    func getUser(_ userId: String? = Auth.auth().currentUser!.uid, _ completion: @escaping (WUser) -> Void)  {
-        userReference.document(userId!).getDocument { (document, error) in
+    func getUser(_ userId: String? = Auth.auth().currentUser?.uid, _ completion: @escaping (WUser) -> Void)  {
+        userReference.document(userId ?? "").getDocument { (document, error) in
             if let e = error {
                 print(e.localizedDescription)
             } else {
@@ -177,15 +185,16 @@ class DatabaseInstance {
 
     func updateOffer(_ offer: Offer) {
         if let image = offer.image,
-            Auth.auth().currentUser!.uid == offer.userId,
+            let user = Auth.auth().currentUser,
+            user.uid == offer.userId,
             let imageData = image.jpegData(compressionQuality: 0.3) {
-            let uploadImageRef = imageReference.child(offer.id! + ".JPG")
+            let uploadImageRef = imageReference.child((offer.id ?? "") + ".JPG")
             let uploadTask = uploadImageRef.putData(imageData, metadata: nil) { (metadata, error) in
                 uploadImageRef.downloadURL { (url, error) in
                     guard let downloadURL = url else { return }
                     var offer2 = offer
                     offer2.imageurl = downloadURL.absoluteString
-                    self.offerReference.document(offer2.id!).setData(offer2.representation) { error in
+                    self.offerReference.document(offer2.id ?? "").setData(offer2.representation) { error in
                         if let error = error {
                             print("There's an error: \(error.localizedDescription)")
                         }
@@ -194,7 +203,7 @@ class DatabaseInstance {
             }
             uploadTask.resume()
         } else {
-            offerReference.document(offer.id!).setData(offer.representation)
+            offerReference.document(offer.id ?? "").setData(offer.representation)
         }
     }
 
@@ -217,12 +226,12 @@ class DatabaseInstance {
                     offer2.id = ref?.documentID
                     self.updateOffer(offer2)
                     for word in words where word.count > 2 {
-                        self.db.collection("words/\(word.lowercased())/ids").document(offer2.id!).setData([:])
+                        self.db.collection("words/\(word.lowercased())/ids").document(offer2.id ?? "").setData([:])
                     }
                 }
             }
         } else {
-            offerReference.document(offer.id!).getDocument { (document, error) in
+            offerReference.document(offer.id ?? "").getDocument { (document, error) in
                 if let e = error {
                     print(e.localizedDescription)
                 } else {
@@ -230,9 +239,9 @@ class DatabaseInstance {
                         let description = data["description"] as? String
                     {
                         var words = description.components(separatedBy: " ").removingDuplicates()
-                        words.append(offer.name!)
+                        words.append(offer.name ?? "")
                         for word in words where word.count > 2 {
-                            self.db.collection("words/\(word)/ids").document(offer.id!).delete() { error in
+                            self.db.collection("words/\(word)/ids").document(offer.id ?? "").delete() { error in
                                 if let e = error {
                                     print(e.localizedDescription)
                                 } else {
@@ -242,9 +251,9 @@ class DatabaseInstance {
                         }
                     }
                     var words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
-                    words.append(offer.name!)
+                    words.append(offer.name ?? "")
                     for word in words where word.count > 2 {
-                        self.db.collection("words/\(word.lowercased())/ids").document(offer.id!).setData([:])
+                        self.db.collection("words/\(word.lowercased())/ids").document(offer.id ?? "").setData([:])
                     }
                     self.updateOffer(offer)
                 }
@@ -258,9 +267,9 @@ class DatabaseInstance {
                 print("There's an error: \(error.localizedDescription)")
             } else {
                 var words = offer.description?.components(separatedBy: " ").removingDuplicates() ?? []
-                words.append(offer.name!)
+                words.append(offer.name ?? "")
                 for word in words where word.count > 2 {
-                    self.db.collection("words/\(word.lowercased())/ids").document(offer.id!).delete() { error in
+                    self.db.collection("words/\(word.lowercased())/ids").document(offer.id ?? "").delete() { error in
                         if let e = error {
                             print(e.localizedDescription)
                         } else {
@@ -268,7 +277,7 @@ class DatabaseInstance {
                         }
                     }
                 }
-                self.imageReference.child(offer.id! + ".JPG").delete() { error in
+                self.imageReference.child((offer.id ?? "") + ".JPG").delete() { error in
                     if let error = error {
                         print("There's an error: \(error.localizedDescription)")
                     }

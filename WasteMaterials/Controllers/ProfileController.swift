@@ -93,7 +93,8 @@ class ProfileController: UIViewController {
 
     private func handleUserChange(_ change: DocumentChange) {
         guard let user = WUser(document: change.document),
-            user.id == Auth.auth().currentUser!.uid
+            let usr = Auth.auth().currentUser,
+            user.id == usr.uid
             else { return }
         
         self.user = user
@@ -131,14 +132,13 @@ class ProfileController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "chooseRegion" {
-            let controller = segue.destination as! GeoController
-            controller.countryID = defaults.integer(forKey: "CountryID")
+            let controller = segue.destination as? GeoController
+            controller?.countryID = defaults.integer(forKey: "CountryID")
         }
         if segue.identifier == "chooseCountry" {
-            let controller = segue.destination as! GeoController
-            controller.countryID = 0
+            let controller = segue.destination as? GeoController
+            controller?.countryID = 0
         }
-
     }
     
 }

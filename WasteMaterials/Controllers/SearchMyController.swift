@@ -35,12 +35,12 @@ class SearchMyController: UICollectionViewController, UICollectionViewDelegateFl
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailsMy" {
-            let controller = segue.destination as! DetailsViewController
-            let cell = sender as! UICollectionViewCell
-            if let indexPath = self.collectionView!.indexPath(for: cell) {
-                controller.offer = dbInstance?.offersMyQuery[indexPath.row]
-                controller.delegate = self
-            }
+            if let controller = segue.destination as? DetailsViewController,
+               let cell = sender as? UICollectionViewCell,
+               let indexPath = self.collectionView?.indexPath(for: cell) {
+                    controller.offer = dbInstance?.offersMyQuery[indexPath.row]
+                    controller.delegate = self
+                }
         }
     }
 
@@ -64,14 +64,14 @@ extension SearchMyController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (dbInstance?.offersMyQuery.count)!
+        return (dbInstance?.offersMyQuery.count) ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! OfferPhotoCell
-        cell.prepareForView(dbInstance?.offersMyQuery, indexPath.row)
-        cell.favoriteButton.isHidden = true
-        return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? OfferPhotoCell
+        cell?.prepareForView(dbInstance?.offersMyQuery, indexPath.row)
+        cell?.favoriteButton.isHidden = true
+        return cell ?? OfferPhotoCell()
     }
 }
 
@@ -81,17 +81,19 @@ extension SearchMyController: DocumentsEditDelegate {
     }
     
     var imageReference: StorageReference {
-        return dbInstance!.imageReference
+        return (dbInstance ?? DatabaseInstance()).imageReference
     }
     
     func addOfferToTable(_ offer: Offer) {
-        guard !(dbInstance?.offersQuery.contains(offer))! else {
+        guard (dbInstance?.offersQuery.contains(offer) ?? false) == false else {
             return
         }
 
-        if dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}) == nil &&
-           offer.userId == Auth.auth().currentUser!.uid {
-            dbInstance?.offersMyQuery.insert(offer, at: 0)
+        if let user = Auth.auth().currentUser {
+            if dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}) == nil &&
+               offer.userId == user.uid {
+                dbInstance?.offersMyQuery.insert(offer, at: 0)
+            }
         }
 
         guard (offer.hidden != "1") &&
@@ -114,7 +116,8 @@ extension SearchMyController: DocumentsEditDelegate {
         dbInstance?.offersQuery[index] = offer
 
         if let index = dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}),
-           offer.userId == Auth.auth().currentUser!.uid {
+           let user = Auth.auth().currentUser,
+           offer.userId == user.uid {
             dbInstance?.offersMyQuery[index] = offer
         }
 
@@ -129,7 +132,8 @@ extension SearchMyController: DocumentsEditDelegate {
         dbInstance?.deleteOffer(offer)
 
         if let index = dbInstance?.offersMyQuery.firstIndex(where: {$0.id == offer.id}),
-           offer.userId == Auth.auth().currentUser!.uid {
+           let user = Auth.auth().currentUser,
+           offer.userId == user.uid {
             dbInstance?.offersMyQuery.remove(at: index)
         }
 
